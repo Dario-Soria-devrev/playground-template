@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merrick × DevRev | Service Desk Transformation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #0a0a0f;
+            --bg-secondary: #12121a;
+            --bg-card: #1a1a24;
+            --accent-purple: #8b5cf6;
+            --accent-blue: #3b82f6;
+            --accent-cyan: #06b6d4;
+            --accent-green: #10b981;
+            --accent-orange: #f59e0b;
+            --accent-red: #ef4444;
+            --text-primary: #ffffff;
+            --text-secondary: #a1a1aa;
+            --text-muted: #71717a;
+            --border-color: #27272a;
+            --gradient-1: linear-gradient(135deg, #8b5cf6 0%, #3b82f6 50%, #06b6d4 100%);
+            --gradient-2: linear-gradient(135deg, #06b6d4 0%, #10b981 100%);
+            --gradient-3: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Space Grotesk', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Animated Background */
+        .bg-pattern {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(ellipse 80% 50% at 50% -20%, rgba(139, 92, 246, 0.15), transparent),
+                radial-gradient(ellipse 60% 40% at 80% 60%, rgba(6, 182, 212, 0.1), transparent),
+                radial-gradient(ellipse 50% 30% at 20% 80%, rgba(59, 130, 246, 0.1), transparent);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 20px 0;
+            background: rgba(10, 10, 15, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        nav .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 600;
+            font-size: 1.25rem;
+        }
+
+        .logo-img {
+            height: 32px;
+            width: auto;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-primary);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding-top: 100px;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 900px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--accent-purple);
+            margin-bottom: 24px;
+        }
+
+        .badge::before {
+            content: '';
+            width: 8px;
+            height: 8px;
+            background: var(--accent-purple);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.5; }
+        }
+
+        h1 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            line-height: 1.1;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        h1 .gradient-text {
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 700px;
+            margin-bottom: 40px;
+        }
+
+        .hero-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+            margin-top: 60px;
+            padding-top: 40px;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            background: var(--gradient-1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: 4px;
+        }
+
+        /* Problem Section */
+        .section {
+            padding: 120px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-label {
+            font-size: 0.85rem;
+            color: var(--accent-cyan);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Problem Cards */
+        .problem-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .problem-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .problem-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-purple);
+        }
+
+        .problem-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-3);
+        }
+
+        .problem-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .problem-card p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+
+        .problem-stat {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 16px;
+            padding: 8px 14px;
+            background: rgba(239, 68, 68, 0.1);
+            border-radius: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--accent-red);
+        }
+
+        /* Success Metrics */
+        .metrics-section {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+        }
+
+        .metric-card {
+            text-align: center;
+            padding: 40px 24px;
+            background: var(--bg-card);
+            border-radius: 20px;
+            border: 1px solid var(--border-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .metric-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(transparent, rgba(139, 92, 246, 0.1), transparent 30%);
+            animation: rotate 8s linear infinite;
+        }
+
+        @keyframes rotate {
+            100% { transform: rotate(360deg); }
+        }
+
+        .metric-card-inner {
+            position: relative;
+            z-index: 1;
+        }
+
+        .metric-value {
+            font-size: 4rem;
+            font-weight: 700;
+            font-family: 'JetBrains Mono', monospace;
+            line-height: 1;
+            margin-bottom: 8px;
+        }
+
+        .metric-card:nth-child(1) .metric-value {
+            background: linear-gradient(135deg, #10b981, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .metric-card:nth-child(2) .metric-value {
+            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .metric-card:nth-child(3) .metric-value {
+            background: linear-gradient(135deg, #f59e0b, #ef4444);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .metric-label {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+        }
+
+        .metric-desc {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* Scenarios Section */
+        .scenarios-section {
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+        }
+
+        .scenario-card {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+            padding: 60px 0;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .scenario-card:nth-child(even) {
+            direction: rtl;
+        }
+
+        .scenario-card:nth-child(even) > * {
+            direction: ltr;
+        }
+
+        .scenario-card:last-child {
+            border-bottom: none;
+        }
+
+        .scenario-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 12px;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 600;
+            font-size: 1rem;
+            margin-bottom: 20px;
+        }
+
+        .scenario-card:nth-child(1) .scenario-number {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+        }
+
+        .scenario-card:nth-child(2) .scenario-number {
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--accent-purple);
+        }
+
+        .scenario-card:nth-child(3) .scenario-number {
+            background: rgba(59, 130, 246, 0.15);
+            color: var(--accent-blue);
+        }
+
+        .scenario-type {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 16px;
+        }
+
+        .type-deflection {
+            background: rgba(16, 185, 129, 0.15);
+            color: var(--accent-green);
+        }
+
+        .type-automation {
+            background: rgba(139, 92, 246, 0.15);
+            color: var(--accent-purple);
+        }
+
+        .scenario-content h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .scenario-content p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 24px;
+        }
+
+        .scenario-visual {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 32px;
+            position: relative;
+        }
+
+        .chat-demo {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .chat-message {
+            display: flex;
+            gap: 12px;
+            align-items: flex-start;
+        }
+
+        .chat-message.user {
+            flex-direction: row-reverse;
+        }
+
+        .chat-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .chat-avatar.user {
+            background: linear-gradient(135deg, #3b82f6, #06b6d4);
+        }
+
+        .chat-avatar.bot {
+            background: var(--gradient-1);
+        }
+
+        .chat-bubble {
+            max-width: 85%;
+            padding: 14px 18px;
+            border-radius: 16px;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .chat-message.user .chat-bubble {
+            background: rgba(59, 130, 246, 0.2);
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            border-bottom-right-radius: 4px;
+        }
+
+        .chat-message.bot .chat-bubble {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-bottom-left-radius: 4px;
+        }
+
+        .flow-steps {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 16px;
+            background: var(--bg-secondary);
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .flow-step-number {
+            width: 28px;
+            height: 28px;
+            background: var(--gradient-1);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 600;
+            flex-shrink: 0;
+        }
+
+        .flow-step-text {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+
+        .flow-step-text strong {
+            color: var(--text-primary);
+        }
+
+        .scenario-benefits {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .benefit-tag {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            padding: 8px 14px;
+            background: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: 100px;
+            font-size: 0.85rem;
+            color: var(--accent-green);
+        }
+
+        .benefit-tag::before {
+            content: '✓';
+            font-weight: 700;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            text-align: center;
+            padding: 100px 0;
+            position: relative;
+        }
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(139, 92, 246, 0.2) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 500px;
+            margin: 0 auto 32px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 32px;
+            background: var(--gradient-1);
+            color: white;
+            text-decoration: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
+        }
+
+        /* Footer */
+        footer {
+            padding: 40px 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        footer p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .problem-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .metrics-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .scenario-card {
+                grid-template-columns: 1fr;
+                gap: 32px;
+            }
+
+            .scenario-card:nth-child(even) {
+                direction: ltr;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .hero-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-pattern"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <div class="container">
+            <div class="logo">
+                <img src="computer.svg" alt="Computer" class="logo-img">
+            </div>
+            <div class="nav-links">
+                <a href="#problem">The Challenge</a>
+                <a href="#metrics">Success Metrics</a>
+                <a href="#scenarios">Demo Scenarios</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="badge">Prepared for Merrick</div>
+                <h1>
+                    Transform Your Service Desk with
+                    <span class="gradient-text">AI-Powered Automation</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Your team of 4 handles 100+ tickets daily for 1,200 employees. 
+                    Let's cut that workload in half—automatically.
+                </p>
+
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">1,200</div>
+                        <div class="hero-stat-label">Employees Supported</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">4</div>
+                        <div class="hero-stat-label">Tier-1 Technicians</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">~100</div>
+                        <div class="hero-stat-label">Daily Tickets</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">14h</div>
+                        <div class="hero-stat-label">Avg. Response Time</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Problem Section -->
+    <section class="section" id="problem">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">The Challenge</div>
+                <h2>What You Will Solve with Computer</h2>
+                <p class="section-subtitle">
+                    Industry standard is 1 tech per 100 users. You're operating at 4× that ratio.
+                </p>
+            </div>
+
+            <div class="problem-grid">
+                <div class="problem-card">
+                    <h3>Ticket Overload</h3>
+                    <p>50-150 tickets per day with only 4 technicians. Your team is stretched thin and response times suffer.</p>
+                    <div class="problem-stat">
+                        <span>⚡</span> 25x above industry standard
+                    </div>
+                </div>
+
+                <div class="problem-card">
+                    <h3>Repetitive Requests</h3>
+                    <p>~50% of tickets are mundane, repetitive questions that could be self-served—if employees could find the answers.</p>
+                    <div class="problem-stat">
+                        <span>📊</span> 50+ tickets/day = solvable
+                    </div>
+                </div>
+
+                <div class="problem-card">
+                    <h3>Hidden Knowledge</h3>
+                    <p>Knowledge lives in OneNote, scattered tickets, and technicians' heads. Employees can't discover what they need.</p>
+                    <div class="problem-stat">
+                        <span>📚</span> KB not AI-ready
+                    </div>
+                </div>
+
+                <div class="problem-card">
+                    <h3>Slow Classification & Triage</h3>
+                    <p>Tickets sit in queue waiting to be read, categorized, and assigned to the right group—eating up valuable response time.</p>
+                    <div class="problem-stat">
+                        <span>⏱️</span> Avg. 14h response delay
+                    </div>
+                </div>
+
+                <div class="problem-card">
+                    <h3>Manual Follow-ups & Approvals</h3>
+                    <p>License and access requests require chasing managers for approval. No automatic reminders—just manual email ping-pong.</p>
+                    <div class="problem-stat">
+                        <span>🔁</span> No auto-reminders today
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Success Metrics -->
+    <section class="section metrics-section" id="metrics">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Target Outcomes</div>
+                <h2>What Success Looks Like</h2>
+                <p class="section-subtitle">
+                    Measurable improvements powered by Computer's AI agents
+                </p>
+            </div>
+
+            <div class="metrics-grid">
+                <div class="metric-card">
+                    <div class="metric-card-inner">
+                        <div class="metric-value">50%</div>
+                        <div class="metric-label">Ticket Deflection</div>
+                        <div class="metric-desc">Self-serve resolution via KB + Q&A pairs</div>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-card-inner">
+                        <div class="metric-value">10x</div>
+                        <div class="metric-label">Faster Response</div>
+                        <div class="metric-desc">From 14 hours to minutes with AI</div>
+                    </div>
+                </div>
+
+                <div class="metric-card">
+                    <div class="metric-card-inner">
+                        <div class="metric-value">0</div>
+                        <div class="metric-label">Manual Follow-ups</div>
+                        <div class="metric-desc">Auto-reminders for pending approvals</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scenarios Section -->
+    <section class="section scenarios-section" id="scenarios">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Demo Scenarios</div>
+                <h2>Three Paths to 50% Reduction</h2>
+                <p class="section-subtitle">
+                    See Computer in action with your most common ticket types
+                </p>
+            </div>
+
+            <!-- Scenario 1 -->
+            <div class="scenario-card">
+                <div class="scenario-content">
+                    <div class="scenario-number">01</div>
+                    <span class="scenario-type type-deflection">KB Deflection</span>
+                    <h3>"How do I set up Duo/MFA?"</h3>
+                    <p>
+                        Duo setup is one of your most frequent tickets. Computer searches your knowledge base 
+                        and resolved ticket Q&A pairs to provide instant, accurate answers—no ticket required.
+                    </p>
+                    <div class="scenario-benefits">
+                        <span class="benefit-tag">Instant answers</span>
+                        <span class="benefit-tag">Zero tech involvement</span>
+                        <span class="benefit-tag">24/7 availability</span>
+                    </div>
+                </div>
+                <div class="scenario-visual">
+                    <div class="chat-demo">
+                        <div class="chat-message user">
+                            <div class="chat-avatar user">ME</div>
+                            <div class="chat-bubble">I'm having trouble with Duo. How do I set it up on my new phone?</div>
+                        </div>
+                        <div class="chat-message bot">
+                            <div class="chat-avatar bot">C</div>
+                            <div class="chat-bubble">
+                                I can help you set up Duo on your new device! Here's what to do:<br><br>
+                                <strong>1.</strong> Go to <u>Okta Dashboard</u> → My Apps<br>
+                                <strong>2.</strong> Select "Duo Security"<br>
+                                <strong>3.</strong> Click "+ Add Device"<br>
+                                <strong>4.</strong> Scan the QR code with your new phone's Duo app<br><br>
+                                ✅ That's it! Need me to walk you through any step?
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scenario 2 -->
+            <div class="scenario-card">
+                <div class="scenario-content">
+                    <div class="scenario-number">02</div>
+                    <span class="scenario-type type-automation">Workflow Automation</span>
+                    <h3>"I need a Bluebeam license"</h3>
+                    <p>
+                        Software licensing is your #1 ticket category. Computer automates the entire 
+                        approval workflow—from request to manager approval to provisioning notification.
+                    </p>
+                    <div class="scenario-benefits">
+                        <span class="benefit-tag">Auto-approval routing</span>
+                        <span class="benefit-tag">24h auto-reminders</span>
+                        <span class="benefit-tag">Full audit trail</span>
+                    </div>
+                </div>
+                <div class="scenario-visual">
+                    <div class="flow-steps">
+                        <div class="flow-step">
+                            <div class="flow-step-number">1</div>
+                            <div class="flow-step-text"><strong>User requests</strong> Bluebeam license via Computer</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-number">2</div>
+                            <div class="flow-step-text"><strong>Identity check</strong> — Computer verifies user via Okta/AD</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-number">3</div>
+                            <div class="flow-step-text"><strong>Auto-routing</strong> — Ticket created & sent to Design Tech Manager</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-number">4</div>
+                            <div class="flow-step-text"><strong>Approval email</strong> with Approve/Deny buttons sent</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-number">5</div>
+                            <div class="flow-step-text"><strong>Auto-reminder</strong> at 24h if no response</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-number">6</div>
+                            <div class="flow-step-text"><strong>Approved?</strong> → Notify service desk for provisioning</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scenario 3 -->
+            <div class="scenario-card">
+                <div class="scenario-content">
+                    <div class="scenario-number">03</div>
+                    <span class="scenario-type type-automation">Workflow Automation</span>
+                    <h3>"I need access to the Denver Projects folder"</h3>
+                    <p>
+                        Network folder permissions are your #2 ticket category. Computer identifies 
+                        the correct approver, routes the request, and tracks until resolution.
+                    </p>
+                    <div class="scenario-benefits">
+                        <span class="benefit-tag">Smart owner detection</span>
+                        <span class="benefit-tag">Correct group routing</span>
+                        <span class="benefit-tag">Escalation tracking</span>
+                    </div>
+                </div>
+                <div class="scenario-visual">
+                    <div class="chat-demo">
+                        <div class="chat-message user">
+                            <div class="chat-avatar user">ME</div>
+                            <div class="chat-bubble">I need access to the Denver Projects folder for my new assignment</div>
+                        </div>
+                        <div class="chat-message bot">
+                            <div class="chat-avatar bot">C</div>
+                            <div class="chat-bubble">
+                                I found the <strong>Denver Projects</strong> folder. Access requires approval from the folder owner.<br><br>
+                                📋 I've created a request ticket and routed it to:<br>
+                                • <strong>Group:</strong> Network Team<br>
+                                • <strong>Approver:</strong> Sarah Mitchell (Folder Owner)<br><br>
+                                ⏱️ I'll send a reminder if there's no response in 24 hours. You'll be notified once approved!
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>Ready to See It Live?</h2>
+                <p>
+                    Let's walk through these scenarios with your actual data and workflows.
+                </p>
+                <a href="#" class="cta-button">
+                    <span>Start the Demo</span>
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <p>Powered by Computer, by DevRev • Prepared for Merrick IT Services Team</p>
+        </div>
+    </footer>
+
+</body>
+</html>
