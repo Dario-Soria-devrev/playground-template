@@ -426,8 +426,8 @@
         }
 
         .scenario-card:nth-child(3) .scenario-number {
-            background: rgba(59, 130, 246, 0.15);
-            color: var(--accent-blue);
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent-orange);
         }
 
         .scenario-type {
@@ -449,6 +449,11 @@
         .type-automation {
             background: rgba(139, 92, 246, 0.15);
             color: var(--accent-purple);
+        }
+
+        .type-approval {
+            background: rgba(245, 158, 11, 0.15);
+            color: var(--accent-orange);
         }
 
         .scenario-content h3 {
@@ -886,70 +891,79 @@
                 </div>
             </div>
 
-            <!-- Scenario 2 -->
+            <!-- Scenario 2: No Approval Needed -->
             <div class="scenario-card">
                 <div class="scenario-content">
                     <div class="scenario-number">02</div>
-                    <span class="scenario-type type-automation">Workflow Automation</span>
-                    <h3>"I need a Bluebeam license"</h3>
+                    <span class="scenario-type type-automation">Automated Actions</span>
+                    <h3>"AutoCAD device limit reached" — No Approval Needed</h3>
                     <p>
-                        Software licensing is your #1 ticket category. Computer automates the entire 
-                        approval workflow—from request to manager approval to provisioning notification.
+                        Software/license requests are your #1 ticket category (Bluebeam, AutoCAD, Adobe). 
+                        When no approval is required based on employee eligibility, Computer automatically 
+                        provisions the license—zero manual email ping-pong required.
                     </p>
                     <div class="scenario-benefits">
-                        <span class="benefit-tag">Auto-approval routing</span>
-                        <span class="benefit-tag">24h auto-reminders</span>
-                        <span class="benefit-tag">Full audit trail</span>
+                        <span class="benefit-tag">Deflection via automation</span>
+                        <span class="benefit-tag">Zero-touch provisioning</span>
+                        <span class="benefit-tag">Instant resolution</span>
                     </div>
                 </div>
                 <div class="scenario-visual">
-                    <div class="flow-steps">
-                        <div class="flow-step">
-                            <div class="flow-step-number">1</div>
-                            <div class="flow-step-text"><strong>User requests</strong> Bluebeam license via Computer</div>
+                    <div class="chat-demo">
+                        <div class="chat-message user">
+                            <div class="chat-avatar user">ME</div>
+                            <div class="chat-bubble">I'm trying to set up AutoCAD on my new device but I'm getting an error: "device limit reached"</div>
                         </div>
-                        <div class="flow-step">
-                            <div class="flow-step-number">2</div>
-                            <div class="flow-step-text"><strong>Identity check</strong> — Computer verifies user via Okta/AD</div>
+                        <div class="chat-message bot">
+                            <div class="chat-avatar bot">C</div>
+                            <div class="chat-bubble">
+                                I can help with that! Let me check your account...<br><br>
+                                🔍 <strong>Checking identity</strong> via Autodesk/AD sync...<br>
+                                ✅ <strong>Verified:</strong> John Smith, Design Engineer<br>
+                                📋 <strong>License:</strong> AutoCAD 2024 (3/3 devices active)
+                            </div>
                         </div>
-                        <div class="flow-step">
-                            <div class="flow-step-number">3</div>
-                            <div class="flow-step-text"><strong>Auto-routing</strong> — Ticket created & sent to Design Tech Manager</div>
+                        <div class="chat-message bot">
+                            <div class="chat-avatar bot">C</div>
+                            <div class="chat-bubble">
+                                🎫 <strong>Ticket created:</strong> #INC-4821<br>
+                                • Category: Software → License Management<br>
+                                • Subcategory: Device Limit Exceeded<br><br>
+                                ✅ <strong>No approval required</strong> — You're eligible for automatic provisioning.
+                            </div>
                         </div>
-                        <div class="flow-step">
-                            <div class="flow-step-number">4</div>
-                            <div class="flow-step-text"><strong>Approval email</strong> with Approve/Deny buttons sent</div>
-                        </div>
-                        <div class="flow-step">
-                            <div class="flow-step-number">5</div>
-                            <div class="flow-step-text"><strong>Auto-reminder</strong> at 24h if no response</div>
-                        </div>
-                        <div class="flow-step">
-                            <div class="flow-step-number">6</div>
-                            <div class="flow-step-text"><strong>Approved?</strong> → Notify service desk for provisioning</div>
+                        <div class="chat-message bot">
+                            <div class="chat-avatar bot">C</div>
+                            <div class="chat-bubble" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3);">
+                                ⚡ <strong>Accessing Autodesk Admin Portal...</strong><br><br>
+                                ✅ Released inactive device: <em>LAPTOP-OLD-2023</em><br>
+                                ✅ Registered new device: <em>LAPTOP-NEW-2026</em><br><br>
+                                <strong>Done!</strong> Please restart AutoCAD and try signing in again. Let me know if it works!
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Scenario 3 -->
+            <!-- Scenario 3: Approval Required -->
             <div class="scenario-card">
                 <div class="scenario-content">
                     <div class="scenario-number">03</div>
-                    <span class="scenario-type type-automation">Workflow Automation</span>
-                    <h3>"I need access to the Denver Projects folder"</h3>
+                    <span class="scenario-type type-approval">Approval Request</span>
+                    <h3>"I need Denver Projects folder access" — Approval Required</h3>
                     <p>
-                        Network folder permissions are your #2 ticket category. Computer identifies 
-                        the correct approver, routes the request, and tracks until resolution.
+                        Permission access is your #2 ticket category and involves manual approval from folder owners. 
+                        Computer intelligently routes to the right owner—not just "service desk"—with automatic 
+                        classification and triaging done instantly.
                     </p>
                     <div class="scenario-benefits">
-                        <span class="benefit-tag">Smart owner detection</span>
-                        <span class="benefit-tag">Correct group routing</span>
-                        <span class="benefit-tag">Escalation tracking</span>
+                        <span class="benefit-tag">Intelligent routing</span>
+                        <span class="benefit-tag">Auto-classification</span>
+                        <span class="benefit-tag">Approval tracking</span>
                     </div>
                 </div>
                 <div class="scenario-visual">
-                    <div class="chat-demo">
+                    <div class="chat-demo" style="margin-bottom: 20px;">
                         <div class="chat-message user">
                             <div class="chat-avatar user">ME</div>
                             <div class="chat-bubble">I need access to the Denver Projects folder for my new assignment</div>
@@ -957,11 +971,39 @@
                         <div class="chat-message bot">
                             <div class="chat-avatar bot">C</div>
                             <div class="chat-bubble">
-                                I found the <strong>Denver Projects</strong> folder. Access requires approval from the folder owner.<br><br>
-                                📋 I've created a request ticket and routed it to:<br>
-                                • <strong>Group:</strong> Network Team<br>
-                                • <strong>Approver:</strong> Sarah Mitchell (Folder Owner)<br><br>
-                                ⏱️ I'll send a reminder if there's no response in 24 hours. You'll be notified once approved!
+                                🔍 <strong>Identifying folder...</strong><br>
+                                Found: <em>\\fileserver\Projects\Denver</em> (Secure folder)<br><br>
+                                👤 <strong>Looking up owner/approver...</strong><br>
+                                Folder Owner: Sarah Mitchell
+                            </div>
+                        </div>
+                    </div>
+                    <div class="flow-steps">
+                        <div class="flow-step">
+                            <div class="flow-step-number">1</div>
+                            <div class="flow-step-text"><strong>Ticket created</strong> with correct group: Network Team</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-number">2</div>
+                            <div class="flow-step-text"><strong>Auto-categorized:</strong> Access Request → Network Folder</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-number">3</div>
+                            <div class="flow-step-text"><strong>Approval routed</strong> to Sarah Mitchell (Folder Owner)</div>
+                        </div>
+                        <div class="flow-step">
+                            <div class="flow-step-number">4</div>
+                            <div class="flow-step-text"><strong>Status tracked</strong> — Auto-reminder at 24h if pending</div>
+                        </div>
+                    </div>
+                    <div class="chat-demo" style="margin-top: 20px;">
+                        <div class="chat-message bot">
+                            <div class="chat-avatar bot">C</div>
+                            <div class="chat-bubble" style="background: rgba(139, 92, 246, 0.15); border-color: rgba(139, 92, 246, 0.3);">
+                                🎫 <strong>Ticket #INC-4822 created</strong><br><br>
+                                ✅ Approval request sent to Sarah Mitchell<br>
+                                ✅ Network Team notified for provisioning on approval<br><br>
+                                ⏱️ I'll track this and notify you once approved!
                             </div>
                         </div>
                     </div>
