@@ -7,21 +7,21 @@
     {
       "title": "Consumer Support",
       "items": [
-        "How do I reset my online banking password if I no longer have access to my registered email?",
-        "I was charged twice for my monthly premium — how do I dispute this and get a refund?",
-        "What documents do I need to submit a car insurance claim after an accident?",
-        "How do I set up direct deposit into my new checking account, and what is my routing number?",
-        "Can I apply for a home equity line of credit online, and what are the current rates and requirements?"
+        "What are the different ways I can contact the support team, and what should I have ready before reaching out?",
+        "How do I submit a refund request, and how long does it take to receive the money back?",
+        "What steps should I follow to dispute a charge on my account?",
+        "How do I set up two-factor authentication (2FA) to secure my account?",
+        "What return and exchange options are available, and which items are excluded from returns?"
       ]
     },
     {
       "title": "Business & Operations",
       "items": [
-        "How do I add a new user to our company's business banking portal and assign them view-only permissions?",
-        "Our payment gateway integration is returning a timeout error — what are the troubleshooting steps?",
-        "What compliance certifications does your platform support (e.g., PCI-DSS, SOC 2, GLBA)?",
-        "I just opened my account but my debit card keeps getting declined — what should I check first?",
-        "How do I submit a support ticket, and what is the expected response time for priority issues?"
+        "How are card issuer partnerships structured, and what benefits do they bring to merchants?",
+        "How can I manage user roles and permissions for my team, and what built-in roles are available?",
+        "How do I set up and manage payment deadlines, and what happens when a payment is overdue?",
+        "What compliance standards does the organization align with, and how is data retained and disposed of?",
+        "How do I configure alerts and notifications for my team, and what delivery channels are supported?"
       ]
     }
   ],
