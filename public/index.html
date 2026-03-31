@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merrick × DevRev | Service Desk Transformation</title>
+    <title>{{Customer}} Support | Powered by Computer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+    <!-- DevRev PLuG Widget -->
+    <script src="https://plug-platform.devrev.ai/static/plug.js" defer></script>
+    <script>
+      window.addEventListener("DOMContentLoaded", () => {
+        if (typeof window.plugSDK !== 'undefined' && window.plugSDK.init) {
+          window.plugSDK.init({
+            app_id: 'DvRvStPZG9uOmNvcmU6ZHZydi11cy0xOmRldm8vMXhSblVMSzBwcDpwbHVnX3NldHRpbmcvMV9ffHxfXzIwMjUtMDQtMjQgMjA6MTI6MDMuNjkxNDI1MjUyICswMDAwIFVUQw==xlxendsDvRv',
+            enable_session_recording: true
+          });
+        }
+      });
+    </script>
+
     <style>
         :root {
             --bg-primary: #0a0a0f;
@@ -54,7 +68,7 @@
             height: 100%;
             pointer-events: none;
             z-index: 0;
-            background: 
+            background:
                 radial-gradient(ellipse 80% 50% at 50% -20%, rgba(139, 92, 246, 0.15), transparent),
                 radial-gradient(ellipse 60% 40% at 80% 60%, rgba(6, 182, 212, 0.1), transparent),
                 radial-gradient(ellipse 50% 30% at 20% 80%, rgba(59, 130, 246, 0.1), transparent);
@@ -119,10 +133,11 @@
 
         /* Hero Section */
         .hero {
-            min-height: 100vh;
+            min-height: auto;
             display: flex;
             align-items: center;
             padding-top: 100px;
+            padding-bottom: 20px;
             position: relative;
         }
 
@@ -176,46 +191,16 @@
             font-size: 1.25rem;
             color: var(--text-secondary);
             max-width: 700px;
-            margin-bottom: 40px;
         }
 
-        .hero-stats {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            margin-top: 60px;
-            padding-top: 40px;
-            border-top: 1px solid var(--border-color);
-        }
-
-        .hero-stat {
-            text-align: left;
-        }
-
-        .hero-stat-value {
-            font-size: 2.5rem;
-            font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
-            background: var(--gradient-1);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-stat-label {
-            color: var(--text-secondary);
-            font-size: 0.9rem;
-            margin-top: 4px;
-        }
-
-        /* Problem Section */
+        /* Sections */
         .section {
-            padding: 120px 0;
+            padding: 50px 0;
         }
 
         .section-header {
             text-align: center;
-            margin-bottom: 60px;
+            margin-bottom: 32px;
         }
 
         .section-label {
@@ -240,7 +225,106 @@
             margin: 0 auto;
         }
 
-        /* Problem Cards */
+        /* How This Works */
+        .how-it-works-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 20px;
+            padding: 48px;
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .how-it-works-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-1);
+        }
+
+        .how-it-works-card h2 {
+            font-size: 1.75rem;
+            margin-bottom: 24px;
+        }
+
+        .how-it-works-card p {
+            color: var(--text-secondary);
+            font-size: 1rem;
+            margin-bottom: 16px;
+            line-height: 1.7;
+        }
+
+        .how-it-works-card p:last-child {
+            margin-bottom: 0;
+        }
+
+        .how-it-works-card strong {
+            color: var(--text-primary);
+        }
+
+        .highlight {
+            color: var(--accent-cyan);
+            font-weight: 600;
+        }
+
+        /* Questions Section */
+        .questions-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .questions-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 32px;
+            transition: transform 0.3s, border-color 0.3s;
+        }
+
+        .questions-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-purple);
+        }
+
+        .questions-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            color: var(--text-primary);
+        }
+
+        .questions-card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .questions-card li {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(39, 39, 42, 0.5);
+            position: relative;
+            padding-left: 20px;
+        }
+
+        .questions-card li:last-child {
+            border-bottom: none;
+        }
+
+        .questions-card li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-cyan);
+        }
+
+        /* Problem Cards (What You Will Solve with Computer) */
         .problem-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
@@ -296,308 +380,61 @@
             color: var(--accent-red);
         }
 
-        /* Success Metrics */
-        .metrics-section {
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .metrics-grid {
+        /* Resources Row */
+        .resources-row {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 32px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 900px;
+            margin: 0 auto;
         }
 
-        .metric-card {
-            text-align: center;
-            padding: 40px 24px;
-            background: var(--bg-card);
-            border-radius: 20px;
-            border: 1px solid var(--border-color);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .metric-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: conic-gradient(transparent, rgba(139, 92, 246, 0.1), transparent 30%);
-            animation: rotate 8s linear infinite;
-        }
-
-        @keyframes rotate {
-            100% { transform: rotate(360deg); }
-        }
-
-        .metric-card-inner {
-            position: relative;
-            z-index: 1;
-        }
-
-        .metric-value {
-            font-size: 4rem;
-            font-weight: 700;
-            font-family: 'JetBrains Mono', monospace;
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .metric-card:nth-child(1) .metric-value {
-            background: linear-gradient(135deg, #10b981, #06b6d4);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .metric-card:nth-child(2) .metric-value {
-            background: linear-gradient(135deg, #8b5cf6, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .metric-card:nth-child(3) .metric-value {
-            background: linear-gradient(135deg, #f59e0b, #ef4444);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .metric-label {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
-        }
-
-        .metric-desc {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        /* Scenarios Section */
-        .scenarios-section {
-            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
-        }
-
-        .scenario-card {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr;
-            gap: 60px;
-            align-items: center;
-            padding: 60px 0;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .scenario-card:nth-child(even) {
-            direction: rtl;
-        }
-
-        .scenario-card:nth-child(even) > * {
-            direction: ltr;
-        }
-
-        .scenario-card:last-child {
-            border-bottom: none;
-        }
-
-        .scenario-number {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 12px;
-            font-family: 'JetBrains Mono', monospace;
-            font-weight: 600;
-            font-size: 1rem;
-            margin-bottom: 20px;
-        }
-
-        .scenario-card:nth-child(1) .scenario-number {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--accent-green);
-        }
-
-        .scenario-card:nth-child(2) .scenario-number {
-            background: rgba(139, 92, 246, 0.15);
-            color: var(--accent-purple);
-        }
-
-        .scenario-card:nth-child(3) .scenario-number {
-            background: rgba(245, 158, 11, 0.15);
-            color: var(--accent-orange);
-        }
-
-        .scenario-type {
-            display: inline-block;
-            padding: 6px 12px;
-            border-radius: 6px;
-            font-size: 0.75rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 16px;
-        }
-
-        .type-deflection {
-            background: rgba(16, 185, 129, 0.15);
-            color: var(--accent-green);
-        }
-
-        .type-automation {
-            background: rgba(139, 92, 246, 0.15);
-            color: var(--accent-purple);
-        }
-
-        .type-approval {
-            background: rgba(245, 158, 11, 0.15);
-            color: var(--accent-orange);
-        }
-
-        .scenario-content h3 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            margin-bottom: 16px;
-        }
-
-        .scenario-content p {
-            color: var(--text-secondary);
-            font-size: 1rem;
-            margin-bottom: 24px;
-        }
-
-        .scenario-visual {
+        .resource-card {
             background: var(--bg-card);
             border: 1px solid var(--border-color);
-            border-radius: 20px;
-            padding: 32px;
-            position: relative;
-        }
-
-        .chat-demo {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .chat-message {
-            display: flex;
-            gap: 12px;
-            align-items: flex-start;
-        }
-
-        .chat-message.user {
-            flex-direction: row-reverse;
-        }
-
-        .chat-avatar {
-            width: 36px;
-            height: 36px;
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-
-        .chat-avatar.user {
-            background: linear-gradient(135deg, #3b82f6, #06b6d4);
-        }
-
-        .chat-avatar.bot {
-            background: var(--gradient-1);
-        }
-
-        .chat-bubble {
-            max-width: 85%;
-            padding: 14px 18px;
             border-radius: 16px;
-            font-size: 0.9rem;
-            line-height: 1.5;
+            padding: 32px;
+            transition: transform 0.3s, border-color 0.3s;
         }
 
-        .chat-message.user .chat-bubble {
-            background: rgba(59, 130, 246, 0.2);
-            border: 1px solid rgba(59, 130, 246, 0.3);
-            border-bottom-right-radius: 4px;
+        .resource-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--accent-cyan);
         }
 
-        .chat-message.bot .chat-bubble {
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-bottom-left-radius: 4px;
+        .resource-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 16px;
         }
 
-        .flow-steps {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
+        .resource-card a {
+            color: var(--accent-cyan);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
         }
 
-        .flow-step {
-            display: flex;
-            align-items: center;
-            gap: 16px;
-            padding: 16px;
-            background: var(--bg-secondary);
+        .resource-card a:hover {
+            color: var(--text-primary);
+            text-decoration: underline;
+        }
+
+        .video-thumbnail {
+            width: 100%;
             border-radius: 12px;
             border: 1px solid var(--border-color);
+            transition: opacity 0.2s;
         }
 
-        .flow-step-number {
-            width: 28px;
-            height: 28px;
-            background: var(--gradient-1);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: 600;
-            flex-shrink: 0;
-        }
-
-        .flow-step-text {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-        }
-
-        .flow-step-text strong {
-            color: var(--text-primary);
-        }
-
-        .scenario-benefits {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            margin-top: 20px;
-        }
-
-        .benefit-tag {
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            padding: 8px 14px;
-            background: rgba(16, 185, 129, 0.1);
-            border: 1px solid rgba(16, 185, 129, 0.2);
-            border-radius: 100px;
-            font-size: 0.85rem;
-            color: var(--accent-green);
-        }
-
-        .benefit-tag::before {
-            content: '✓';
-            font-weight: 700;
+        .video-thumbnail:hover {
+            opacity: 0.85;
         }
 
         /* CTA Section */
         .cta-section {
             text-align: center;
-            padding: 100px 0;
+            padding: 50px 0;
             position: relative;
         }
 
@@ -663,35 +500,87 @@
 
         /* Responsive */
         @media (max-width: 968px) {
-            .hero-stats {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .problem-grid {
+            .problem-grid,
+            .questions-grid {
                 grid-template-columns: 1fr;
             }
 
-            .metrics-grid {
+            .resources-row {
                 grid-template-columns: 1fr;
             }
 
-            .scenario-card {
-                grid-template-columns: 1fr;
-                gap: 32px;
+            .hero {
+                padding-top: 80px;
             }
 
-            .scenario-card:nth-child(even) {
-                direction: ltr;
+            .section {
+                padding: 40px 0;
+            }
+
+            .cta-section {
+                padding: 40px 0;
             }
         }
 
         @media (max-width: 640px) {
-            .hero-stats {
-                grid-template-columns: 1fr;
-            }
-
             .nav-links {
                 display: none;
+            }
+
+            .hero {
+                padding-top: 72px;
+                padding-bottom: 16px;
+            }
+
+            h1 {
+                font-size: 2rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            .section {
+                padding: 32px 0;
+            }
+
+            .section-header {
+                margin-bottom: 24px;
+            }
+
+            .how-it-works-card {
+                padding: 24px 20px;
+            }
+
+            .how-it-works-card h2 {
+                font-size: 1.35rem;
+            }
+
+            .questions-card,
+            .problem-card,
+            .resource-card {
+                padding: 24px;
+            }
+
+            .cta-section {
+                padding: 32px 0;
+            }
+
+            .cta-content h2 {
+                font-size: 1.75rem;
+            }
+
+            .cta-button {
+                padding: 14px 24px;
+                font-size: 0.9rem;
+            }
+
+            .container {
+                padding: 0 16px;
             }
         }
     </style>
@@ -706,9 +595,10 @@
                 <img src="computer.svg" alt="Computer" class="logo-img">
             </div>
             <div class="nav-links">
+                <a href="#how-it-works">How It Works</a>
+                <a href="#questions">Questions</a>
                 <a href="#problem">The Challenge</a>
-                <a href="#metrics">Success Metrics</a>
-                <a href="#scenarios">Demo Scenarios</a>
+                <a href="#contact">Contact Us</a>
             </div>
         </div>
     </nav>
@@ -717,46 +607,75 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="badge">Prepared for Merrick</div>
+                <div class="badge">Powered by Computer</div>
                 <h1>
-                    Transform Your Service Desk with
-                    <span class="gradient-text">AI-Powered Automation</span>
+                    Welcome to
+                    <span class="gradient-text">{{Customer}}</span>
+                    Support
                 </h1>
                 <p class="hero-subtitle">
-                    Your team of 4 handles 100+ tickets daily for 1,200 employees. 
-                    Let's cut that workload in half—automatically.
+                    AI-powered support tailored for your needs. Get instant answers, automate workflows, and resolve issues faster than ever.
                 </p>
+            </div>
+        </div>
+    </section>
 
-                <div class="hero-stats">
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">1,200</div>
-                        <div class="hero-stat-label">Employees Supported</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">4</div>
-                        <div class="hero-stat-label">Support Engineers</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">~100</div>
-                        <div class="hero-stat-label">Daily Tickets</div>
-                    </div>
-                    <div class="hero-stat">
-                        <div class="hero-stat-value">14h</div>
-                        <div class="hero-stat-label">Avg. Response Time</div>
-                    </div>
+    <!-- How This Works -->
+    <section class="section" id="how-it-works">
+        <div class="container">
+            <div class="how-it-works-card">
+                <h2>How This Works</h2>
+                <p>This chatbot demo is powered by <strong>DevRev</strong> and tailored for <span class="highlight">{{Customer}}</span> use cases.</p>
+                <p>To give you a quick preview of its capabilities, we've curated a small set of support articles and sample workflows, listed below.</p>
+                <p>The chatbot's responses are limited to just this content, so feel free to ask questions based on those topics.</p>
+                <p>Click the chat widget in the bottom right to try it out.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Questions Section (Placeholder) -->
+    <section class="section" id="questions">
+        <div class="container">
+            <div class="section-header">
+                <div class="section-label">Try It Out</div>
+                <h2>Sample Questions</h2>
+                <p class="section-subtitle">
+                    Ask the chatbot any of these questions to see it in action
+                </p>
+            </div>
+
+            <div class="questions-grid">
+                <div class="questions-card">
+                    <h3>General Support</h3>
+                    <ul>
+                        <li>How do I get started with the platform?</li>
+                        <li>What integrations are available?</li>
+                        <li>How do I submit a support ticket?</li>
+                        <li>What resources are available before opening a case?</li>
+                    </ul>
+                </div>
+
+                <div class="questions-card">
+                    <h3>Workflow Coverage</h3>
+                    <ul>
+                        <li>How do I update my billing information?</li>
+                        <li>I need to change the address on my account.</li>
+                        <li>I want to cancel my subscription.</li>
+                        <li>How do I manage user permissions?</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Problem Section -->
+    <!-- What You Will Solve with Computer -->
     <section class="section" id="problem">
         <div class="container">
             <div class="section-header">
                 <div class="section-label">The Challenge</div>
                 <h2>What You Will Solve with Computer</h2>
                 <p class="section-subtitle">
-                    Industry standard is 1 tech per 100 users. You're operating at 4× that ratio.
+                    Industry standard is 1 tech per 100 users. You're operating at 4x that ratio.
                 </p>
             </div>
 
@@ -804,219 +723,30 @@
         </div>
     </section>
 
-    <!-- Success Metrics -->
-    <section class="section metrics-section" id="metrics">
+    <!-- Demo Video & Learn More -->
+    <section class="section">
         <div class="container">
-            <div class="section-header">
-                <div class="section-label">Target Outcomes</div>
-                <h2>What Success Looks Like</h2>
-                <p class="section-subtitle">
-                    Measurable improvements powered by Computer's AI agents
-                </p>
-            </div>
-
-            <div class="metrics-grid">
-                <div class="metric-card">
-                    <div class="metric-card-inner">
-                        <div class="metric-value">50%</div>
-                        <div class="metric-label">Ticket Deflection</div>
-                        <div class="metric-desc">Self-serve resolution via KB + Q&A pairs</div>
-                    </div>
+            <div class="resources-row">
+                <div class="resource-card">
+                    <h3>Demo Video</h3>
+                    <a href="https://youtu.be/9WdGlaAQYA8" target="_blank">
+                        <img src="https://img.youtube.com/vi/9WdGlaAQYA8/hqdefault.jpg" alt="Demo Video" class="video-thumbnail" />
+                    </a>
                 </div>
 
-                <div class="metric-card">
-                    <div class="metric-card-inner">
-                        <div class="metric-value">10x</div>
-                        <div class="metric-label">Faster Response</div>
-                        <div class="metric-desc">From 14 hours to minutes with AI</div>
-                    </div>
-                </div>
-
-                <div class="metric-card">
-                    <div class="metric-card-inner">
-                        <div class="metric-value">0</div>
-                        <div class="metric-label">Manual Follow-ups</div>
-                        <div class="metric-desc">Auto-reminders for pending approvals</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Scenarios Section -->
-    <section class="section scenarios-section" id="scenarios">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Demo Scenarios</div>
-                <h2>Three Paths to 50% Reduction</h2>
-                <p class="section-subtitle">
-                    See Computer in action with your most common ticket types
-                </p>
-            </div>
-
-            <!-- Scenario 1: KB Deflection -->
-            <div class="scenario-card">
-                <div class="scenario-content">
-                    <div class="scenario-number">01</div>
-                    <span class="scenario-type type-deflection">KB Deflection</span>
-                    <h3>"How do I install AutoCAD?"</h3>
-                    <p>
-                        Software setup questions are among your most frequent tickets. Computer searches your 
-                        knowledge base (ingested OneNote + Q&A pairs from resolved tickets) and returns 
-                        instant answers—employee resolves it themselves, no ticket created.
+                <div class="resource-card">
+                    <h3>Learn More</h3>
+                    <p style="color: var(--text-secondary); margin-bottom: 16px;">
+                        Discover how Computer by DevRev can transform your support operations with AI-powered automation.
                     </p>
-                    <div class="scenario-benefits">
-                        <span class="benefit-tag">Instant answers</span>
-                        <span class="benefit-tag">Zero tech involvement</span>
-                        <span class="benefit-tag">Q&A pair retrieval</span>
-                    </div>
-                </div>
-                <div class="scenario-visual">
-                    <div class="chat-demo">
-                        <div class="chat-message user">
-                            <div class="chat-avatar user">ME</div>
-                            <div class="chat-bubble">I'm having trouble setting up AutoCAD. How do I install it?</div>
-                        </div>
-                        <div class="chat-message bot">
-                            <div class="chat-avatar bot">C</div>
-                            <div class="chat-bubble">
-                                I can help you install AutoCAD! Here's the step-by-step process:<br><br>
-                                <strong>1.</strong> Go to <u>Software Center</u> on your company laptop<br>
-                                <strong>2.</strong> Search for "AutoCAD 2024"<br>
-                                <strong>3.</strong> Click <strong>Install</strong> and wait for download → <a href="Autodesk_AutoCAD.zip" download style="color: #3b82f6; text-decoration: underline;">Download AutoCAD</a><br>
-                                <strong>4.</strong> Once installed, sign in with your <em>@merrick.com</em> email<br>
-                                <strong>5.</strong> AutoCAD will auto-activate via our enterprise license<br><br>
-                                ✅ That's it! Let me know if you run into any issues.
-                            </div>
-                        </div>
-                    </div>
+                    <a href="https://devrev.ai/support" target="_blank">devrev.ai/support →</a>
                 </div>
             </div>
-
-            <!-- Scenario 2: No Approval Needed -->
-            <div class="scenario-card">
-                <div class="scenario-content">
-                    <div class="scenario-number">02</div>
-                    <span class="scenario-type type-automation">Automated Actions</span>
-                    <h3>"AutoCAD device limit reached" — Computer Handles Authorization</h3>
-                    <p>
-                        Software/license requests are your #1 ticket category (Bluebeam, AutoCAD, Adobe). 
-                        When no approval is required based on employee eligibility, Computer automatically 
-                        provisions the license—zero manual email ping-pong required.
-                    </p>
-                    <div class="scenario-benefits">
-                        <span class="benefit-tag">Deflection via automation</span>
-                        <span class="benefit-tag">Zero-touch provisioning</span>
-                        <span class="benefit-tag">Instant resolution</span>
-                    </div>
-                </div>
-                <div class="scenario-visual">
-                    <div class="chat-demo">
-                        <div class="chat-message user">
-                            <div class="chat-avatar user">ME</div>
-                            <div class="chat-bubble">I'm trying to set up AutoCAD on my new device but I'm getting an error: "device limit reached"</div>
-                        </div>
-                        <div class="chat-message bot">
-                            <div class="chat-avatar bot">C</div>
-                            <div class="chat-bubble">
-                                I can help with that! Let me check your account...<br><br>
-                                🔍 <strong>Checking identity</strong> via Autodesk/AD sync...<br>
-                                ✅ <strong>Verified:</strong> John Smith, Design Engineer<br>
-                                📋 <strong>License:</strong> AutoCAD 2024 (3/3 devices active)
-                            </div>
-                        </div>
-                        <div class="chat-message bot">
-                            <div class="chat-avatar bot">C</div>
-                            <div class="chat-bubble">
-                                🎫 <strong>Ticket created:</strong> #INC-4821<br>
-                                • Category: Software → License Management<br>
-                                • Subcategory: Device Limit Exceeded<br><br>
-                                ✅ <strong>No approval required</strong> — You're eligible for automatic provisioning.
-                            </div>
-                        </div>
-                        <div class="chat-message bot">
-                            <div class="chat-avatar bot">C</div>
-                            <div class="chat-bubble" style="background: rgba(16, 185, 129, 0.15); border-color: rgba(16, 185, 129, 0.3);">
-                                ⚡ <strong>Accessing Autodesk Admin Portal...</strong><br><br>
-                                ✅ Released inactive device: <em>LAPTOP-OLD-2023</em><br>
-                                ✅ Registered new device: <em>LAPTOP-NEW-2026</em><br><br>
-                                <strong>Done!</strong> Please restart AutoCAD and try signing in again. Let me know if it works!
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Scenario 3: Approval Required -->
-            <div class="scenario-card">
-                <div class="scenario-content">
-                    <div class="scenario-number">03</div>
-                    <span class="scenario-type type-approval">Approval Request</span>
-                    <h3>"I need Denver Projects folder access" — Computer Handles Approval</h3>
-                    <p>
-                        Permission access is your #2 ticket category and involves manual approval from folder owners. 
-                        Computer intelligently routes to the right owner—not just "service desk"—with automatic 
-                        classification and triaging done instantly.
-                    </p>
-                    <div class="scenario-benefits">
-                        <span class="benefit-tag">Intelligent routing</span>
-                        <span class="benefit-tag">Auto-classification</span>
-                        <span class="benefit-tag">Approval tracking</span>
-                    </div>
-                </div>
-                <div class="scenario-visual">
-                    <div class="chat-demo" style="margin-bottom: 20px;">
-                        <div class="chat-message user">
-                            <div class="chat-avatar user">ME</div>
-                            <div class="chat-bubble">I need access to the Denver Projects folder for my new assignment</div>
-                        </div>
-                        <div class="chat-message bot">
-                            <div class="chat-avatar bot">C</div>
-                            <div class="chat-bubble">
-                                🔍 <strong>Identifying folder...</strong><br>
-                                Found: <em>\\fileserver\Projects\Denver</em> (Secure folder)<br><br>
-                                👤 <strong>Looking up owner/approver...</strong><br>
-                                Folder Owner: Sarah Mitchell
-                            </div>
-                        </div>
-                    </div>
-                    <div class="flow-steps">
-                        <div class="flow-step">
-                            <div class="flow-step-number">1</div>
-                            <div class="flow-step-text"><strong>Ticket created</strong> with correct group: Network Team</div>
-                        </div>
-                        <div class="flow-step">
-                            <div class="flow-step-number">2</div>
-                            <div class="flow-step-text"><strong>Auto-categorized:</strong> Access Request → Network Folder</div>
-                        </div>
-                        <div class="flow-step">
-                            <div class="flow-step-number">3</div>
-                            <div class="flow-step-text"><strong>Approval routed</strong> to Sarah Mitchell (Folder Owner)</div>
-                        </div>
-                        <div class="flow-step">
-                            <div class="flow-step-number">4</div>
-                            <div class="flow-step-text"><strong>Status tracked</strong> — Auto-reminder at 24h if pending</div>
-                        </div>
-                    </div>
-                    <div class="chat-demo" style="margin-top: 20px;">
-                        <div class="chat-message bot">
-                            <div class="chat-avatar bot">C</div>
-                            <div class="chat-bubble" style="background: rgba(139, 92, 246, 0.15); border-color: rgba(139, 92, 246, 0.3);">
-                                🎫 <strong>Ticket #INC-4822 created</strong><br><br>
-                                ✅ Approval request sent to Sarah Mitchell<br>
-                                ✅ Network Team notified for provisioning on approval<br><br>
-                                ⏱️ I'll track this and notify you once approved!
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
         </div>
     </section>
 
     <!-- CTA Section -->
-    <section class="cta-section">
+    <section class="cta-section" id="contact">
         <div class="container">
             <div class="cta-content">
                 <h2>Ready to See It Live?</h2>
@@ -1024,7 +754,7 @@
                     Let's walk through these scenarios with your actual data and workflows.
                 </p>
                 <a href="#" class="cta-button">
-                    <span>Start the Demo</span>
+                    <span>Contact Us</span>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M5 12h14M12 5l7 7-7 7"/>
                     </svg>
@@ -1036,7 +766,7 @@
     <!-- Footer -->
     <footer>
         <div class="container">
-            <p>Powered by Computer, by DevRev • Prepared for Merrick IT Services Team</p>
+            <p>Powered by Computer, by DevRev</p>
         </div>
     </footer>
 
