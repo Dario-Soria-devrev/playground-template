@@ -302,6 +302,14 @@
             border-bottom: 1px solid rgba(39, 39, 42, 0.5);
             position: relative;
             padding-left: 20px;
+            cursor: pointer;
+            transition: color 0.2s, background 0.2s;
+        }
+
+        .questions-card li:hover {
+            color: var(--text-primary);
+            background: rgba(139, 92, 246, 0.08);
+            border-radius: 6px;
         }
 
         .questions-card li:last-child {
@@ -330,6 +338,7 @@
             position: relative;
             overflow: hidden;
             transition: transform 0.3s, border-color 0.3s;
+            cursor: pointer;
         }
 
         .problem-card:hover {
@@ -870,6 +879,28 @@
                 '<div class="problem-stat"><span>' + p.icon + '</span> ' + p.stat + '</div></div>';
             }).join('');
           }
+
+          // Clickable questions and problem cards
+          function openPlugWithMessage(msg) {
+            if (window.plugSDK && window.plugSDK.toggleWidget) {
+              window.plugSDK.toggleWidget(true, 'create_conversation', {
+                startConversationContent: msg
+              });
+            }
+          }
+
+          document.getElementById('questions-grid').addEventListener('click', function(e) {
+            var li = e.target.closest('li');
+            if (!li) return;
+            openPlugWithMessage(li.textContent.trim());
+          });
+
+          document.getElementById('problem-grid').addEventListener('click', function(e) {
+            var card = e.target.closest('.problem-card');
+            if (!card) return;
+            var title = card.querySelector('h3').textContent.trim();
+            openPlugWithMessage('How can DevRev help me with ' + title + '?');
+          });
 
           // Video
           if (config.videoUrl) {
