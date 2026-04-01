@@ -3,23 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{Customer}} Support | Powered by Computer</title>
+    <title>Support | Powered by Computer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link rel="icon" href="/favicon.webp" type="image/webp">
 
     <!-- DevRev PLuG Widget -->
     <script src="https://plug-platform.devrev.ai/static/plug.js" defer></script>
-    <script>
-      window.addEventListener("DOMContentLoaded", () => {
-        if (typeof window.plugSDK !== 'undefined' && window.plugSDK.init) {
-          window.plugSDK.init({
-            app_id: 'DvRvStPZG9uOmNvcmU6ZHZydi11cy0xOmRldm8vMXhSblVMSzBwcDpwbHVnX3NldHRpbmcvMV9ffHxfXzIwMjUtMDQtMjQgMjA6MTI6MDMuNjkxNDI1MjUyICswMDAwIFVUQw==xlxendsDvRv',
-            enable_session_recording: true
-          });
-        }
-      });
-    </script>
 
     <style>
         :root {
@@ -486,6 +477,83 @@
             box-shadow: 0 10px 40px rgba(139, 92, 246, 0.4);
         }
 
+        .cta-button {
+            transition: transform 0.3s ease, box-shadow 0.2s, opacity 0.25s ease;
+        }
+
+        .cta-button.hidden {
+            opacity: 0;
+            transform: scale(0.85);
+            pointer-events: none;
+        }
+
+        .contact-options {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            opacity: 0;
+            transform: translateY(14px) scale(0.9);
+            pointer-events: none;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            translate: -50% 0;
+        }
+
+        .contact-options.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            pointer-events: all;
+        }
+
+        .contact-icon-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.2s, box-shadow 0.2s, opacity 0.3s ease;
+        }
+
+        .contact-icon-btn:nth-child(1) {
+            transition-delay: 0ms;
+        }
+
+        .contact-icon-btn:nth-child(2) {
+            transition-delay: 80ms;
+        }
+
+        .contact-icon-btn.whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+        }
+
+        .contact-icon-btn.whatsapp:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+        }
+
+        .contact-icon-btn.email {
+            background: linear-gradient(135deg, #06b6d4 0%, #3b82f6 100%);
+        }
+
+        .contact-icon-btn.email:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(6, 182, 212, 0.4);
+        }
+
+        .cta-wrapper {
+            position: relative;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 54px;
+        }
+
         /* Footer */
         footer {
             padding: 40px 0;
@@ -592,7 +660,7 @@
     <nav>
         <div class="container">
             <div class="logo">
-                <img src="computer.svg" alt="Computer" class="logo-img">
+                <img src="/computer.svg" alt="Computer" class="logo-img">
             </div>
             <div class="nav-links">
                 <a href="#how-it-works">How It Works</a>
@@ -610,10 +678,10 @@
                 <div class="badge">Powered by Computer</div>
                 <h1>
                     Welcome to
-                    <span class="gradient-text">{{Customer}}</span>
+                    <span class="gradient-text" id="hero-customer">...</span>
                     Support
                 </h1>
-                <p class="hero-subtitle">
+                <p class="hero-subtitle" id="hero-subtitle">
                     AI-powered support tailored for your needs. Get instant answers, automate workflows, and resolve issues faster than ever.
                 </p>
             </div>
@@ -625,15 +693,15 @@
         <div class="container">
             <div class="how-it-works-card">
                 <h2>How This Works</h2>
-                <p>This chatbot demo is powered by <strong>DevRev</strong> and tailored for <span class="highlight">{{Customer}}</span> use cases.</p>
+                <p>This chatbot demo is powered by <strong>DevRev</strong> and tailored for <span class="highlight" id="hiw-customer">...</span> use cases.</p>
                 <p>To give you a quick preview of its capabilities, we've curated a small set of support articles and sample workflows, listed below.</p>
                 <p>The chatbot's responses are limited to just this content, so feel free to ask questions based on those topics.</p>
-                <p>Click the chat widget in the bottom right to try it out.</p>
+                <p id="hiw-note">Click the chat widget in the bottom right to try it out.</p>
             </div>
         </div>
     </section>
 
-    <!-- Questions Section (Placeholder) -->
+    <!-- Questions Section -->
     <section class="section" id="questions">
         <div class="container">
             <div class="section-header">
@@ -643,28 +711,7 @@
                     Ask the chatbot any of these questions to see it in action
                 </p>
             </div>
-
-            <div class="questions-grid">
-                <div class="questions-card">
-                    <h3>General Support</h3>
-                    <ul>
-                        <li>How do I get started with the platform?</li>
-                        <li>What integrations are available?</li>
-                        <li>How do I submit a support ticket?</li>
-                        <li>What resources are available before opening a case?</li>
-                    </ul>
-                </div>
-
-                <div class="questions-card">
-                    <h3>Workflow Coverage</h3>
-                    <ul>
-                        <li>How do I update my billing information?</li>
-                        <li>I need to change the address on my account.</li>
-                        <li>I want to cancel my subscription.</li>
-                        <li>How do I manage user permissions?</li>
-                    </ul>
-                </div>
-            </div>
+            <div class="questions-grid" id="questions-grid"></div>
         </div>
     </section>
 
@@ -678,48 +725,7 @@
                     Industry standard is 1 tech per 100 users. You're operating at 4x that ratio.
                 </p>
             </div>
-
-            <div class="problem-grid">
-                <div class="problem-card">
-                    <h3>Ticket Overload</h3>
-                    <p>50-150 tickets per day with only 4 technicians. Your team is stretched thin and response times suffer.</p>
-                    <div class="problem-stat">
-                        <span>⚡</span> 25x above industry standard
-                    </div>
-                </div>
-
-                <div class="problem-card">
-                    <h3>Repetitive Requests</h3>
-                    <p>~50% of tickets are mundane, repetitive questions that could be self-served—if employees could find the answers.</p>
-                    <div class="problem-stat">
-                        <span>📊</span> 50+ tickets/day = solvable
-                    </div>
-                </div>
-
-                <div class="problem-card">
-                    <h3>Hidden Knowledge</h3>
-                    <p>Knowledge lives in OneNote, scattered tickets, and technicians' heads. Employees can't discover what they need.</p>
-                    <div class="problem-stat">
-                        <span>📚</span> KB not AI-ready
-                    </div>
-                </div>
-
-                <div class="problem-card">
-                    <h3>Manual Classification & Triage</h3>
-                    <p>Tickets sit in queue waiting to be read, categorized, and assigned to the right group—eating up valuable response time.</p>
-                    <div class="problem-stat">
-                        <span>⏱️</span> Avg. 14h response delay
-                    </div>
-                </div>
-
-                <div class="problem-card">
-                    <h3>Manual Follow-ups & Approvals</h3>
-                    <p>License and access requests require chasing managers for approval. No automatic reminders—just manual email ping-pong.</p>
-                    <div class="problem-stat">
-                        <span>🔁</span> No auto-reminders today
-                    </div>
-                </div>
-            </div>
+            <div class="problem-grid" id="problem-grid"></div>
         </div>
     </section>
 
@@ -729,8 +735,8 @@
             <div class="resources-row">
                 <div class="resource-card">
                     <h3>Demo Video</h3>
-                    <a href="https://youtu.be/9WdGlaAQYA8" target="_blank">
-                        <img src="https://img.youtube.com/vi/9WdGlaAQYA8/hqdefault.jpg" alt="Demo Video" class="video-thumbnail" />
+                    <a id="video-link" href="#" target="_blank">
+                        <img id="video-thumb" src="" alt="Demo Video" class="video-thumbnail" />
                     </a>
                 </div>
 
@@ -739,7 +745,7 @@
                     <p style="color: var(--text-secondary); margin-bottom: 16px;">
                         Discover how Computer by DevRev can transform your support operations with AI-powered automation.
                     </p>
-                    <a href="https://devrev.ai/support" target="_blank">devrev.ai/support →</a>
+                    <a id="learn-more-link" href="#" target="_blank">devrev.ai/support →</a>
                 </div>
             </div>
         </div>
@@ -753,12 +759,29 @@
                 <p>
                     Let's walk through these scenarios with your actual data and workflows.
                 </p>
-                <a href="#" class="cta-button">
-                    <span>Contact Us</span>
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M5 12h14M12 5l7 7-7 7"/>
-                    </svg>
-                </a>
+                <div class="cta-wrapper">
+                    <a href="#" class="cta-button" id="contact-btn">
+                        <span>Contact Us</span>
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <div class="contact-options" id="contact-options">
+                        <a href="mailto:natalia.gomez@devrev.ai" class="contact-icon-btn email">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="2" y="4" width="20" height="16" rx="2"/>
+                                <path d="M2 7l10 7 10-7"/>
+                            </svg>
+                            <span>Email</span>
+                        </a>
+                        <a href="https://api.whatsapp.com/send?phone=+5491167395436" target="_blank" class="contact-icon-btn whatsapp">
+                            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+                            </svg>
+                            <span>WhatsApp</span>
+                        </a>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -769,6 +792,128 @@
             <p>Powered by Computer, by DevRev</p>
         </div>
     </footer>
+
+    <script>
+    (function() {
+      var contactBtn = document.getElementById('contact-btn');
+      var contactOptions = document.getElementById('contact-options');
+
+      if (contactBtn && contactOptions) {
+        contactBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          contactBtn.classList.add('hidden');
+          contactOptions.classList.add('visible');
+        });
+
+        document.addEventListener('click', function(e) {
+          if (!contactOptions.contains(e.target) && e.target !== contactBtn) {
+            contactBtn.classList.remove('hidden');
+            contactOptions.classList.remove('visible');
+          }
+        });
+      }
+    })();
+    </script>
+
+    <script>
+    (function() {
+      // Get customer slug from URL path (e.g. /example -> "example")
+      const path = window.location.pathname.replace(/^\/|\/$/g, '');
+
+      if (!path) {
+        // Root path — show a landing/directory message
+        document.getElementById('hero-customer').textContent = 'Your Company';
+        document.getElementById('hiw-customer').textContent = 'your company';
+        document.getElementById('hero-subtitle').textContent =
+          'This is a template. Navigate to /<customer-name> to view a customer-specific demo.';
+        return;
+      }
+
+      // Fetch the customer config
+      fetch('/customers/' + encodeURIComponent(path) + '.json')
+        .then(function(res) {
+          if (!res.ok) throw new Error('Customer not found');
+          return res.json();
+        })
+        .then(function(config) {
+          // Title
+          document.title = config.customer + ' Support | Powered by Computer';
+
+          // Hero
+          document.getElementById('hero-customer').textContent = config.customer;
+          if (config.heroSubtitle) {
+            document.getElementById('hero-subtitle').textContent = config.heroSubtitle;
+          }
+
+          // How it works
+          document.getElementById('hiw-customer').textContent = config.customer;
+          if (config.howItWorksNote) {
+            document.getElementById('hiw-note').textContent = config.howItWorksNote;
+          }
+
+          // Questions
+          var qGrid = document.getElementById('questions-grid');
+          if (config.questions && config.questions.length) {
+            qGrid.innerHTML = config.questions.map(function(group) {
+              var items = group.items.map(function(q) {
+                return '<li>' + q + '</li>';
+              }).join('');
+              return '<div class="questions-card"><h3>' + group.title + '</h3><ul>' + items + '</ul></div>';
+            }).join('');
+          }
+
+          // Problems
+          var pGrid = document.getElementById('problem-grid');
+          if (config.problems && config.problems.length) {
+            pGrid.innerHTML = config.problems.map(function(p) {
+              return '<div class="problem-card"><h3>' + p.title + '</h3><p>' + p.description + '</p>' +
+                '<div class="problem-stat"><span>' + p.icon + '</span> ' + p.stat + '</div></div>';
+            }).join('');
+          }
+
+          // Video
+          if (config.videoUrl) {
+            document.getElementById('video-link').href = config.videoUrl;
+          }
+          if (config.videoThumbnail) {
+            document.getElementById('video-thumb').src = config.videoThumbnail;
+          }
+
+          // Learn more
+          if (config.learnMoreUrl) {
+            var lmLink = document.getElementById('learn-more-link');
+            lmLink.href = config.learnMoreUrl;
+            // Show a nice display for the link
+            try {
+              var u = new URL(config.learnMoreUrl);
+              lmLink.textContent = u.hostname + u.pathname + ' →';
+            } catch(e) {}
+          }
+
+          // Init PLuG widget — poll until the deferred script is ready
+          if (config.widgetAppId) {
+            var attempts = 0;
+            var interval = setInterval(function() {
+              if (window.plugSDK && window.plugSDK.init) {
+                clearInterval(interval);
+                window.plugSDK.init({
+                  app_id: config.widgetAppId,
+                  enable_session_recording: true
+                });
+              } else if (++attempts > 50) {
+                clearInterval(interval); // give up after ~5s
+              }
+            }, 100);
+          }
+        })
+        .catch(function() {
+          document.getElementById('hero-customer').textContent = path;
+          document.getElementById('hiw-customer').textContent = path;
+          document.getElementById('hero-subtitle').textContent =
+            'Customer configuration not found. Make sure /customers/' + path + '.json exists.';
+        });
+    })();
+    </script>
 
 </body>
 </html>

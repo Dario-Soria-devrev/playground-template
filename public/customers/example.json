@@ -1,0 +1,61 @@
+{
+  "customer": "Acme Corp",
+  "widgetAppId": "YOUR_DEVREV_PLUG_APP_ID_HERE",
+  "heroSubtitle": "AI-powered support tailored for your needs. Get instant answers, automate workflows, and resolve issues faster than ever.",
+  "howItWorksNote": "Click the chat widget in the bottom right to try it out.",
+  "questions": [
+    {
+      "title": "General Support",
+      "items": [
+        "How do I get started with the platform?",
+        "What integrations are available?",
+        "How do I submit a support ticket?",
+        "What resources are available before opening a case?"
+      ]
+    },
+    {
+      "title": "Workflow Coverage",
+      "items": [
+        "How do I update my billing information?",
+        "I need to change the address on my account.",
+        "I want to cancel my subscription.",
+        "How do I manage user permissions?"
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "title": "Ticket Overload",
+      "description": "50-150 tickets per day with only 4 technicians. Your team is stretched thin and response times suffer.",
+      "stat": "25x above industry standard",
+      "icon": "⚡"
+    },
+    {
+      "title": "Repetitive Requests",
+      "description": "~50% of tickets are mundane, repetitive questions that could be self-served—if employees could find the answers.",
+      "stat": "50+ tickets/day = solvable",
+      "icon": "📊"
+    },
+    {
+      "title": "Hidden Knowledge",
+      "description": "Knowledge lives in scattered docs and people's heads. Employees can't discover what they need.",
+      "stat": "KB not AI-ready",
+      "icon": "📚"
+    },
+    {
+      "title": "Manual Classification & Triage",
+      "description": "Tickets sit in queue waiting to be read, categorized, and assigned to the right group—eating up valuable response time.",
+      "stat": "Avg. 14h response delay",
+      "icon": "⏱️"
+    },
+    {
+      "title": "Manual Follow-ups & Approvals",
+      "description": "License and access requests require chasing managers for approval. No automatic reminders—just manual email ping-pong.",
+      "stat": "No auto-reminders today",
+      "icon": "🔁"
+    }
+  ],
+  "videoUrl": "https://youtu.be/9WdGlaAQYA8",
+  "videoThumbnail": "https://img.youtube.com/vi/9WdGlaAQYA8/hqdefault.jpg",
+  "learnMoreUrl": "https://devrev.ai/support"
+}
