@@ -1,0 +1,69 @@
+{
+  "customer": "Black Duck",
+  "widgetAppId": "DvRvStPZG9uOmNvcmU6ZHZydi11cy0xOmRldm8vMWU2NFBhRGdpaTpwbHVnX3NldHRpbmcvMV9ffHxfXzIwMjYtMDItMTEgMTU6MzU6MjAuMTE0NjQ3NTk2ICswMDAwIFVUQw==xlxendsDvRv",
+  "heroSubtitle": "AI-powered support for software composition analysis and application security. Get instant answers on vulnerabilities, license compliance, and software supply-chain risk — without the wait.",
+  "howItWorksNote": "Click the chat widget in the bottom right to try it out.",
+  "questions": [
+    {
+      "title": "Developers & Security Engineers",
+      "items": [
+        "How do I run a Black Duck Detect scan on my project, and what scan modes are available for source code vs. binaries?",
+        "How can I integrate Black Duck scanning into my GitHub Actions or Jenkins CI/CD pipeline to enforce policy on every pull request?",
+        "What is the difference between package manager scanning, signature scanning, and snippet scanning, and when should I use each?",
+        "How do I interpret a Bill of Materials (BOM) report, and how are direct vs. transitive dependencies distinguished?",
+        "A new CVE was published affecting a library in our codebase—how do I find all affected projects and prioritize remediation?",
+        "How does Black Duck handle container image scanning, and what registries and runtimes are supported?",
+        "How can I scan for open source AI models (e.g., from Hugging Face) embedded in our projects and assess their licensing risks?",
+        "What steps should I follow to set up an air-gapped (offline) Detect scan in an environment with no internet access?",
+        "How do I configure scan exclusions to skip test directories or vendored code that shouldn't be included in risk reports?",
+        "How can I match a detected code snippet back to its original open source project to confirm whether it introduces a license obligation?"
+      ]
+    },
+    {
+      "title": "AppSec, Compliance & Operations",
+      "items": [
+        "How do I create and enforce security and license compliance policies that automatically fail builds when critical violations are detected?",
+        "How can I generate and export an SBOM in SPDX or CycloneDX format to satisfy customer or regulatory requirements?",
+        "How does Black Duck map vulnerabilities to the NVD, and what are Black Duck Security Advisories (BDSAs) and why do they appear before NVD entries?",
+        "How do I manage roles and permissions for teams across multiple projects, and what built-in roles are available?",
+        "How can I configure notifications and alerts so that the right team members are informed when a newly reported vulnerability affects a production application?",
+        "What data retention and audit logging capabilities does Black Duck provide to support compliance and forensic investigations?",
+        "How does Black Duck support compliance with standards like NIST SSDF, the EU Cyber Resilience Act, or EO 14028 software supply chain requirements?",
+        "How do I use the Black Duck API to extract vulnerability and license data for custom dashboards or third-party reporting tools?",
+        "How is Black Duck deployed on-premises vs. as a SaaS solution, and what are the infrastructure and scalability considerations for large codebases?",
+        "How can I monitor newly discovered open source license obligations across the portfolio and track which components require legal review before release?"
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "title": "Disconnected Support Stack",
+      "description": "Customer interactions and case history live in Salesforce Community, while documentation search and basic chat run through Coveo. These tools are largely disconnected, leaving support teams to bridge the gap manually on every interaction.",
+      "stat": "No unified view of case history, docs & engineering context",
+      "icon": "🔌"
+    },
+    {
+      "title": "Manual-Only Resolution",
+      "description": "Current workflows are limited to search and suggested answers — there is no true automation. Every L1 and L2 resolution requires human intervention, making it impossible to scale support capacity without adding headcount.",
+      "stat": "Search & suggested answers only — no automation",
+      "icon": "🤖"
+    },
+    {
+      "title": "Coveo Consolidation Pressure",
+      "description": "Black Duck is actively evaluating whether a single platform can replace Coveo for documentation search while also delivering end-to-end support automation. The goal is to consolidate spend and drive clear ROI through faster resolution and lower operational cost.",
+      "stat": "Coveo spend targeted for displacement or consolidation",
+      "icon": "💸"
+    },
+    {
+      "title": "Scaling Under PE Ownership",
+      "description": "With private equity ownership driving efficiency targets, Black Duck must modernize and scale its customer support operations — reducing cost, improving response times, and increasing scalability — without growing the support team headcount.",
+      "stat": "Grow support capacity without adding headcount",
+      "icon": "📈"
+    }
+  ],
+  "videoUrl": "https://youtu.be/9WdGlaAQYA8",
+  "videoThumbnail": "https://img.youtube.com/vi/9WdGlaAQYA8/hqdefault.jpg",
+  "learnMoreUrl": "https://devrev.ai/support",
+  "contactEmail": "Nate.Beck@devrev.ai",
+  "contactWhatsApp": "12487678402"
+}
