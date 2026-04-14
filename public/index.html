@@ -579,6 +579,82 @@
             opacity: 0.85;
         }
 
+        /* ── Story Cards ── */
+        .stories-row {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            max-width: 860px;
+            margin: 20px auto 0;
+        }
+
+        .story-card {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            display: block;
+            text-decoration: none;
+            min-height: 200px;
+            box-shadow: var(--shadow-card);
+            transition: transform 0.2s, box-shadow 0.2s;
+            background: #111;
+        }
+
+        .story-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+        }
+
+        .story-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+            top: 0;
+            left: 0;
+            display: block;
+            opacity: 0.75;
+            transition: opacity 0.2s;
+        }
+
+        .story-card:hover img {
+            opacity: 0.6;
+        }
+
+        .story-card-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.25) 55%, transparent 100%);
+        }
+
+        .story-card-content {
+            position: relative;
+            z-index: 1;
+            padding: 28px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 200px;
+        }
+
+        .story-card-label {
+            font-size: 0.63rem;
+            font-weight: 700;
+            color: rgba(255,255,255,0.6);
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            margin-bottom: 8px;
+        }
+
+        .story-card-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.35;
+            letter-spacing: -0.01em;
+        }
+
         /* ── CTA Section ── */
         .cta-section {
             text-align: center;
@@ -732,7 +808,8 @@
                 grid-template-columns: 1fr;
             }
 
-            .resources-row {
+            .resources-row,
+            .stories-row {
                 grid-template-columns: 1fr;
             }
 
@@ -914,6 +991,7 @@
                     <a id="learn-more-link" href="#" target="_blank">devrev.ai/support →</a>
                 </div>
             </div>
+            <div class="stories-row" id="stories-row"></div>
         </div>
     </section>
 
@@ -1154,6 +1232,21 @@
               var u = new URL(config.learnMoreUrl);
               lmLink.textContent = u.hostname + u.pathname + ' →';
             } catch(e) {}
+          }
+
+          /* Story cards */
+          var sRow = document.getElementById('stories-row');
+          if (sRow && config.stories && config.stories.length) {
+            sRow.innerHTML = config.stories.map(function(s) {
+              return '<a class="story-card" href="' + s.url + '" target="_blank">' +
+                '<img src="' + s.image + '" alt="' + s.title + '">' +
+                '<div class="story-card-overlay"></div>' +
+                '<div class="story-card-content">' +
+                  '<div class="story-card-label">Customer Story</div>' +
+                  '<div class="story-card-title">' + s.title + '</div>' +
+                '</div>' +
+              '</a>';
+            }).join('');
           }
 
           /* Init PLuG widget */

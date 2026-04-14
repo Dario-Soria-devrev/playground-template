@@ -101,6 +101,18 @@
       "proof": "Computer's AirSync connects 50+ enterprise tools with bidirectional, real-time sync. The BFSI brief highlights ITSM consolidation as a top use case — replacing fragmented tools with a single AI-native platform that connects IT incidents to customer impact in real time."
     }
   ],
+  "stories": [
+    {
+      "title": "BILL transforms with DevRev's AI platform, saving $5M while improving customer experience",
+      "image": "/assets/bill.png",
+      "url": "https://devrev.ai/customers/bill"
+    },
+    {
+      "title": "Bajaj Finserv transforms customer experiences through session intelligence",
+      "image": "/assets/bajaj.png",
+      "url": "https://devrev.ai/customers/bajaj-finserv"
+    }
+  ],
   "videoUrl": "https://youtu.be/9WdGlaAQYA8",
   "videoThumbnail": "https://img.youtube.com/vi/9WdGlaAQYA8/hqdefault.jpg",
   "learnMoreUrl": "https://devrev.ai/support",
