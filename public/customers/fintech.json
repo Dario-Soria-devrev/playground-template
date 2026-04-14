@@ -1,5 +1,7 @@
 {
-  "customer": "Fintech",
+  "customer": "Financial Services",
+  "agentLabel": "CX Agent",
+  "disableCardClicks": true,
   "widgetAppId": "DvRvStPZG9uOmNvcmU6ZHZydi11cy0xOmRldm8vMW1rb0M3SGNXVzpwbHVnX3NldHRpbmcvMV9ffHxfXzIwMjYtMDMtMzEgMTY6MDA6MDEuNDIxOTY2NTkzICswMDAwIFVUQw==xlxendsDvRv",
   "heroSubtitle": "AI-powered support for financial services. Get instant answers on accounts, billing, claims, and compliance — without the wait.",
   "howItWorksNote": "Click the chat widget in the bottom right to try it out.",
@@ -7,59 +9,59 @@
     {
       "title": "Consumer Support",
       "items": [
-        "What are the different ways I can contact the support team, and what should I have ready before reaching out?",
-        "How do I submit a refund request, and how long does it take to receive the money back?",
-        "What steps should I follow to dispute a charge on my account?",
-        "How do I set up two-factor authentication (2FA) to secure my account?",
-        "What return and exchange options are available, and which items are excluded from returns?"
+        "I was charged twice for the same transaction. How do I request a refund, and how long will it take to get my money back?",
+        "There's a charge on my account I don't recognize. What steps should I take to dispute it?",
+        "The bank is asking me to verify my identity before completing a payment. Why is this happening, and what do I need to do?",
+        "How do I update my saved card or payment method on my account?",
+        "I want to cancel my subscription. Will I lose access immediately, and what happens to my billing history?"
       ]
     },
     {
       "title": "Business & Operations",
       "items": [
-        "How are card issuer partnerships structured, and what benefits do they bring to merchants?",
-        "How can I manage user roles and permissions for my team, and what built-in roles are available?",
-        "How do I set up and manage payment deadlines, and what happens when a payment is overdue?",
-        "What compliance standards does the organization align with, and how is data retained and disposed of?",
-        "How do I configure alerts and notifications for my team, and what delivery channels are supported?"
+        "How does Maple handle PCI-DSS compliance, and what are my responsibilities as a merchant?",
+        "How do I manage user roles and permissions for my team in the Dashboard?",
+        "What happens when a subscription payment fails? How do you handle recovery?",
+        "How do I verify my business identity to enable live payments and payouts?",
+        "How can I monitor my payment operations and get notified about key events like failed payouts or disputes?"
       ]
     }
   ],
   "problems": [
     {
       "title": "Account Access Gridlock",
-      "description": "Locked accounts, forgotten passwords, and expired sessions generate the highest volume of support contacts. Customers hit dead ends when credentials don't match or multi-factor authentication fails.",
-      "stat": "Up to 40% of Tier-1 tickets",
+      "description": "Locked accounts, forgotten passwords, and expired sessions generate the highest volume of support contacts in financial services. Customers hit dead ends when credentials don't match or multi-factor authentication fails — and every failed login is a potential churn event.",
+      "stat": "Tier-1 ticket volume reduced by 60%+ in 90 days",
       "icon": "🔑"
     },
     {
       "title": "Claims & Dispute Maze",
-      "description": "Policyholders and banking customers struggle to file claims, locate the right department, and track resolution status. Multi-step processes lead to abandonment and repeat contacts.",
-      "stat": "3–5 handoffs per claim on average",
+      "description": "Policyholders and banking customers struggle to file claims, locate the right department, and track resolution status. Multi-step processes lead to abandonment and repeat contacts — each handoff eroding trust and increasing cost.",
+      "stat": "Handoffs per claim: 3–5 → 1 or fewer",
       "icon": "📋"
     },
     {
       "title": "Billing & Payment Confusion",
-      "description": "Users can't find where to make a payment, don't understand a charge on their statement, or need to update a funding source. Support teams field the same billing questions daily.",
-      "stat": "#1 reason for inbound chat",
+      "description": "Users can't find where to make a payment, don't understand a charge on their statement, or need to update a funding source. Support teams field the same billing questions daily — questions that have known answers but no scalable delivery mechanism.",
+      "stat": "Billing inbound chat volume reduced by 50%+",
       "icon": "💳"
     },
     {
       "title": "Onboarding Abandonment",
-      "description": "New customers drop off during enrollment when asked for identity verification, funding methods, or document uploads they didn't expect. Each abandoned application costs acquisition spend.",
-      "stat": "60%+ drop-off before completion",
+      "description": "New customers drop off during enrollment when asked for identity verification, funding methods, or document uploads they didn't expect. Each abandoned application costs acquisition spend — and the customer is lost before they've even started.",
+      "stat": "Onboarding drop-off reduced by 30%+",
       "icon": "🚪"
     },
     {
       "title": "Compliance Documentation Sprawl",
-      "description": "Internal teams spend hours locating the right policy document, audit checklist, or regulatory FAQ across scattered wikis and shared drives. Slow answers hurt regulators and customers alike.",
-      "stat": "Avg. 12 min to find the right doc",
+      "description": "Internal teams spend hours locating the right policy document, audit checklist, or regulatory FAQ across scattered wikis and shared drives. Slow answers hurt regulators and customers alike — and in financial services, a delayed compliance response carries real risk.",
+      "stat": "Doc retrieval: 12 min → under 60 seconds",
       "icon": "📂"
     },
     {
       "title": "Integration & Permissions Bottlenecks",
-      "description": "IT administrators manually provision user roles, configure API connections, and troubleshoot data-sync failures between core banking, CRM, and payment platforms. Every delay cascades downstream.",
-      "stat": "70% of escalations are config-related",
+      "description": "IT administrators manually provision user roles, configure API connections, and troubleshoot data-sync failures between core banking, CRM, and payment platforms. Every delay cascades downstream — and 70% of escalations trace back to configuration issues that should never have reached a human.",
+      "stat": "Config-related escalations reduced by 60%+",
       "icon": "⚙️"
     }
   ],

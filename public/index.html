@@ -401,6 +401,16 @@
             box-shadow: 0 8px 32px rgba(55,48,163,0.12);
         }
 
+        [data-no-click] .problem-card {
+            cursor: default;
+        }
+
+        [data-no-click] .problem-card:hover {
+            transform: none;
+            box-shadow: var(--shadow-card);
+            background: var(--lavender);
+        }
+
         /* "COMPUTER FOR" micro-label above title */
         .problem-card::before {
             content: 'COMPUTER FOR';
@@ -785,9 +795,9 @@
         <div class="container">
             <div class="how-it-works-card">
                 <h2>How This Works</h2>
-                <p>This chatbot demo is powered by <strong>DevRev</strong> and tailored for <span class="highlight" id="hiw-customer">...</span> use cases.</p>
+                <p>This <span class="agent-label">chatbot</span> demo is powered by <strong>DevRev</strong> and tailored for <span class="highlight" id="hiw-customer">...</span> use cases.</p>
                 <p>To give you a quick preview of its capabilities, we've curated a small set of support articles and sample workflows, listed below.</p>
-                <p>The chatbot's responses are limited to just this content, so feel free to ask questions based on those topics.</p>
+                <p>The <span class="agent-label">chatbot</span>'s responses are limited to just this content, so feel free to ask questions based on those topics.</p>
                 <p id="hiw-note">Click the chat widget in the bottom right to try it out.</p>
             </div>
         </div>
@@ -800,7 +810,7 @@
                 <div class="section-label">Try It Out</div>
                 <h2>Sample Questions</h2>
                 <p class="section-subtitle">
-                    Ask the chatbot any of these questions to see Computer in action
+                    Ask the <span class="agent-label">chatbot</span> any of these questions to see Computer in action
                 </p>
             </div>
             <div class="questions-grid" id="questions-grid"></div>
@@ -983,6 +993,12 @@
             document.getElementById('hiw-note').textContent = config.howItWorksNote;
           }
 
+          if (config.agentLabel) {
+            document.querySelectorAll('.agent-label').forEach(function(el) {
+              el.textContent = config.agentLabel;
+            });
+          }
+
           /* Questions grid — each card gets a "COMPUTER FOR" label */
           var qGrid = document.getElementById('questions-grid');
           if (config.questions && config.questions.length) {
@@ -1025,12 +1041,16 @@
             openPlugWithMessage(li.textContent.trim());
           });
 
-          document.getElementById('problem-grid').addEventListener('click', function(e) {
-            var card = e.target.closest('.problem-card');
-            if (!card) return;
-            var title = card.querySelector('h3').textContent.trim();
-            openPlugWithMessage('How can DevRev help me with ' + title + '?');
-          });
+          if (!config.disableCardClicks) {
+            document.getElementById('problem-grid').addEventListener('click', function(e) {
+              var card = e.target.closest('.problem-card');
+              if (!card) return;
+              var title = card.querySelector('h3').textContent.trim();
+              openPlugWithMessage('How can DevRev help me with ' + title + '?');
+            });
+          } else {
+            document.getElementById('problem-grid').setAttribute('data-no-click', '');
+          }
 
           if (config.videoUrl) {
             document.getElementById('video-link').href = config.videoUrl;
