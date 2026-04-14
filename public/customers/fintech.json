@@ -30,39 +30,75 @@
   "problems": [
     {
       "title": "Account Access Gridlock",
-      "description": "Locked accounts, forgotten passwords, and expired sessions generate the highest volume of support contacts in financial services. Customers hit dead ends when credentials don't match or multi-factor authentication fails — and every failed login is a potential churn event.",
-      "stat": "Tier-1 ticket volume reduced by 60%+ in 90 days",
-      "icon": "🔑"
+      "icon": "🔑",
+      "pain": "Locked accounts, forgotten passwords, and expired sessions generate the highest volume of support contacts in financial services. Customers hit dead ends when credentials don't match or multi-factor authentication fails — and every failed login is a potential churn event.",
+      "successCriteria": [
+        "Account access queries (password resets, MFA failures, session expiry) resolved autonomously without human intervention.",
+        "Tier-1 ticket volume for access issues reduced by 60%+ within 90 days.",
+        "Average resolution time for access tickets drops from hours to under 2 minutes.",
+        "CSAT for self-service account recovery reaches 80%+."
+      ],
+      "proof": "A leading fintech processing 2M+ queries/year used Computer to achieve a 70% AI resolution rate — deployed across 100% of customer segments in just 15 weeks."
     },
     {
       "title": "Claims & Dispute Maze",
-      "description": "Policyholders and banking customers struggle to file claims, locate the right department, and track resolution status. Multi-step processes lead to abandonment and repeat contacts — each handoff eroding trust and increasing cost.",
-      "stat": "Handoffs per claim: 3–5 → 1 or fewer",
-      "icon": "📋"
+      "icon": "📋",
+      "pain": "Policyholders and banking customers struggle to file claims, locate the right department, and track resolution status. Multi-step processes lead to abandonment and repeat contacts — each handoff eroding trust and increasing cost.",
+      "successCriteria": [
+        "Dispute intake completed in a single AI-led conversation, with automatic case creation and routing to the fraud or risk team.",
+        "Average handoffs per claim reduced from 3–5 to 1 or fewer.",
+        "Customers receive proactive status updates without needing to re-contact support.",
+        "Fraud-related tickets automatically triaged with full transaction history attached, reducing investigation time from days to hours."
+      ],
+      "proof": "Computer's fraud investigation capability connects tickets to session replays, transaction logs, and prior case history — reducing investigation time from days to hours."
     },
     {
       "title": "Billing & Payment Confusion",
-      "description": "Users can't find where to make a payment, don't understand a charge on their statement, or need to update a funding source. Support teams field the same billing questions daily — questions that have known answers but no scalable delivery mechanism.",
-      "stat": "Billing inbound chat volume reduced by 50%+",
-      "icon": "💳"
+      "icon": "💳",
+      "pain": "Users can't find where to make a payment, don't understand a charge on their statement, or need to update a funding source. Support teams field the same billing questions daily — questions that have known answers but no scalable delivery mechanism.",
+      "successCriteria": [
+        "\"Where is my money?\" and payment status queries resolved autonomously using live transaction data — no agent required.",
+        "Billing-related inbound chat volume reduced by 50%+.",
+        "Computer triggers real-time actions (e.g. enabling a currency, updating a payment method) directly from the conversation.",
+        "Repeat contacts for the same billing question drop to near zero."
+      ],
+      "proof": "In the Maple financial services playground, Computer retrieves a customer's full transaction history, identifies the issue, and triggers automations (like enabling EUR payments) — all within a single chat session."
     },
     {
       "title": "Onboarding Abandonment",
-      "description": "New customers drop off during enrollment when asked for identity verification, funding methods, or document uploads they didn't expect. Each abandoned application costs acquisition spend — and the customer is lost before they've even started.",
-      "stat": "Onboarding drop-off reduced by 30%+",
-      "icon": "🚪"
+      "icon": "🚪",
+      "pain": "New customers drop off during enrollment when asked for identity verification, funding methods, or document uploads they didn't expect. Each abandoned application costs acquisition spend — and the customer is lost before they've even started.",
+      "successCriteria": [
+        "Onboarding drop-off rate reduced by 30%+ through real-time AI guidance at friction points (document upload, identity check, e-sign).",
+        "KYC and account verification queries answered instantly, 24/7, without agent involvement.",
+        "Incomplete applications detected proactively, with Computer prompting customers to resume.",
+        "Time to complete onboarding reduced by 40%+."
+      ],
+      "proof": "The BFSI executive brief identifies onboarding funnel drop-off as a top use case — Computer identifies exactly where users abandon (e.g. document upload, eligibility check) and correlates with support ticket spikes to close the gap."
     },
     {
       "title": "Compliance Documentation Sprawl",
-      "description": "Internal teams spend hours locating the right policy document, audit checklist, or regulatory FAQ across scattered wikis and shared drives. Slow answers hurt regulators and customers alike — and in financial services, a delayed compliance response carries real risk.",
-      "stat": "Doc retrieval: 12 min → under 60 seconds",
-      "icon": "📂"
+      "icon": "📂",
+      "pain": "Internal teams spend hours locating the right policy document, audit checklist, or regulatory FAQ across scattered wikis and shared drives. Slow answers hurt regulators and customers alike — and in financial services, a delayed compliance response carries real risk.",
+      "successCriteria": [
+        "Average time to locate a compliance document reduced from 12 minutes to under 60 seconds.",
+        "100% of policy, audit, and regulatory content searchable through a single conversational interface.",
+        "Computer surfaces source-cited responses so teams can verify and trust the answer.",
+        "Reduction in escalations caused by agents giving inconsistent or outdated policy guidance."
+      ],
+      "proof": "Computer's knowledge graph consolidates product documentation, historical support data, and system-of-record context into a single searchable intelligence layer — customers and agents retrieve precise, contextual responses in seconds."
     },
     {
       "title": "Integration & Permissions Bottlenecks",
-      "description": "IT administrators manually provision user roles, configure API connections, and troubleshoot data-sync failures between core banking, CRM, and payment platforms. Every delay cascades downstream — and 70% of escalations trace back to configuration issues that should never have reached a human.",
-      "stat": "Config-related escalations reduced by 60%+",
-      "icon": "⚙️"
+      "icon": "⚙️",
+      "pain": "IT administrators manually provision user roles, configure API connections, and troubleshoot data-sync failures between core banking, CRM, and payment platforms. Every delay cascades downstream — and 70% of escalations trace back to configuration issues that should never have reached a human.",
+      "successCriteria": [
+        "Config-related escalations reduced by 60%+ through AI-guided self-service for role provisioning and integration troubleshooting.",
+        "IT ticket volume for access and permissions requests reduced by 40–60% (L1 deflection target).",
+        "Computer connects to 50+ tools (Salesforce, Jira, Slack, core banking systems) with bidirectional sync — eliminating manual data-reconciliation tasks.",
+        "Mean time to resolve integration incidents reduced by 50%+."
+      ],
+      "proof": "Computer's AirSync connects 50+ enterprise tools with bidirectional, real-time sync. The BFSI brief highlights ITSM consolidation as a top use case — replacing fragmented tools with a single AI-native platform that connects IT incidents to customer impact in real time."
     }
   ],
   "videoUrl": "https://youtu.be/9WdGlaAQYA8",

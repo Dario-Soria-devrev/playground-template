@@ -411,6 +411,66 @@
             background: var(--lavender);
         }
 
+        /* ── Rich 3-section card format ── */
+        .card-section {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(55,48,163,0.12);
+        }
+
+        .card-section-label {
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: var(--indigo-label);
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            margin-bottom: 6px;
+        }
+
+        .card-pain {
+            color: var(--text-body);
+            font-size: 0.875rem;
+            line-height: 1.65;
+            margin: 0;
+        }
+
+        .card-criteria {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .card-criteria li {
+            color: var(--text-body);
+            font-size: 0.855rem;
+            line-height: 1.55;
+            padding: 5px 0 5px 20px;
+            position: relative;
+            border-bottom: none;
+            cursor: default;
+        }
+
+        .card-criteria li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--indigo-label);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .card-criteria li:hover {
+            color: var(--text-body);
+        }
+
+        .card-proof {
+            color: var(--text-muted);
+            font-size: 0.82rem;
+            line-height: 1.65;
+            font-style: italic;
+            margin: 0;
+        }
+
         /* "COMPUTER FOR" micro-label above title */
         .problem-card::before {
             content: 'COMPUTER FOR';
@@ -1018,6 +1078,26 @@
           var pGrid = document.getElementById('problem-grid');
           if (config.problems && config.problems.length) {
             pGrid.innerHTML = config.problems.map(function(p) {
+              if (p.pain) {
+                var criteriaHtml = (p.successCriteria || []).map(function(item) {
+                  return '<li>' + item + '</li>';
+                }).join('');
+                return '<div class="problem-card">' +
+                  '<h3>' + (p.icon ? p.icon + ' ' : '') + p.title + '</h3>' +
+                  '<div class="card-section">' +
+                    '<div class="card-section-label">The Pain</div>' +
+                    '<p class="card-pain">' + p.pain + '</p>' +
+                  '</div>' +
+                  '<div class="card-section">' +
+                    '<div class="card-section-label">Success Criteria with Computer</div>' +
+                    '<ul class="card-criteria">' + criteriaHtml + '</ul>' +
+                  '</div>' +
+                  '<div class="card-section">' +
+                    '<div class="card-section-label">Proof</div>' +
+                    '<p class="card-proof">' + p.proof + '</p>' +
+                  '</div>' +
+                  '</div>';
+              }
               return '<div class="problem-card">' +
                 '<h3>' + p.title + '</h3>' +
                 '<p>' + p.description + '</p>' +
