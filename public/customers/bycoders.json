@@ -73,6 +73,13 @@
       "proof": "OPP-10325 includes ACV $15,000, ramped ARR $30,000, 24-month term, and target close date 2026-12-31, with champion/contact Adriano Schneider and opportunity ownership in place."
     }
   ],
+  "livePanel": {
+    "title": "Try Computer Live",
+    "subtitle": "Launch an interactive CX Agent session directly from this page to explore real conversational workflows.",
+    "ctaLabel": "Launch CX Agent",
+    "starterMessage": "Hi Computer, can you walk me through how ByCoders can use conversational AI for support and operations?",
+    "mockPreviewImage": "/assets/bycoders-computer-live.png"
+  },
   "stories": [
     {
       "title": "BILL transforms with DevRev's AI platform, saving $5M while improving customer experience",

@@ -383,6 +383,114 @@
             gap: 20px;
         }
 
+        .challenge-layout {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .challenge-layout.has-live-panel {
+            grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr);
+        }
+
+        .live-panel {
+            display: none;
+        }
+
+        .challenge-layout.has-live-panel .live-panel {
+            display: block;
+            position: sticky;
+            top: 88px;
+        }
+
+        .live-panel-card {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+        }
+
+        .live-panel-head {
+            padding: 24px 24px 10px;
+        }
+
+        .live-panel-label {
+            font-size: 0.67rem;
+            font-weight: 700;
+            color: var(--indigo-label);
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin-bottom: 8px;
+        }
+
+        .live-panel-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 800;
+            letter-spacing: -0.02em;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .live-panel-subtitle {
+            color: var(--text-muted);
+            font-size: 0.92rem;
+            line-height: 1.6;
+        }
+
+        .live-preview {
+            margin: 14px 24px 0;
+            border-radius: 14px;
+            border: 1px solid var(--border-light);
+            overflow: hidden;
+            position: relative;
+            height: 245px;
+            background: #f5f5f5;
+        }
+
+        .live-preview img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .live-preview-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.0) 60%);
+        }
+
+        .live-panel-actions {
+            padding: 16px 24px 24px;
+        }
+
+        .live-panel-cta {
+            width: 100%;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            border-radius: 100px;
+            padding: 13px 20px;
+            background: var(--text-dark);
+            color: var(--yellow-bright);
+            font-weight: 700;
+            font-size: 0.78rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .live-panel-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+        }
+
         .problem-card {
             background: var(--lavender);
             border: none;
@@ -808,6 +916,14 @@
                 grid-template-columns: 1fr;
             }
 
+            .challenge-layout.has-live-panel {
+                grid-template-columns: 1fr;
+            }
+
+            .challenge-layout.has-live-panel .live-panel {
+                position: static;
+            }
+
             .resources-row,
             .stories-row {
                 grid-template-columns: 1fr;
@@ -964,7 +1080,10 @@
                     Industry standard is 1 tech per 100 users. You're operating at 4x that ratio.
                 </p>
             </div>
-            <div class="problem-grid" id="problem-grid"></div>
+            <div class="challenge-layout" id="challenge-layout">
+                <div class="problem-grid" id="problem-grid"></div>
+                <aside class="live-panel" id="live-panel"></aside>
+            </div>
         </div>
     </section>
 
@@ -1189,6 +1308,39 @@
             if (window.plugSDK && window.plugSDK.toggleWidget) {
               window.plugSDK.toggleWidget(true, 'create_conversation', {
                 startConversationContent: msg
+              });
+            }
+          }
+
+          var challengeLayout = document.getElementById('challenge-layout');
+          var livePanelMount = document.getElementById('live-panel');
+          if (challengeLayout && livePanelMount && config.livePanel) {
+            var panel = config.livePanel;
+            var previewHtml = panel.mockPreviewImage
+              ? '<div class="live-preview">' +
+                  '<img src="' + panel.mockPreviewImage + '" alt="' + (panel.title || 'Try Computer Live') + '">' +
+                  '<div class="live-preview-overlay"></div>' +
+                '</div>'
+              : '';
+
+            livePanelMount.innerHTML =
+              '<div class="live-panel-card">' +
+                '<div class="live-panel-head">' +
+                  '<div class="live-panel-label">Live Demo</div>' +
+                  '<h3 class="live-panel-title">' + (panel.title || 'Try Computer Live') + '</h3>' +
+                  '<p class="live-panel-subtitle">' + (panel.subtitle || 'Interact with Computer directly from this page.') + '</p>' +
+                '</div>' +
+                previewHtml +
+                '<div class="live-panel-actions">' +
+                  '<button type="button" class="live-panel-cta" id="live-panel-cta">' + (panel.ctaLabel || 'Launch CX Agent') + '</button>' +
+                '</div>' +
+              '</div>';
+
+            challengeLayout.classList.add('has-live-panel');
+            var liveCta = document.getElementById('live-panel-cta');
+            if (liveCta) {
+              liveCta.addEventListener('click', function() {
+                openPlugWithMessage(panel.starterMessage || 'Hi Computer, show me a live demo.');
               });
             }
           }
