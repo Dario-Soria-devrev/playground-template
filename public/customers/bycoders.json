@@ -1,0 +1,93 @@
+{
+  "customer": "ByCoders",
+  "agentLabel": "CX Agent",
+  "disableCardClicks": true,
+  "widgetAppId": "DvRvStPZG9uOmNvcmU6ZHZydi11cy0xOmRldm8vMWY3NUJ0WHIwMDpwbHVnX3NldHRpbmcvMV9ffHxfXzIwMjYtMDQtMTUgMTU6MjM6MjAuMTgwODM0ODc2ICswMDAwIFVUQw==xlxendsDvRv",
+  "heroSubtitle": "AI-powered support for software delivery and digital transformation teams. Get instant answers on services, delivery models, and operational workflows.",
+  "howItWorksNote": "Click the chat widget in the bottom right to try it out.",
+  "questions": [
+    {
+      "title": "Client Needs & Solution Fit",
+      "items": [
+        "We’re planning a digital transformation initiative — how does bycoders structure a project from discovery to delivery?",
+        "Which of your core services (Data, Software Development, Team as a Service, UI/UX, Support & Maintenance) is usually the best starting point for a company like ours?",
+        "You mention tailor-made technological solutions — how do you customize architecture and product scope for each client?",
+        "How do you combine user experience design and engineering so that UX decisions are reflected in the final product?",
+        "As an official Shopify partner, what kind of fast, secure, and scalable e-commerce builds can you deliver, and for which business scenarios?"
+      ]
+    },
+    {
+      "title": "Delivery Model, Team & Operations",
+      "items": [
+        "How does your remote-first model (Brazil, Portugal, USA) work in practice for communication, handoffs, and timezone coverage?",
+        "In your Team as a Service model, what roles can you provide (e.g., software engineers, consultants, UI/UX), and how do you integrate with an in-house team?",
+        "What does ongoing Support & Maintenance include after go-live, and how do you handle issue prioritization and response times?",
+        "How do you ensure quality and performance while delivering high-impact software and digital products?",
+        "If we reach out through your contact form, what information should we provide to get the most accurate proposal, and what is your expected first-response time?"
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "title": "Conversational CX Evaluation",
+      "icon": "💬",
+      "pain": "Bycoders is in the evaluation stage for conversational customer support outcomes, with explicit decision criteria centered on ROI and cost. The opportunity needs a clear path from initial demo to validated business impact.",
+      "successCriteria": [
+        "Validate CX Agent coverage for support-team workflows listed in the opportunity use cases.",
+        "Confirm that the evaluation produces decision-ready ROI and cost evidence.",
+        "Align the demo output with the current stage objective (3-evaluate) and next-step timeline."
+      ],
+      "proof": "OPP-10325 is currently at stage 3-evaluate, includes playbook PB 4 - Conversational CX, and has a recorded next step of 'Demo 21/04/2026' with decision criteria 'ROI, cost'."
+    },
+    {
+      "title": "Enterprise Search Scope Definition",
+      "icon": "🔎",
+      "pain": "The opportunity includes Enterprise Search as a priority track, but the project needs explicit scope definition so search outcomes can be measured alongside conversational support outcomes during evaluation.",
+      "successCriteria": [
+        "Define the minimum viable enterprise-search scope for the ongoing evaluation phase.",
+        "Map search outcomes to the listed support, operations, and customer-facing use cases.",
+        "Ensure search capabilities are assessed as a complement to CX Agent workflows."
+      ],
+      "proof": "OPP-10325 explicitly includes playbook PB 3 - Enterprise Search and lists multiple cross-functional use cases (support teams, operations teams, sales/CS teams, and customer support resolution)."
+    },
+    {
+      "title": "Cross-Function Use Case Alignment",
+      "icon": "🧩",
+      "pain": "The opportunity spans multiple teams and use-case tracks, which can create fragmentation during evaluation unless priorities, ownership, and rollout sequence are aligned around a single plan.",
+      "successCriteria": [
+        "Prioritize the listed use cases into an agreed evaluation sequence.",
+        "Align stakeholder expectations across support, operations, and sales/CS workflows.",
+        "Keep the first phase focused on the highest-value outcomes for an SMB segment motion."
+      ],
+      "proof": "OPP-10325 records four use-case categories and is tagged as SMB, outbound, and open pipeline, indicating a multi-track evaluation that requires coordinated scope and ownership."
+    },
+    {
+      "title": "Commercial Readiness for Close Plan",
+      "icon": "📈",
+      "pain": "The opportunity has defined commercial parameters and a target close timeline, but the evaluation must translate into a concrete close plan that links validated scope to contract economics.",
+      "successCriteria": [
+        "Tie evaluated scope to the current commercial model (ACV and ramped ARR).",
+        "Maintain momentum from evaluation to close-plan execution before target close.",
+        "Keep stakeholders aligned on term length and next-step cadence."
+      ],
+      "proof": "OPP-10325 includes ACV $15,000, ramped ARR $30,000, 24-month term, and target close date 2026-12-31, with champion/contact Adriano Schneider and opportunity ownership in place."
+    }
+  ],
+  "stories": [
+    {
+      "title": "BILL transforms with DevRev's AI platform, saving $5M while improving customer experience",
+      "image": "/assets/bill.png",
+      "url": "https://devrev.ai/customers/bill"
+    },
+    {
+      "title": "Bajaj Finserv transforms customer experiences through session intelligence",
+      "image": "/assets/bajaj.png",
+      "url": "https://devrev.ai/customers/bajaj-finserv"
+    }
+  ],
+  "videoUrl": "https://youtu.be/9WdGlaAQYA8",
+  "videoThumbnail": "https://img.youtube.com/vi/9WdGlaAQYA8/hqdefault.jpg",
+  "learnMoreUrl": "https://devrev.ai/support",
+  "contactEmail": "natalia.gomez@devrev.ai",
+  "contactWhatsApp": "5491167395436"
+}
