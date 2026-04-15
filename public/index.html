@@ -386,6 +386,10 @@
         .questions-live-panel {
             margin-top: 20px;
             display: none;
+            width: 100%;
+            max-width: calc((100% - 20px) / 2);
+            margin-left: auto;
+            margin-right: auto;
         }
 
         .questions-live-panel.visible {
@@ -887,6 +891,10 @@
             .problem-grid,
             .questions-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .questions-live-panel {
+                max-width: 100%;
             }
 
             .resources-row,
