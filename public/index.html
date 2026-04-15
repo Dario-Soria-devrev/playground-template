@@ -383,25 +383,13 @@
             gap: 20px;
         }
 
-        .challenge-layout {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 20px;
-            align-items: start;
-        }
-
-        .challenge-layout.has-live-panel {
-            grid-template-columns: minmax(0, 1.5fr) minmax(320px, 1fr);
-        }
-
-        .live-panel {
+        .questions-live-panel {
+            margin-top: 20px;
             display: none;
         }
 
-        .challenge-layout.has-live-panel .live-panel {
+        .questions-live-panel.visible {
             display: block;
-            position: sticky;
-            top: 88px;
         }
 
         .live-panel-card {
@@ -467,28 +455,13 @@
             padding: 16px 24px 24px;
         }
 
-        .live-panel-cta {
+        .live-panel-cta-link {
             width: 100%;
-            display: inline-flex;
             justify-content: center;
-            align-items: center;
-            gap: 8px;
-            border: none;
-            border-radius: 100px;
-            padding: 13px 20px;
-            background: var(--text-dark);
-            color: var(--yellow-bright);
-            font-weight: 700;
-            font-size: 0.78rem;
-            letter-spacing: 0.06em;
-            text-transform: uppercase;
-            cursor: pointer;
-            transition: transform 0.2s, box-shadow 0.2s;
         }
 
-        .live-panel-cta:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(0,0,0,0.18);
+        .live-panel-cta-link:hover {
+            opacity: 1;
         }
 
         .problem-card {
@@ -916,14 +889,6 @@
                 grid-template-columns: 1fr;
             }
 
-            .challenge-layout.has-live-panel {
-                grid-template-columns: 1fr;
-            }
-
-            .challenge-layout.has-live-panel .live-panel {
-                position: static;
-            }
-
             .resources-row,
             .stories-row {
                 grid-template-columns: 1fr;
@@ -1067,6 +1032,7 @@
                 </p>
             </div>
             <div class="questions-grid" id="questions-grid"></div>
+            <div class="questions-live-panel" id="questions-live-panel"></div>
         </div>
     </section>
 
@@ -1080,10 +1046,7 @@
                     Industry standard is 1 tech per 100 users. You're operating at 4x that ratio.
                 </p>
             </div>
-            <div class="challenge-layout" id="challenge-layout">
-                <div class="problem-grid" id="problem-grid"></div>
-                <aside class="live-panel" id="live-panel"></aside>
-            </div>
+            <div class="problem-grid" id="problem-grid"></div>
         </div>
     </section>
 
@@ -1312,9 +1275,8 @@
             }
           }
 
-          var challengeLayout = document.getElementById('challenge-layout');
-          var livePanelMount = document.getElementById('live-panel');
-          if (challengeLayout && livePanelMount && config.livePanel) {
+          var livePanelMount = document.getElementById('questions-live-panel');
+          if (livePanelMount && config.livePanel) {
             var panel = config.livePanel;
             var previewHtml = panel.mockPreviewImage
               ? '<div class="live-preview">' +
@@ -1332,17 +1294,11 @@
                 '</div>' +
                 previewHtml +
                 '<div class="live-panel-actions">' +
-                  '<button type="button" class="live-panel-cta" id="live-panel-cta">' + (panel.ctaLabel || 'Launch CX Agent') + '</button>' +
+                  '<a class="cta-button live-panel-cta-link" href="' + (panel.url || '#') + '" target="_blank">' + (panel.ctaLabel || 'Launch CX Agent') + '</a>' +
                 '</div>' +
               '</div>';
 
-            challengeLayout.classList.add('has-live-panel');
-            var liveCta = document.getElementById('live-panel-cta');
-            if (liveCta) {
-              liveCta.addEventListener('click', function() {
-                openPlugWithMessage(panel.starterMessage || 'Hi Computer, show me a live demo.');
-              });
-            }
+            livePanelMount.classList.add('visible');
           }
 
           document.getElementById('questions-grid').addEventListener('click', function(e) {

@@ -76,8 +76,8 @@
   "livePanel": {
     "title": "Try Computer Live",
     "subtitle": "Launch an interactive CX Agent session directly from this page to explore real conversational workflows.",
-    "ctaLabel": "Launch CX Agent",
-    "starterMessage": "Hi Computer, can you walk me through how ByCoders can use conversational AI for support and operations?",
+    "ctaLabel": "LAUNCH EX AGENT",
+    "url": "https://app.devrev.ai/bycodersdemo/computer",
     "mockPreviewImage": "/assets/bycoders-computer-live.png"
   },
   "stories": [
