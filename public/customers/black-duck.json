@@ -1,5 +1,6 @@
 {
   "customer": "Black Duck",
+  "disableCardClicks": true,
   "widgetAppId": "DvRvStPZG9uOmNvcmU6ZHZydi11cy0xOmRldm8vMWU2NFBhRGdpaTpwbHVnX3NldHRpbmcvMV9ffHxfXzIwMjYtMDItMTEgMTU6MzU6MjAuMTE0NjQ3NTk2ICswMDAwIFVUQw==xlxendsDvRv",
   "heroSubtitle": "AI-powered support for software composition analysis and application security. Get instant answers on vulnerabilities, license compliance, and software supply-chain risk — without the wait.",
   "howItWorksNote": "Click the chat widget in the bottom right to try it out.",
@@ -64,6 +65,33 @@
   "videoUrl": "https://youtu.be/9WdGlaAQYA8",
   "videoThumbnail": "https://img.youtube.com/vi/9WdGlaAQYA8/hqdefault.jpg",
   "learnMoreUrl": "https://devrev.ai/support",
+  "stories": [
+    {
+      "title": "Try Computer Live",
+      "image": "/assets/bycoders-computer-live.png",
+      "url": "https://app.devrev.ai/blackduckdemo/computer"
+    },
+    {
+      "title": "Support Automation at Scale",
+      "image": "https://devrev.ai/api/og?type=customer&title=BILL%20transforms%20with%20DevRev%27s%20AI%20platform%2C%20saving%20%245M%20while%20improving%20customer%20experience",
+      "url": "https://devrev.ai/customers/bill"
+    },
+    {
+      "title": "Siloed Case & Doc Context",
+      "image": "https://devrev.ai/api/og?type=customer&title=Phenom%20transforms%20talent%20experience%20with%20streamlined%20support%20and%20development%20workflows%20",
+      "url": "https://devrev.ai/customers/phenom"
+    },
+    {
+      "title": "No/Low-Code Workflow Automation",
+      "image": "https://devrev.ai/api/og?type=customer&title=From%2030%25%20to%205%25%20overhead%3A%20Skedulo%20streamlines%20support%20with%20DevRev",
+      "url": "https://devrev.ai/customers/skedulo"
+    },
+    {
+      "title": "Scaling Under PE Pressure",
+      "image": "https://devrev.ai/api/og?type=customer&title=FOSSA%E2%80%99s%20unified%20support%20strategy%20for%20elevated%20customer%20experience",
+      "url": "https://devrev.ai/customers/fossa"
+    }
+  ],
   "contactEmail": "Nate.Beck@devrev.ai",
   "contactWhatsApp": "12487678402"
 }

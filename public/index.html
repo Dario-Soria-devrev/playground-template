@@ -611,6 +611,14 @@
             margin: 0 auto;
         }
 
+        .resources-section.replace-with-stories .resources-row {
+            display: none;
+        }
+
+        .resources-section.replace-with-stories .stories-row {
+            margin-top: 0;
+        }
+
         .resource-card {
             background: var(--white);
             border: 1px solid var(--border-light);
@@ -1348,6 +1356,13 @@
               var u = new URL(config.learnMoreUrl);
               lmLink.textContent = u.hostname + u.pathname + ' →';
             } catch(e) {}
+          }
+
+          var resourcesSection = document.querySelector('.resources-section');
+          if (resourcesSection && config.replaceResourcesWithStories) {
+            resourcesSection.classList.add('replace-with-stories');
+          } else if (resourcesSection) {
+            resourcesSection.classList.remove('replace-with-stories');
           }
 
           /* Story cards */
