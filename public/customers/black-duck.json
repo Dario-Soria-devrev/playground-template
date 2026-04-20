@@ -38,27 +38,27 @@
   ],
   "problems": [
     {
-      "title": "Disconnected Support Stack",
-      "description": "Customer interactions and case history live in Salesforce Community, while documentation search and basic chat run through Coveo. These tools are largely disconnected, leaving support teams to bridge the gap manually on every interaction.",
-      "stat": "No unified view of case history, docs & engineering context",
-      "icon": "🔌"
-    },
-    {
-      "title": "Manual-Only Resolution",
-      "description": "Current workflows are limited to search and suggested answers — there is no true automation. Every L1 and L2 resolution requires human intervention, making it impossible to scale support capacity without adding headcount.",
-      "stat": "Search & suggested answers only — no automation",
+      "title": "Support Automation at Scale",
+      "description": "Today every L1 and L2 ticket requires human intervention. Computer automatically triages incoming cases, summarizes prior interactions, suggests resolutions, and closes routine tickets — without a human in the loop. Your team handles more, faster, with the same headcount.",
+      "stat": "Auto-resolve L1/L2 tickets — no human required",
       "icon": "🤖"
     },
     {
-      "title": "Coveo Consolidation Pressure",
-      "description": "Black Duck is actively evaluating whether a single platform can replace Coveo for documentation search while also delivering end-to-end support automation. The goal is to consolidate spend and drive clear ROI through faster resolution and lower operational cost.",
-      "stat": "Coveo spend targeted for displacement or consolidation",
-      "icon": "💸"
+      "title": "Siloed Case & Doc Context",
+      "description": "Customer case history lives in Salesforce Community, documentation is indexed in Coveo, and engineering tickets sit in Jira — with no unified layer connecting them. Computer brings all three together so support agents have full context on every interaction, without switching tools.",
+      "stat": "Salesforce Community + Coveo + Jira — disconnected",
+      "icon": "📋"
+    },
+    {
+      "title": "No/Low-Code Workflow Automation",
+      "description": "Black Duck's support users aren't coders — and every automation tool they've evaluated eventually lands them in LangChain or LangGraph. Computer lets technical teams set it up, then hands ownership to non-coders to run, adjust, and scale workflows without engineering involvement.",
+      "stat": "Non-coders must be able to own the process",
+      "icon": "🔧"
     },
     {
       "title": "Scaling Under PE Ownership",
-      "description": "With private equity ownership driving efficiency targets, Black Duck must modernize and scale its customer support operations — reducing cost, improving response times, and increasing scalability — without growing the support team headcount.",
-      "stat": "Grow support capacity without adding headcount",
+      "description": "PE ownership is driving Black Duck to improve headcount ratios and reduce operational cost — without sacrificing service quality. Computer automates L1/L2 resolution, summarizes prior cases, and enables the support team to handle more volume with the same headcount.",
+      "stat": "PE pushing hard on AI automation ROI",
       "icon": "📈"
     }
   ],
@@ -74,22 +74,22 @@
   },
   "stories": [
     {
-      "title": "Support Automation at Scale",
+      "title": "BILL transforms with DevRev's AI platform, saving $5M while improving customer experience",
       "image": "/assets/blackduck-bill.png",
       "url": "https://devrev.ai/customers/bill"
     },
     {
-      "title": "Siloed Case & Doc Context",
+      "title": "Phenom transforms talent experience with streamlined support and development workflows",
       "image": "/assets/blackduck-phenom.png",
       "url": "https://devrev.ai/customers/phenom"
     },
     {
-      "title": "No/Low-Code Workflow Automation",
+      "title": "From 30% to 5% overhead: Skedulo streamlines support with DevRev",
       "image": "/assets/blackduck-skedulo.png",
       "url": "https://devrev.ai/customers/skedulo"
     },
     {
-      "title": "Scaling Under PE Pressure",
+      "title": "FOSSA’s unified support strategy for elevated customer experience",
       "image": "/assets/blackduck-fossa.png",
       "url": "https://devrev.ai/customers/fossa"
     }
