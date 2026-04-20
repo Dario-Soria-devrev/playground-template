@@ -65,30 +65,32 @@
   "videoUrl": "https://youtu.be/9WdGlaAQYA8",
   "videoThumbnail": "https://img.youtube.com/vi/9WdGlaAQYA8/hqdefault.jpg",
   "learnMoreUrl": "https://devrev.ai/support",
+  "livePanel": {
+    "title": "Try Computer Live",
+    "subtitle": "Launch an interactive CX Agent session directly from this page to explore real conversational workflows.",
+    "ctaLabel": "LAUNCH EX AGENT",
+    "url": "https://app.devrev.ai/blackduckdemo/computer",
+    "mockPreviewImage": "/assets/blackduck-computer-live.png"
+  },
   "stories": [
     {
-      "title": "Try Computer Live",
-      "image": "/assets/bycoders-computer-live.png",
-      "url": "https://app.devrev.ai/blackduckdemo/computer"
-    },
-    {
       "title": "Support Automation at Scale",
-      "image": "https://devrev.ai/api/og?type=customer&title=BILL%20transforms%20with%20DevRev%27s%20AI%20platform%2C%20saving%20%245M%20while%20improving%20customer%20experience",
+      "image": "/assets/blackduck-bill.png",
       "url": "https://devrev.ai/customers/bill"
     },
     {
       "title": "Siloed Case & Doc Context",
-      "image": "https://devrev.ai/api/og?type=customer&title=Phenom%20transforms%20talent%20experience%20with%20streamlined%20support%20and%20development%20workflows%20",
+      "image": "/assets/blackduck-phenom.png",
       "url": "https://devrev.ai/customers/phenom"
     },
     {
       "title": "No/Low-Code Workflow Automation",
-      "image": "https://devrev.ai/api/og?type=customer&title=From%2030%25%20to%205%25%20overhead%3A%20Skedulo%20streamlines%20support%20with%20DevRev",
+      "image": "/assets/blackduck-skedulo.png",
       "url": "https://devrev.ai/customers/skedulo"
     },
     {
       "title": "Scaling Under PE Pressure",
-      "image": "https://devrev.ai/api/og?type=customer&title=FOSSA%E2%80%99s%20unified%20support%20strategy%20for%20elevated%20customer%20experience",
+      "image": "/assets/blackduck-fossa.png",
       "url": "https://devrev.ai/customers/fossa"
     }
   ],
