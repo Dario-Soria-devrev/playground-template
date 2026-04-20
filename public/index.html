@@ -1201,6 +1201,15 @@
     <!-- Customer config loader -->
     <script>
     (function() {
+      /*
+       * Supported customer config fields:
+       * - customer, widgetAppId, heroSubtitle, howItWorksNote
+       * - questions[], problems[]
+       * - disableCardClicks (use-case cards only)
+       * - livePanel { title, subtitle, ctaLabel, url, mockPreviewImage }
+       * - stories[] (resource story cards)
+       * - videoUrl, videoThumbnail, learnMoreUrl, contactEmail, contactWhatsApp
+       */
       const path = window.location.pathname.replace(/^\/|\/$/g, '');
 
       if (!path) {

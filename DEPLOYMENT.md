@@ -192,14 +192,19 @@ No `.env` file is needed.
 
 ## Adding a Customer After Deployment
 
-1. Create `public/customers/<slug>.json` — see `README.md` for the full schema.
-2. Commit and push:
+1. Copy one of the built-in templates:
+   - `public/customers/template-blackduck.json` (default)
+   - `public/customers/template.json`
+2. Save as `public/customers/<slug>.json`.
+3. Update customer values (widget app id, questions, use-case cards, stories, livePanel, contact info).
+4. Add referenced local images to `public/assets/`.
+5. Commit and push:
    ```bash
    git add public/customers/<slug>.json
    git commit -m "Add <customer> demo config"
    git push origin main
    ```
-3. The new URL is immediately live at `https://your-domain.com/<slug>` — no redeployment or config change required.
+6. The new URL is immediately live at `https://your-domain.com/<slug>` — no redeployment or config change required.
 
 ---
 

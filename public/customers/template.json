@@ -1,0 +1,90 @@
+{
+  "customer": "Customer Name",
+  "agentLabel": "CX Agent",
+  "disableCardClicks": true,
+  "widgetAppId": "YOUR_DEVREV_PLUG_APP_ID",
+  "heroSubtitle": "AI-powered support tailored for your business. Get instant answers, automate workflows, and resolve issues faster.",
+  "howItWorksNote": "Click the chat widget in the bottom right to try it out.",
+  "questions": [
+    {
+      "title": "Group 1",
+      "items": [
+        "Question 1",
+        "Question 2",
+        "Question 3",
+        "Question 4",
+        "Question 5"
+      ]
+    },
+    {
+      "title": "Group 2",
+      "items": [
+        "Question 1",
+        "Question 2",
+        "Question 3",
+        "Question 4",
+        "Question 5"
+      ]
+    }
+  ],
+  "problems": [
+    {
+      "title": "Use Case 1",
+      "description": "Describe the customer pain point in plain language with specific context.",
+      "stat": "Outcome or key point",
+      "icon": "🤖"
+    },
+    {
+      "title": "Use Case 2",
+      "description": "Describe the customer pain point in plain language with specific context.",
+      "stat": "Outcome or key point",
+      "icon": "📋"
+    },
+    {
+      "title": "Use Case 3",
+      "description": "Describe the customer pain point in plain language with specific context.",
+      "stat": "Outcome or key point",
+      "icon": "🔧"
+    },
+    {
+      "title": "Use Case 4",
+      "description": "Describe the customer pain point in plain language with specific context.",
+      "stat": "Outcome or key point",
+      "icon": "📈"
+    }
+  ],
+  "livePanel": {
+    "title": "Try Computer Live",
+    "subtitle": "Launch an interactive CX Agent session directly from this page to explore real conversational workflows.",
+    "ctaLabel": "LAUNCH EX AGENT",
+    "url": "https://app.devrev.ai/yourdemo/computer",
+    "mockPreviewImage": "/assets/your-computer-preview.png"
+  },
+  "stories": [
+    {
+      "title": "Story title 1",
+      "image": "/assets/story-1.png",
+      "url": "https://devrev.ai/customers/example-1"
+    },
+    {
+      "title": "Story title 2",
+      "image": "/assets/story-2.png",
+      "url": "https://devrev.ai/customers/example-2"
+    },
+    {
+      "title": "Story title 3",
+      "image": "/assets/story-3.png",
+      "url": "https://devrev.ai/customers/example-3"
+    },
+    {
+      "title": "Story title 4",
+      "image": "/assets/story-4.png",
+      "url": "https://devrev.ai/customers/example-4"
+    }
+  ],
+  "videoUrl": "https://youtu.be/VIDEO_ID",
+  "videoThumbnail": "https://img.youtube.com/vi/VIDEO_ID/hqdefault.jpg",
+  "learnMoreUrl": "https://devrev.ai/support",
+  "contactEmail": "your.name@devrev.ai",
+  "contactWhatsApp": "15551234567"
+}

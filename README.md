@@ -48,9 +48,13 @@ merrick-demo/
 │   ├── index.html          # The entire site — HTML, CSS, JS in one file
 │   ├── favicon.webp        # Site favicon + nav logo
 │   ├── computer.svg        # Original Computer product icon (unused in nav)
+│   ├── assets/             # Local card/preview images used by customer configs
 │   ├── customers/
-│   │   ├── fintech.json    # Fintech prospect config
-│   │   └── example.json    # Blank template / reference config
+│   │   ├── black-duck.json # Current default template reference
+│   │   ├── bycoders.json   # Live customer config
+│   │   ├── fintech.json    # Financial Services config
+│   │   ├── template.json   # Generic starter template (copy this for new pages)
+│   │   └── template-blackduck.json # Black-Duck-style starter template
 │   ├── 404.html            # Custom 404 page
 │   └── 50x.html            # Custom 5xx page
 ├── settings/
@@ -64,67 +68,79 @@ merrick-demo/
 
 ## Adding a New Customer
 
-1. Create a new file at `public/customers/<slug>.json` (the slug becomes the URL path).
-2. Fill in the fields — see the schema below.
-3. Commit and push to `main`. Vercel deploys automatically.
-4. Share the URL: `https://your-domain.com/<slug>`
+1. Copy the default template:
+   - `public/customers/template-blackduck.json` (recommended)
+   - or `public/customers/template.json`
+2. Save as `public/customers/<slug>.json` (the slug becomes the URL path).
+3. Fill in the customer-specific fields — see the schema below.
+4. Add any referenced local images to `public/assets/`.
+5. Commit and push to `main`. Vercel deploys automatically.
+6. Share the URL: `https://your-domain.com/<slug>`
 
-### Customer JSON Schema
+### Default Template Policy
+
+New pages now default to the **Black Duck template structure**:
+- 2 question groups
+- 4 use-case cards in the challenge section
+- optional "Try Computer Live" panel below questions
+- 4 customer story cards in resources
+- optional non-clickable use-case cards via `disableCardClicks`
+
+### Customer JSON Schema (Black Duck template)
 
 ```jsonc
 {
-  // Display name shown in the hero heading
   "customer": "Acme Corp",
-
-  // DevRev PLuG widget app ID (from your DevRev org settings)
+  "agentLabel": "CX Agent",
+  "disableCardClicks": true,
   "widgetAppId": "YOUR_PLUG_APP_ID",
-
-  // Hero section subtitle
   "heroSubtitle": "AI-powered support tailored for your needs.",
-
-  // Note shown inside the "How This Works" card
   "howItWorksNote": "Click the chat widget in the bottom right to try it out.",
 
-  // Sample questions — each group becomes one lavender card
   "questions": [
-    {
-      "title": "General Support",
-      "items": [
-        "How do I get started?",
-        "How do I submit a ticket?"
-      ]
-    },
-    {
-      "title": "Billing",
-      "items": [
-        "How do I update my billing information?",
-        "How do I cancel my subscription?"
-      ]
-    }
+    { "title": "Group 1", "items": ["Question 1", "Question 2"] },
+    { "title": "Group 2", "items": ["Question 1", "Question 2"] }
   ],
 
-  // Challenge cards — each becomes a "COMPUTER FOR" lavender card
   "problems": [
     {
-      "title": "Ticket Overload",
-      "description": "50–150 tickets per day with only 4 technicians.",
-      "stat": "25x above industry standard",
-      "icon": "⚡"
+      "title": "Use Case Title",
+      "description": "Use-case copy shown in the challenge section.",
+      "stat": "Short stat/value line",
+      "icon": "🤖"
     }
   ],
 
-  // Demo video (YouTube URL + thumbnail)
+  "livePanel": {
+    "title": "Try Computer Live",
+    "subtitle": "Short explanatory copy",
+    "ctaLabel": "LAUNCH EX AGENT",
+    "url": "https://app.devrev.ai/<demo>/computer",
+    "mockPreviewImage": "/assets/preview.png"
+  },
+
+  "stories": [
+    {
+      "title": "Customer story title",
+      "image": "/assets/story.png",
+      "url": "https://devrev.ai/customers/example"
+    }
+  ],
+
   "videoUrl": "https://youtu.be/VIDEO_ID",
   "videoThumbnail": "https://img.youtube.com/vi/VIDEO_ID/hqdefault.jpg",
-
-  // "Learn More" link in the Resources section
   "learnMoreUrl": "https://devrev.ai/support",
-
-  // Contact details for the "Book a Demo" CTA
   "contactEmail": "your.name@devrev.ai",
-  "contactWhatsApp": "15551234567"   // digits only, no + or spaces
+  "contactWhatsApp": "15551234567"
 }
 ```
+
+### Legacy Notes
+
+- `problems` can still use the richer 3-section format:
+  - `pain`, `successCriteria[]`, `proof`
+- If `livePanel` is omitted, no panel is rendered.
+- If `stories` is omitted, only Demo Video + Learn More are shown.
 
 ---
 
@@ -159,7 +175,8 @@ The site uses DevRev's brand design language throughout.
 - **Nav hide-on-scroll** — the navigation bar slides upward when scrolling down and reappears when scrolling up.
 - **Nav colour transition** — yellow at the top of the page; switches to frosted white once the hero is scrolled past.
 - **Clickable questions** — clicking any sample question opens the PLuG chat widget and pre-fills that question.
-- **Clickable challenge cards** — clicking a card opens PLuG with "How can DevRev help me with [card title]?"
+- **Challenge card click behavior** — controlled by `disableCardClicks` per customer config.
+- **Live panel** — optional `livePanel` can render a centered "Try Computer Live" panel below questions.
 
 ---
 
