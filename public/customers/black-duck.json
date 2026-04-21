@@ -70,7 +70,7 @@
     "subtitle": "Launch an interactive CX Agent session directly from this page to explore real conversational workflows.",
     "ctaLabel": "LAUNCH EX AGENT",
     "url": "https://app.devrev.ai/blackduckdemo/computer",
-    "mockPreviewImage": "/assets/blackduck-computer-live.png"
+    "videoEmbedUrl": "https://www.youtube.com/embed/Q_mLzHcz59I"
   },
   "stories": [
     {

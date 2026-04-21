@@ -442,10 +442,23 @@
             background: #f5f5f5;
         }
 
+        .live-preview.live-preview-video {
+            height: auto;
+            aspect-ratio: 16 / 9;
+            background: #000;
+        }
+
         .live-preview img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            display: block;
+        }
+
+        .live-preview iframe {
+            width: 100%;
+            height: 100%;
+            border: 0;
             display: block;
         }
 
@@ -1267,6 +1280,12 @@
                 var criteriaHtml = (p.successCriteria || []).map(function(item) {
                   return '<li>' + item + '</li>';
                 }).join('');
+                var proofHtml = p.proof
+                  ? '<div class="card-section">' +
+                      '<div class="card-section-label">Proof</div>' +
+                      '<p class="card-proof">' + p.proof + '</p>' +
+                    '</div>'
+                  : '';
                 return '<div class="problem-card">' +
                   '<h3>' + (p.icon ? p.icon + ' ' : '') + p.title + '</h3>' +
                   '<div class="card-section">' +
@@ -1277,10 +1296,7 @@
                     '<div class="card-section-label">Success Criteria with Computer</div>' +
                     '<ul class="card-criteria">' + criteriaHtml + '</ul>' +
                   '</div>' +
-                  '<div class="card-section">' +
-                    '<div class="card-section-label">Proof</div>' +
-                    '<p class="card-proof">' + p.proof + '</p>' +
-                  '</div>' +
+                  proofHtml +
                   '</div>';
               }
               return '<div class="problem-card">' +
@@ -1303,7 +1319,11 @@
           var livePanelMount = document.getElementById('questions-live-panel');
           if (livePanelMount && config.livePanel) {
             var panel = config.livePanel;
-            var previewHtml = panel.mockPreviewImage
+            var previewHtml = panel.videoEmbedUrl
+              ? '<div class="live-preview live-preview-video">' +
+                  '<iframe src="' + panel.videoEmbedUrl + '" title="' + (panel.title || 'Try Computer Live') + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>' +
+                '</div>'
+              : panel.mockPreviewImage
               ? '<div class="live-preview">' +
                   '<img src="' + panel.mockPreviewImage + '" alt="' + (panel.title || 'Try Computer Live') + '">' +
                   '<div class="live-preview-overlay"></div>' +

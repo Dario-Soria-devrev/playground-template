@@ -113,6 +113,13 @@
       "url": "https://devrev.ai/customers/bajaj-finserv"
     }
   ],
+  "livePanel": {
+    "title": "Try Computer Live",
+    "subtitle": "Launch an interactive CX Agent session directly from this page to explore real conversational workflows.",
+    "ctaLabel": "LAUNCH EX AGENT",
+    "url": "https://www.youtube.com/watch?v=Q_mLzHcz59I",
+    "videoEmbedUrl": "https://www.youtube.com/embed/Q_mLzHcz59I"
+  },
   "videoUrl": "https://youtu.be/9WdGlaAQYA8",
   "videoThumbnail": "https://img.youtube.com/vi/9WdGlaAQYA8/hqdefault.jpg",
   "learnMoreUrl": "https://devrev.ai/support",

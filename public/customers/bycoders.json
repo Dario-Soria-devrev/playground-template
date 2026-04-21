@@ -36,8 +36,7 @@
         "Validate CX Agent coverage for support-team workflows listed in the opportunity use cases.",
         "Confirm that the evaluation produces decision-ready ROI and cost evidence.",
         "Align the demo output with the current stage objective (3-evaluate) and next-step timeline."
-      ],
-      "proof": "OPP-10325 is currently at stage 3-evaluate, includes playbook PB 4 - Conversational CX, and has a recorded next step of 'Demo 21/04/2026' with decision criteria 'ROI, cost'."
+      ]
     },
     {
       "title": "Enterprise Search Scope Definition",
@@ -47,8 +46,7 @@
         "Define the minimum viable enterprise-search scope for the ongoing evaluation phase.",
         "Map search outcomes to the listed support, operations, and customer-facing use cases.",
         "Ensure search capabilities are assessed as a complement to CX Agent workflows."
-      ],
-      "proof": "OPP-10325 explicitly includes playbook PB 3 - Enterprise Search and lists multiple cross-functional use cases (support teams, operations teams, sales/CS teams, and customer support resolution)."
+      ]
     },
     {
       "title": "Cross-Function Use Case Alignment",
@@ -58,8 +56,7 @@
         "Prioritize the listed use cases into an agreed evaluation sequence.",
         "Align stakeholder expectations across support, operations, and sales/CS workflows.",
         "Keep the first phase focused on the highest-value outcomes for an SMB segment motion."
-      ],
-      "proof": "OPP-10325 records four use-case categories and is tagged as SMB, outbound, and open pipeline, indicating a multi-track evaluation that requires coordinated scope and ownership."
+      ]
     },
     {
       "title": "Commercial Readiness for Close Plan",
@@ -69,8 +66,7 @@
         "Tie evaluated scope to the current commercial model (ACV and ramped ARR).",
         "Maintain momentum from evaluation to close-plan execution before target close.",
         "Keep stakeholders aligned on term length and next-step cadence."
-      ],
-      "proof": "OPP-10325 includes ACV $15,000, ramped ARR $30,000, 24-month term, and target close date 2026-12-31, with champion/contact Adriano Schneider and opportunity ownership in place."
+      ]
     }
   ],
   "livePanel": {
@@ -78,7 +74,7 @@
     "subtitle": "Launch an interactive CX Agent session directly from this page to explore real conversational workflows.",
     "ctaLabel": "LAUNCH EX AGENT",
     "url": "https://app.devrev.ai/bycodersdemo/computer",
-    "mockPreviewImage": "/assets/bycoders-computer-live.png"
+    "videoEmbedUrl": "https://www.youtube.com/embed/Q_mLzHcz59I"
   },
   "stories": [
     {
