@@ -1159,6 +1159,9 @@
 
       if (contactBtn && contactOptions) {
         contactBtn.addEventListener('click', function(e) {
+          if (contactBtn.dataset.directLink === 'true') {
+            return;
+          }
           e.preventDefault();
           contactBtn.classList.add('hidden');
           contactOptions.classList.add('visible');
@@ -1222,6 +1225,7 @@
        * - livePanel { title, subtitle, ctaLabel, url, mockPreviewImage }
        * - stories[] (resource story cards)
        * - videoUrl, videoThumbnail, learnMoreUrl, contactEmail, contactWhatsApp
+       * - bookDemoUrl (optional direct link for nav/footer CTA)
        */
       const path = window.location.pathname.replace(/^\/|\/$/g, '');
 
@@ -1376,6 +1380,22 @@
           if (config.contactWhatsApp) {
             document.getElementById('contact-whatsapp-btn').href =
               'https://api.whatsapp.com/send?phone=' + config.contactWhatsApp;
+          }
+
+          if (config.bookDemoUrl) {
+            var navCta = document.querySelector('.nav-cta');
+            var footerCta = document.getElementById('contact-btn');
+            if (navCta) {
+              navCta.href = config.bookDemoUrl;
+              navCta.target = '_blank';
+              navCta.rel = 'noopener noreferrer';
+            }
+            if (footerCta) {
+              footerCta.href = config.bookDemoUrl;
+              footerCta.target = '_blank';
+              footerCta.rel = 'noopener noreferrer';
+              footerCta.dataset.directLink = 'true';
+            }
           }
 
           if (config.learnMoreUrl) {

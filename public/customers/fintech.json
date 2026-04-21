@@ -116,13 +116,14 @@
   "livePanel": {
     "title": "Try Computer Live",
     "subtitle": "Launch an interactive CX Agent session directly from this page to explore real conversational workflows.",
-    "ctaLabel": "LAUNCH EX AGENT",
-    "url": "https://www.youtube.com/watch?v=Q_mLzHcz59I",
+    "ctaLabel": "TRY EX AGENT",
+    "url": "https://calendly.com/dario-soria-devrev/calendly-new-meeting",
     "videoEmbedUrl": "https://www.youtube.com/embed/Q_mLzHcz59I"
   },
   "videoUrl": "https://youtu.be/9WdGlaAQYA8",
   "videoThumbnail": "https://img.youtube.com/vi/9WdGlaAQYA8/hqdefault.jpg",
   "learnMoreUrl": "https://devrev.ai/support",
+  "bookDemoUrl": "https://calendly.com/dario-soria-devrev/calendly-new-meeting",
   "contactEmail": "natalia.gomez@devrev.ai",
   "contactWhatsApp": "5491167395436"
 }
