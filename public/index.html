@@ -1226,6 +1226,7 @@
        * - stories[] (resource story cards)
        * - videoUrl, videoThumbnail, learnMoreUrl, contactEmail, contactWhatsApp
        * - bookDemoUrl (optional direct link for nav/footer CTA)
+       * - navBookDemoUrl (optional direct link for top nav CTA only)
        */
       const path = window.location.pathname.replace(/^\/|\/$/g, '');
 
@@ -1395,6 +1396,15 @@
               footerCta.target = '_blank';
               footerCta.rel = 'noopener noreferrer';
               footerCta.dataset.directLink = 'true';
+            }
+          }
+
+          if (config.navBookDemoUrl) {
+            var navOnlyCta = document.querySelector('.nav-cta');
+            if (navOnlyCta) {
+              navOnlyCta.href = config.navBookDemoUrl;
+              navOnlyCta.target = '_blank';
+              navOnlyCta.rel = 'noopener noreferrer';
             }
           }
 
