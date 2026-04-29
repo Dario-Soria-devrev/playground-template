@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#FFE000">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
     <title>Amtech Software Proof of Concept</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -53,6 +56,13 @@
             color: var(--text-dark);
             line-height: 1.6;
             overflow-x: hidden;
+            overflow-wrap: break-word;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        img,
+        iframe {
+            max-width: 100%;
         }
 
         .container {
@@ -403,8 +413,13 @@
         }
 
         .live-panel-wrapper {
-            max-width: 720px;
+            max-width: 1080px;
             margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: auto auto auto;
+            column-gap: 24px;
+            row-gap: 0;
         }
 
         .live-panel-card {
@@ -413,7 +428,11 @@
             border-radius: 20px;
             box-shadow: var(--shadow-card);
             overflow: hidden;
+            display: grid;
+            grid-template-rows: subgrid;
+            grid-row: span 3;
         }
+
 
         .live-panel-head {
             padding: 24px 24px 10px;
@@ -462,6 +481,7 @@
 
         .live-panel-actions {
             padding: 16px 24px 24px;
+            margin-top: auto;
         }
 
         .live-panel-cta-link {
@@ -730,14 +750,10 @@
         }
 
         /* ── Responsive ── */
+        /* Tablet & smaller: collapse criteria, soften hero/section padding */
         @media (max-width: 968px) {
-            .in-scope-grid,
             .criteria-grid {
                 grid-template-columns: 1fr;
-            }
-
-            .scope-card.scope-card-wide {
-                grid-column: auto;
             }
 
             .hero {
@@ -756,6 +772,7 @@
             .timeline-item {
                 grid-template-columns: 90px 1fr;
                 grid-template-rows: auto auto;
+                gap: 14px 18px;
             }
 
             .timeline-owner {
@@ -764,11 +781,39 @@
             }
         }
 
+        /* Tablet portrait & smaller: testing cards stack so the videos stay watchable */
+        @media (max-width: 768px) {
+            .live-panel-wrapper {
+                grid-template-columns: 1fr;
+                grid-template-rows: none;
+                row-gap: 24px;
+            }
+
+            .live-panel-card {
+                display: flex;
+                flex-direction: column;
+                grid-row: auto;
+            }
+        }
+
+        /* Phones: collapse the in-scope grid, restack the nav */
         @media (max-width: 640px) {
+            .in-scope-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .scope-card.scope-card-wide {
+                grid-column: auto;
+            }
+
+            nav {
+                padding: 10px 0;
+            }
+
             nav .container {
                 flex-direction: column;
                 align-items: stretch;
-                gap: 10px;
+                gap: 8px;
             }
 
             .logo {
@@ -778,15 +823,17 @@
             .nav-tabs {
                 justify-content: center;
                 gap: 4px;
+                flex-wrap: wrap;
             }
 
             .nav-tab {
-                padding: 6px 10px;
-                font-size: 0.78rem;
+                padding: 8px 12px;
+                font-size: 0.82rem;
+                line-height: 1.2;
             }
 
             .hero {
-                padding-top: 130px;
+                padding-top: 132px;
                 padding-bottom: 36px;
             }
 
@@ -796,6 +843,10 @@
 
             .hero-subtitle {
                 font-size: 0.975rem;
+            }
+
+            .badge {
+                margin-bottom: 22px;
             }
 
             h2 {
@@ -824,26 +875,75 @@
                 padding: 24px;
             }
 
+            .live-panel-head {
+                padding: 20px 20px 8px;
+            }
+
+            .live-preview {
+                margin: 12px 20px 0;
+            }
+
+            .live-panel-actions {
+                padding: 14px 20px 20px;
+            }
+
+            .live-panel-cta-link,
+            .cta-button {
+                font-size: 0.78rem;
+                padding: 12px 22px;
+                letter-spacing: 0.04em;
+            }
+
             .timeline-item {
                 grid-template-columns: 1fr;
                 gap: 10px;
+                padding: 18px 20px;
+            }
+
+            .timeline-week {
+                justify-self: start;
+                padding: 6px 12px;
             }
 
             .cta-section {
-                padding: 40px 0;
+                padding: 44px 0;
             }
 
             .cta-content h2 {
                 font-size: 1.6rem;
             }
 
-            .cta-button {
-                padding: 12px 24px;
-                font-size: 0.8rem;
+            .cta-content p {
+                font-size: 0.98rem;
             }
 
             .container {
                 padding: 0 16px;
+            }
+        }
+
+        /* Tiny phones (≤380px): tighten hero h1 and tabs so nothing brushes the edges */
+        @media (max-width: 380px) {
+            h1 {
+                font-size: 1.95rem;
+            }
+
+            .hero-subtitle {
+                font-size: 0.92rem;
+            }
+
+            .nav-tab {
+                padding: 6px 10px;
+                font-size: 0.78rem;
+            }
+
+            .logo-wordmark {
+                font-size: 0.82rem;
+            }
+
+            .badge {
+                font-size: 0.66rem;
+                padding: 4px 12px;
             }
         }
     </style>
@@ -963,7 +1063,7 @@
                             <div class="live-panel-label">Live Demo</div>
                             <h3 class="live-panel-title">Try Computer Live</h3>
                             <p class="live-panel-subtitle">
-                                Launch an interactive CX Agent session directly from this page to explore real conversational workflows.
+                                Launch an interactive EX Agent session directly from this page to explore real conversational workflows.
                             </p>
                         </div>
                         <div class="live-preview">
@@ -975,7 +1075,28 @@
                                 allowfullscreen></iframe>
                         </div>
                         <div class="live-panel-actions">
-                            <a class="live-panel-cta-link" href="https://app.devrev.ai/blackduckdemo/computer" target="_blank" rel="noopener noreferrer">Launch CX Agent</a>
+                            <a class="live-panel-cta-link" href="https://app.devrev.ai/blackduckdemo/computer" target="_blank" rel="noopener noreferrer">Launch Computer</a>
+                        </div>
+                    </div>
+
+                    <div class="live-panel-card">
+                        <div class="live-panel-head">
+                            <div class="live-panel-label">Live Demo</div>
+                            <h3 class="live-panel-title">Try CX Agent</h3>
+                            <p class="live-panel-subtitle">
+                                Sign in to our Customer Experience Agent and step into your customers' shoes — see and feel exactly what they will experience when they reach out for support.
+                            </p>
+                        </div>
+                        <div class="live-preview">
+                            <iframe
+                                src="https://www.youtube.com/embed/jW-tcd8-XW8"
+                                title="Try CX Agent"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen></iframe>
+                        </div>
+                        <div class="live-panel-actions">
+                            <a class="live-panel-cta-link" href="https://www.youtube.com/watch?v=jW-tcd8-XW8" target="_blank" rel="noopener noreferrer">Sign in to CX Agent</a>
                         </div>
                     </div>
                 </div>
