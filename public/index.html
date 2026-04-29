@@ -3,14 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Support | Powered by Computer</title>
+    <title>Amtech Software Proof of Concept</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,600;12..96,700;12..96,800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <link rel="icon" href="/favicon.webp" type="image/webp">
-
-    <!-- DevRev PLuG Widget -->
-    <script src="https://plug-platform.devrev.ai/static/plug.js" defer></script>
 
     <style>
         :root {
@@ -95,12 +92,14 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            gap: 16px;
         }
 
         .logo {
             display: flex;
             align-items: center;
             gap: 10px;
+            flex-shrink: 0;
         }
 
         .logo-img {
@@ -116,41 +115,42 @@
             letter-spacing: -0.01em;
         }
 
-        .nav-links {
+        /* ── Tab nav ── */
+        .nav-tabs {
             display: flex;
-            gap: 24px;
+            gap: 6px;
             align-items: center;
+            flex-wrap: wrap;
+            justify-content: flex-end;
         }
 
-        .nav-links a {
-            color: var(--text-dark);
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 500;
-            transition: opacity 0.2s;
-        }
-
-        .nav-links a:hover {
-            opacity: 0.6;
-        }
-
-        /* "Book a Demo" outlined pill */
-        .nav-cta {
-            padding: 8px 20px;
+        .nav-tab {
+            background: transparent;
+            border: none;
+            padding: 8px 14px;
             border-radius: 100px;
-            font-size: 0.78rem !important;
-            font-weight: 700 !important;
-            letter-spacing: 0.05em !important;
-            text-transform: uppercase;
-            border: 1.5px solid var(--text-dark);
-            color: var(--text-dark) !important;
-            transition: background 0.2s, color 0.2s !important;
+            font-family: inherit;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, opacity 0.2s;
+            letter-spacing: -0.005em;
         }
 
-        .nav-cta:hover {
+        .nav-tab:hover {
+            opacity: 0.65;
+        }
+
+        .nav-tab.active {
             background: var(--text-dark);
-            color: var(--yellow-bright) !important;
-            opacity: 1 !important;
+            color: var(--yellow-bright);
+            opacity: 1;
+        }
+
+        nav.nav-scrolled .nav-tab.active {
+            background: var(--text-dark);
+            color: #ffffff;
         }
 
         /* ── Hero Section ── */
@@ -205,7 +205,6 @@
         }
 
         h1 .highlight-word {
-            /* The customer name gets a slight underline accent */
             text-decoration: underline;
             text-decoration-thickness: 4px;
             text-underline-offset: 6px;
@@ -255,145 +254,157 @@
             line-height: 1.65;
         }
 
-        /* ── How This Works (yellow-mid bg) ── */
-        #how-it-works {
+        /* ── Tab panels (the dynamic center frame) ── */
+        .poc-frame {
+            min-height: 520px;
+        }
+
+        .tab-panel {
+            display: none;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .tab-panel.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ── Scope: Problem Statement card ── */
+        #scope {
             background: var(--yellow-mid);
         }
 
-        .how-it-works-card {
+        .problem-statement-card {
             background: var(--white);
             border-radius: 20px;
             padding: 48px;
             max-width: 860px;
-            margin: 0 auto;
+            margin: 0 auto 40px;
             box-shadow: var(--shadow-card);
             border: 1px solid var(--border-light);
         }
 
-        .how-it-works-card h2 {
+        .problem-statement-card h2 {
             font-size: 1.7rem;
             margin-bottom: 20px;
         }
 
-        .how-it-works-card p {
+        .problem-statement-card p {
             color: var(--text-body);
             font-size: 0.975rem;
-            margin-bottom: 14px;
             line-height: 1.75;
         }
 
-        .how-it-works-card p:last-child {
-            margin-bottom: 0;
+        .scope-subheader {
+            text-align: center;
+            margin: 0 0 32px;
         }
 
-        .how-it-works-card strong {
-            color: var(--text-dark);
-            font-weight: 600;
+        .scope-subheader h2 {
+            font-size: 1.7rem;
+            margin-bottom: 8px;
         }
 
-        .highlight {
-            color: var(--indigo-title);
-            font-weight: 600;
-        }
-
-        /* ── Questions Section (pale yellow bg) ── */
-        #questions {
-            background: var(--yellow-pale);
-        }
-
-        .questions-grid {
+        /* ── Scope: In-scope grid (lavender) ── */
+        .in-scope-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 20px;
         }
 
-        .questions-card {
+        .scope-card {
             background: var(--lavender);
             border: none;
             border-radius: 20px;
             padding: 32px;
-            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
             box-shadow: var(--shadow-card);
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
         }
 
-        .questions-card:hover {
+        .scope-card:hover {
             background: var(--lavender-hover);
             transform: translateY(-3px);
             box-shadow: 0 8px 32px rgba(55,48,163,0.12);
         }
 
-        .questions-card-label {
-            font-size: 0.68rem;
+        .scope-card-label {
+            font-size: 0.67rem;
             font-weight: 700;
             color: var(--indigo-label);
-            text-transform: uppercase;
             letter-spacing: 0.12em;
-            margin-bottom: 6px;
+            text-transform: uppercase;
+            margin-bottom: 8px;
         }
 
-        .questions-card h3 {
+        .scope-card h3 {
             font-family: 'Bricolage Grotesque', sans-serif;
             font-size: 1.3rem;
             font-weight: 800;
-            margin-bottom: 20px;
+            margin-bottom: 12px;
             color: var(--indigo-title);
             letter-spacing: -0.02em;
         }
 
-        .questions-card ul {
+        .scope-card p {
+            color: var(--text-body);
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .scope-card .card-section {
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 1px solid rgba(55,48,163,0.12);
+        }
+
+        .scope-card .card-section-label {
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: var(--indigo-label);
+            text-transform: uppercase;
+            letter-spacing: 0.13em;
+            margin-bottom: 6px;
+        }
+
+        .scope-card .card-criteria {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
-        .questions-card li {
+        .scope-card .card-criteria li {
             color: var(--text-body);
-            font-size: 0.9rem;
-            padding: 9px 0 9px 20px;
-            border-bottom: 1px solid rgba(55,48,163,0.1);
+            font-size: 0.875rem;
+            line-height: 1.55;
+            padding: 5px 0 5px 20px;
             position: relative;
-            cursor: pointer;
-            transition: color 0.2s;
         }
 
-        .questions-card li:hover {
-            color: var(--indigo-title);
-        }
-
-        .questions-card li:last-child {
-            border-bottom: none;
-            padding-bottom: 0;
-        }
-
-        .questions-card li::before {
-            content: '→';
+        .scope-card .card-criteria li::before {
+            content: '✓';
             position: absolute;
             left: 0;
             color: var(--indigo-label);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
+            font-weight: 700;
         }
 
-        /* ── Problem Cards (faint yellow bg) ── */
-        #problem {
+        .scope-card.scope-card-wide {
+            grid-column: 1 / -1;
+        }
+
+        /* ── Testing: Live panel card ── */
+        #testing {
             background: var(--yellow-faint);
         }
 
-        .problem-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-        }
-
-        .questions-live-panel {
-            margin-top: 20px;
-            display: none;
-            width: 100%;
-            max-width: calc((100% - 20px) / 2);
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .questions-live-panel.visible {
-            display: block;
+        .live-panel-wrapper {
+            max-width: 720px;
+            margin: 0 auto;
         }
 
         .live-panel-card {
@@ -438,21 +449,8 @@
             border: 1px solid var(--border-light);
             overflow: hidden;
             position: relative;
-            height: 245px;
-            background: #f5f5f5;
-        }
-
-        .live-preview.live-preview-video {
-            height: auto;
             aspect-ratio: 16 / 9;
             background: #000;
-        }
-
-        .live-preview img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
         }
 
         .live-preview iframe {
@@ -462,303 +460,194 @@
             display: block;
         }
 
-        .live-preview-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.32) 0%, rgba(0,0,0,0.0) 60%);
-        }
-
         .live-panel-actions {
             padding: 16px 24px 24px;
         }
 
         .live-panel-cta-link {
-            width: 100%;
+            display: inline-flex;
+            align-items: center;
             justify-content: center;
+            width: 100%;
+            gap: 10px;
+            padding: 14px 32px;
+            background: var(--text-dark);
+            color: var(--yellow-bright);
+            text-decoration: none;
+            border-radius: 100px;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .live-panel-cta-link:hover {
-            opacity: 1;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 32px rgba(0,0,0,0.2);
         }
 
-        .problem-card {
+        /* ── Success Criteria ── */
+        #criteria {
+            background: var(--yellow-pale);
+        }
+
+        .criteria-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .criteria-card {
             background: var(--lavender);
             border: none;
             border-radius: 20px;
             padding: 32px;
-            position: relative;
-            overflow: hidden;
-            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-            cursor: pointer;
             box-shadow: var(--shadow-card);
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
         }
 
-        .problem-card:hover {
+        .criteria-card:hover {
             background: var(--lavender-hover);
             transform: translateY(-3px);
             box-shadow: 0 8px 32px rgba(55,48,163,0.12);
         }
 
-        [data-no-click] .problem-card {
-            cursor: default;
-        }
-
-        [data-no-click] .problem-card:hover {
-            transform: none;
-            box-shadow: var(--shadow-card);
-            background: var(--lavender);
-        }
-
-        /* ── Rich 3-section card format ── */
-        .card-section {
-            margin-top: 14px;
-            padding-top: 14px;
-            border-top: 1px solid rgba(55,48,163,0.12);
-        }
-
-        .card-section-label {
-            font-size: 0.62rem;
-            font-weight: 700;
+        .criteria-card-index {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.78rem;
             color: var(--indigo-label);
-            text-transform: uppercase;
-            letter-spacing: 0.13em;
-            margin-bottom: 6px;
+            margin-bottom: 8px;
+            font-weight: 600;
         }
 
-        .card-pain {
-            color: var(--text-body);
-            font-size: 0.875rem;
-            line-height: 1.65;
-            margin: 0;
-        }
-
-        .card-criteria {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .card-criteria li {
-            color: var(--text-body);
-            font-size: 0.855rem;
-            line-height: 1.55;
-            padding: 5px 0 5px 20px;
-            position: relative;
-            border-bottom: none;
-            cursor: default;
-        }
-
-        .card-criteria li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--indigo-label);
-            font-size: 0.8rem;
-            font-weight: 700;
-        }
-
-        .card-criteria li:hover {
-            color: var(--text-body);
-        }
-
-        .card-proof {
-            color: var(--text-muted);
-            font-size: 0.82rem;
-            line-height: 1.65;
-            font-style: italic;
-            margin: 0;
-        }
-
-        /* "COMPUTER FOR" micro-label above title */
-        .problem-card::before {
-            content: 'COMPUTER FOR';
-            display: block;
-            font-size: 0.67rem;
-            font-weight: 700;
-            color: var(--indigo-label);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-        }
-
-        .problem-card h3 {
+        .criteria-card h3 {
             font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 800;
             margin-bottom: 12px;
             color: var(--indigo-title);
             letter-spacing: -0.02em;
+            line-height: 1.25;
         }
 
-        .problem-card p {
+        .criteria-card p {
             color: var(--text-body);
             font-size: 0.9rem;
-            line-height: 1.65;
+            line-height: 1.6;
         }
 
-        .problem-stat {
+        .criteria-target {
             display: inline-flex;
             align-items: center;
             gap: 7px;
-            margin-top: 16px;
+            margin-top: auto;
             padding: 6px 12px;
             background: var(--indigo-badge-bg);
             border-radius: 8px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
             color: var(--indigo-title);
+            align-self: flex-start;
         }
 
-
-        /* ── Resources Section (light warm bg) ── */
-        .resources-section {
-            background: #F8F8F2;
-            padding: 60px 0;
+        .criteria-card > p,
+        .criteria-card > .criteria-feedback {
+            margin-bottom: 16px;
         }
 
-        .resources-row {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
-            max-width: 860px;
-            margin: 0 auto;
-        }
-
-        .resources-section.replace-with-stories .resources-row {
-            display: none;
-        }
-
-        .resources-section.replace-with-stories .stories-row {
+        .criteria-card > .criteria-feedback {
             margin-top: 0;
         }
 
-        .resource-card {
-            background: var(--white);
-            border: 1px solid var(--border-light);
-            border-radius: 20px;
-            padding: 32px;
-            transition: transform 0.2s, box-shadow 0.2s;
-            box-shadow: var(--shadow-card);
+        .criteria-feedback {
+            list-style: none;
+            padding: 0;
+            margin: 14px 0 0;
         }
 
-        .resource-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+        .criteria-feedback li {
+            color: var(--text-body);
+            font-size: 0.85rem;
+            line-height: 1.55;
+            padding: 5px 0 5px 20px;
+            position: relative;
         }
 
-        .resource-card h3 {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: 1.1rem;
+        .criteria-feedback li::before {
+            content: '·';
+            position: absolute;
+            left: 4px;
+            color: var(--indigo-label);
             font-weight: 800;
-            margin-bottom: 16px;
-            color: var(--text-dark);
-            letter-spacing: -0.01em;
         }
 
-        .resource-card a {
-            color: var(--indigo-title);
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: opacity 0.2s;
+        /* ── Timeline ── */
+        #timeline {
+            background: var(--yellow-mid);
         }
 
-        .resource-card a:hover {
-            opacity: 0.7;
-        }
-
-        .resource-card p {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 16px;
-            line-height: 1.65;
-        }
-
-        .video-thumbnail {
-            width: 100%;
-            border-radius: 12px;
-            border: 1px solid var(--border-light);
-            transition: opacity 0.2s;
-        }
-
-        .video-thumbnail:hover {
-            opacity: 0.85;
-        }
-
-        /* ── Story Cards ── */
-        .stories-row {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 20px;
+        .timeline-list {
             max-width: 860px;
-            margin: 20px auto 0;
-        }
-
-        .story-card {
-            border-radius: 20px;
-            overflow: hidden;
-            position: relative;
-            display: block;
-            text-decoration: none;
-            min-height: 200px;
-            box-shadow: var(--shadow-card);
-            transition: transform 0.2s, box-shadow 0.2s;
-            background: #111;
-        }
-
-        .story-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-        }
-
-        .story-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            position: absolute;
-            top: 0;
-            left: 0;
-            display: block;
-            opacity: 0.75;
-            transition: opacity 0.2s;
-        }
-
-        .story-card:hover img {
-            opacity: 0.6;
-        }
-
-        .story-card-overlay {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(to top, rgba(0,0,0,0.82) 0%, rgba(0,0,0,0.25) 55%, transparent 100%);
-        }
-
-        .story-card-content {
-            position: relative;
-            z-index: 1;
-            padding: 28px;
+            margin: 0 auto;
             display: flex;
             flex-direction: column;
-            justify-content: flex-end;
-            min-height: 200px;
+            gap: 14px;
         }
 
-        .story-card-label {
-            font-size: 0.63rem;
-            font-weight: 700;
-            color: rgba(255,255,255,0.6);
-            text-transform: uppercase;
-            letter-spacing: 0.13em;
-            margin-bottom: 8px;
+        .timeline-item {
+            background: var(--lavender);
+            border-radius: 16px;
+            padding: 22px 24px;
+            display: grid;
+            grid-template-columns: 110px 1fr auto;
+            gap: 24px;
+            align-items: center;
+            box-shadow: var(--shadow-card);
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
         }
 
-        .story-card-title {
-            font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: 1rem;
-            font-weight: 700;
-            color: #ffffff;
-            line-height: 1.35;
-            letter-spacing: -0.01em;
+        .timeline-item:hover {
+            background: var(--lavender-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(55,48,163,0.12);
+        }
+
+        .timeline-week {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--indigo-title);
+            background: var(--white);
+            padding: 8px 12px;
+            border-radius: 10px;
+            text-align: center;
+            letter-spacing: 0.02em;
+        }
+
+        .timeline-content {
+            color: var(--text-body);
+            font-size: 0.92rem;
+            line-height: 1.55;
+        }
+
+        .timeline-content strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        .timeline-owner {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--indigo-label);
+            background: var(--indigo-badge-bg);
+            padding: 6px 10px;
+            border-radius: 8px;
+            white-space: nowrap;
+            text-align: center;
         }
 
         /* ── CTA Section ── */
@@ -796,83 +685,12 @@
             font-size: 0.85rem;
             letter-spacing: 0.06em;
             text-transform: uppercase;
-            transition: transform 0.2s, box-shadow 0.2s, opacity 0.25s ease;
+            transition: transform 0.2s, box-shadow 0.2s;
         }
 
         .cta-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 32px rgba(0,0,0,0.2);
-        }
-
-        .cta-button.hidden {
-            opacity: 0;
-            transform: scale(0.85);
-            pointer-events: none;
-        }
-
-        .contact-options {
-            display: flex;
-            gap: 16px;
-            justify-content: center;
-            opacity: 0;
-            transform: translateY(14px) scale(0.9);
-            pointer-events: none;
-            transition: opacity 0.3s ease, transform 0.3s ease;
-            position: absolute;
-            top: 0;
-            left: 50%;
-            translate: -50% 0;
-        }
-
-        .contact-options.visible {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-            pointer-events: all;
-        }
-
-        .contact-icon-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 13px 26px;
-            border-radius: 100px;
-            font-weight: 700;
-            font-size: 0.82rem;
-            letter-spacing: 0.05em;
-            text-transform: uppercase;
-            text-decoration: none;
-            color: white;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .contact-icon-btn:nth-child(1) { transition-delay: 0ms; }
-        .contact-icon-btn:nth-child(2) { transition-delay: 70ms; }
-
-        .contact-icon-btn.whatsapp {
-            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
-        }
-
-        .contact-icon-btn.whatsapp:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(37, 211, 102, 0.35);
-        }
-
-        .contact-icon-btn.email {
-            background: var(--text-dark);
-            color: var(--yellow-bright);
-        }
-
-        .contact-icon-btn.email:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 28px rgba(0,0,0,0.25);
-        }
-
-        .cta-wrapper {
-            position: relative;
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 50px;
         }
 
         /* ── Footer ── */
@@ -909,18 +727,13 @@
 
         /* ── Responsive ── */
         @media (max-width: 968px) {
-            .problem-grid,
-            .questions-grid {
+            .in-scope-grid,
+            .criteria-grid {
                 grid-template-columns: 1fr;
             }
 
-            .questions-live-panel {
-                max-width: 100%;
-            }
-
-            .resources-row,
-            .stories-row {
-                grid-template-columns: 1fr;
+            .scope-card.scope-card-wide {
+                grid-column: auto;
             }
 
             .hero {
@@ -928,23 +741,48 @@
                 padding-bottom: 48px;
             }
 
-            .section,
-            .resources-section {
+            .section {
                 padding: 48px 0;
             }
 
             .cta-section {
                 padding: 56px 0;
             }
+
+            .timeline-item {
+                grid-template-columns: 90px 1fr;
+                grid-template-rows: auto auto;
+            }
+
+            .timeline-owner {
+                grid-column: 1 / -1;
+                justify-self: start;
+            }
         }
 
         @media (max-width: 640px) {
-            .nav-links {
-                display: none;
+            nav .container {
+                flex-direction: column;
+                align-items: stretch;
+                gap: 10px;
+            }
+
+            .logo {
+                justify-content: center;
+            }
+
+            .nav-tabs {
+                justify-content: center;
+                gap: 4px;
+            }
+
+            .nav-tab {
+                padding: 6px 10px;
+                font-size: 0.78rem;
             }
 
             .hero {
-                padding-top: 74px;
+                padding-top: 130px;
                 padding-bottom: 36px;
             }
 
@@ -960,27 +798,31 @@
                 font-size: 1.6rem;
             }
 
-            .section,
-            .resources-section {
+            .section {
                 padding: 36px 0;
             }
 
-            .section-header {
+            .section-header,
+            .scope-subheader {
                 margin-bottom: 28px;
             }
 
-            .how-it-works-card {
+            .problem-statement-card {
                 padding: 28px 20px;
             }
 
-            .how-it-works-card h2 {
+            .problem-statement-card h2 {
                 font-size: 1.4rem;
             }
 
-            .questions-card,
-            .problem-card,
-            .resource-card {
+            .scope-card,
+            .criteria-card {
                 padding: 24px;
+            }
+
+            .timeline-item {
+                grid-template-columns: 1fr;
+                gap: 10px;
             }
 
             .cta-section {
@@ -1011,11 +853,11 @@
                 <img src="/favicon.webp" alt="Computer by DevRev" class="logo-img">
                 <span class="logo-wordmark">Computer, by DevRev</span>
             </div>
-            <div class="nav-links">
-                <a href="#how-it-works">How It Works</a>
-                <a href="#questions">Try It Out</a>
-                <a href="#problem">The Challenge</a>
-                <a href="#contact" class="nav-cta">Book a Demo</a>
+            <div class="nav-tabs" role="tablist">
+                <button type="button" class="nav-tab" role="tab" data-tab="scope" aria-controls="scope" aria-selected="true">Scope</button>
+                <button type="button" class="nav-tab" role="tab" data-tab="testing" aria-controls="testing" aria-selected="false">Testing</button>
+                <button type="button" class="nav-tab" role="tab" data-tab="criteria" aria-controls="criteria" aria-selected="false">Success Criteria</button>
+                <button type="button" class="nav-tab" role="tab" data-tab="timeline" aria-controls="timeline" aria-selected="false">Timeline</button>
             </div>
         </div>
     </nav>
@@ -1024,119 +866,259 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="badge">Computer for Customers</div>
+                <div class="badge">Proof of Concept</div>
                 <h1>
-                    Welcome to<br>
-                    <span class="highlight-word" id="hero-customer">...</span>
-                    Support
+                    <span class="highlight-word">Amtech Software</span><br>
+                    Proof of Concept
                 </h1>
-                <p class="hero-subtitle" id="hero-subtitle">
-                    AI-powered support tailored for your needs. Get instant answers, automate workflows, and resolve issues faster than ever.
+                <p class="hero-subtitle">
+                    DevRev × Amtech Software — Computer for Support. A focused 4-week proof of concept to validate AI-powered ticket deflection, intelligent triage, and an internal copilot for the support team.
                 </p>
             </div>
         </div>
     </section>
 
-    <!-- How This Works -->
-    <section class="section" id="how-it-works">
-        <div class="container">
-            <div class="how-it-works-card">
-                <h2>How This Works</h2>
-                <p>This <span class="agent-label">CX Agent</span> demo is powered by <strong>DevRev</strong> and tailored for <span class="highlight" id="hiw-customer">...</span> use cases.</p>
-                <p>To give you a quick preview of its capabilities, we've curated a small set of support articles and sample workflows, listed below.</p>
-                <p>The <span class="agent-label">CX Agent</span>'s responses are limited to just this content, so feel free to ask questions based on those topics.</p>
-                <p id="hiw-note">Click the chat widget in the bottom right to try it out.</p>
-            </div>
-        </div>
-    </section>
+    <!-- Dynamic center frame -->
+    <main class="poc-frame" id="poc-frame">
 
-    <!-- Questions Section -->
-    <section class="section" id="questions">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Try It Out</div>
-                <h2>Sample Questions</h2>
-                <p class="section-subtitle">
-                    Ask the <span class="agent-label">CX Agent</span> any of these questions to see Computer in action
-                </p>
-            </div>
-            <div class="questions-grid" id="questions-grid"></div>
-            <div class="questions-live-panel" id="questions-live-panel"></div>
-        </div>
-    </section>
-
-    <!-- What You Will Solve with Computer -->
-    <section class="section" id="problem">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">The Challenge</div>
-                <h2>What You Will Solve with Computer</h2>
-                <p class="section-subtitle">
-                    Industry standard is 1 tech per 100 users. You're operating at 4x that ratio.
-                </p>
-            </div>
-            <div class="problem-grid" id="problem-grid"></div>
-        </div>
-    </section>
-
-    <!-- Demo Video & Learn More -->
-    <section class="resources-section">
-        <div class="container">
-            <div class="section-header">
-                <div class="section-label">Resources</div>
-                <h2>See It In Action</h2>
-            </div>
-            <div class="resources-row">
-                <div class="resource-card">
-                    <h3>Demo Video</h3>
-                    <a id="video-link" href="#" target="_blank">
-                        <img id="video-thumb" src="" alt="Demo Video" class="video-thumbnail" />
-                    </a>
-                </div>
-
-                <div class="resource-card">
-                    <h3>Learn More</h3>
-                    <p>
-                        Discover how Computer by DevRev can transform your support operations with AI-powered automation.
+        <!-- Scope panel -->
+        <section class="section tab-panel" id="scope" role="tabpanel" aria-labelledby="scope">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Scope</div>
+                    <h2>Problem Statement & Scope of Work</h2>
+                    <p class="section-subtitle">
+                        Why this PoC matters and what we will deliver in 4 weeks.
                     </p>
-                    <a id="learn-more-link" href="#" target="_blank">devrev.ai/support →</a>
+                </div>
+
+                <div class="problem-statement-card">
+                    <h2>Problem Statement</h2>
+                    <p>
+                        Amtech Software's support team operates under significant manual overhead with no intelligent deflection layer in place. Every customer case, approximately 1,500 per month, hits the support team directly. Roughly 35–40% of those tickets are resolvable through existing knowledge that customers simply aren't finding on their own. Manual triage and routing create additional operational burden, and the bug-to-Jira escalation workflow requires human intervention at every step, with no automated handoff between support and engineering.
+                    </p>
+                </div>
+
+                <div class="scope-subheader">
+                    <div class="section-label">In Scope</div>
+                    <h2>Three Use Cases</h2>
+                    <p class="section-subtitle">
+                        This PoC will focus on demonstrating core value through three use cases.
+                    </p>
+                </div>
+
+                <div class="in-scope-grid">
+                    <div class="scope-card">
+                        <div class="scope-card-label">Use Case 1</div>
+                        <h3>Computer for Customers</h3>
+                        <p>
+                            DevRev's AI-powered widget (PLuG) will be embedded in a simulated version of the Amtech Engage support portal, accessible to authenticated customers. The agent will be grounded in the 2,000 Salesforce KB articles ingested during setup, allowing it to answer questions and resolve common issues before a case is submitted. When escalation is required, the agent will first gather the necessary information before creating the case, ensuring a smooth handoff to the support team.
+                        </p>
+                    </div>
+
+                    <div class="scope-card">
+                        <div class="scope-card-label">Use Case 2</div>
+                        <h3>Triage — Intelligent Case Intake</h3>
+                        <p>
+                            Using pre-defined routing logic defined jointly with the Amtech team, a workflow automation will route each incoming ticket to the appropriate support team based on its content. Classified tickets will be available for review within DevRev.
+                        </p>
+                    </div>
+
+                    <div class="scope-card scope-card-wide">
+                        <div class="scope-card-label">Use Case 3</div>
+                        <h3>Computer as Copilot for the Support Team</h3>
+                        <p>
+                            Support reps will have access to Computer as an internal assistant, grounded in the full ingested dataset — 10,000 cases, 43,000 case comments, 2,000 KB articles, and 1,000 Jira issues — across three sub-use cases:
+                        </p>
+                        <div class="card-section">
+                            <ul class="card-criteria">
+                                <li><strong>Similar case &amp; knowledge search</strong> — Agents can query past cases, comments, and documentation in natural language to find relevant resolutions, without switching between tools.</li>
+                                <li><strong>Customer context &amp; meeting prep</strong> — Before or during any customer interaction, agents can request a full account briefing — open cases, active projects, and recent escalations.</li>
+                                <li><strong>Trend detection</strong> — Managers and support leads can query patterns across the ingested ticket history to identify customers submitting unusual volumes of how-to questions, modules generating recurring issues, or case spikes following a recent go-live.</li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-            <div class="stories-row" id="stories-row"></div>
-        </div>
-    </section>
+        </section>
+
+        <!-- Testing panel -->
+        <section class="section tab-panel" id="testing" role="tabpanel" aria-labelledby="testing">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Testing</div>
+                    <h2>Try Computer Live</h2>
+                    <p class="section-subtitle">
+                        Launch the interactive CX Agent and explore real conversational workflows.
+                    </p>
+                </div>
+
+                <div class="live-panel-wrapper">
+                    <div class="live-panel-card">
+                        <div class="live-panel-head">
+                            <div class="live-panel-label">Live Demo</div>
+                            <h3 class="live-panel-title">Try Computer Live</h3>
+                            <p class="live-panel-subtitle">
+                                Launch an interactive CX Agent session directly from this page to explore real conversational workflows.
+                            </p>
+                        </div>
+                        <div class="live-preview">
+                            <iframe
+                                src="https://www.youtube.com/embed/Q_mLzHcz59I"
+                                title="Try Computer Live"
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                                referrerpolicy="strict-origin-when-cross-origin"
+                                allowfullscreen></iframe>
+                        </div>
+                        <div class="live-panel-actions">
+                            <a class="live-panel-cta-link" href="https://app.devrev.ai/blackduckdemo/computer" target="_blank" rel="noopener noreferrer">Launch CX Agent</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Success Criteria panel -->
+        <section class="section tab-panel" id="criteria" role="tabpanel" aria-labelledby="criteria">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Success Criteria</div>
+                    <h2>How We'll Measure Success</h2>
+                    <p class="section-subtitle">
+                        To determine if the scope of work is successful, Amtech Software will validate that DevRev was able to deliver on these three outcomes.
+                    </p>
+                </div>
+
+                <div class="criteria-grid">
+                    <div class="criteria-card">
+                        <div class="criteria-card-index">01</div>
+                        <h3>Deflect customer support inquiries through self-service</h3>
+                        <p>
+                            Computer accurately answers customer questions using Amtech's existing knowledge base.
+                        </p>
+                        <span class="criteria-target">Target: ≥30% inquiries resolved without case creation</span>
+                    </div>
+
+                    <div class="criteria-card">
+                        <div class="criteria-card-index">02</div>
+                        <h3>Route cases to the correct support team</h3>
+                        <p>
+                            When Computer cannot resolve an inquiry, the case is automatically classified and routed to the right team with full context preserved.
+                        </p>
+                        <span class="criteria-target">Target: ≥60% correctly classified and routed</span>
+                    </div>
+
+                    <div class="criteria-card">
+                        <div class="criteria-card-index">03</div>
+                        <h3>Deliver accurate and trustworthy responses via Computer copilot</h3>
+                        <p>
+                            Support agents can retrieve relevant information from past cases, KB articles, and Jira issues through natural language queries. Feedback collected via thumbs up / thumbs down on each response.
+                        </p>
+                        <ul class="criteria-feedback">
+                            <li><strong>Thumbs up</strong> — response was correct, trustworthy, and useful.</li>
+                            <li><strong>Thumbs down</strong> — agent selects a reason: answer was wrong, not useful, Computer should have said it didn't know, or other.</li>
+                        </ul>
+                        <span class="criteria-target">Target: ≥40% thumbs up</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline panel -->
+        <section class="section tab-panel" id="timeline" role="tabpanel" aria-labelledby="timeline">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Timeline</div>
+                    <h2>4-Week Plan</h2>
+                    <p class="section-subtitle">
+                        Beginning upon confirmation of all necessary user access permissions and successful connection setup.
+                    </p>
+                </div>
+
+                <div class="timeline-list">
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 1</div>
+                        <div class="timeline-content">
+                            <strong>Kick-off &amp; access confirmation</strong> — user provisioning, data ingestion alignment, and agreement on routing logic.
+                        </div>
+                        <div class="timeline-owner">DevRev + Amtech</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 1</div>
+                        <div class="timeline-content">
+                            <strong>Data ingestion</strong> — import of Salesforce cases (~10k), case comments (~43k), KB articles (~2k), and Jira issues (~1k).
+                        </div>
+                        <div class="timeline-owner">DevRev</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 1</div>
+                        <div class="timeline-content">
+                            <strong>Computer for Customers configuration</strong> — self-service experience live for test users via PLuG.
+                        </div>
+                        <div class="timeline-owner">DevRev</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 1</div>
+                        <div class="timeline-content">
+                            <strong>Computer as Copilot configuration</strong> — search across cases, comments, KB, and Jira issues; trend detection queries.
+                        </div>
+                        <div class="timeline-owner">DevRev</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 2</div>
+                        <div class="timeline-content">
+                            <strong>User testing &amp; validation</strong> — Amtech starts testing Computer.
+                        </div>
+                        <div class="timeline-owner">Amtech</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 2</div>
+                        <div class="timeline-content">
+                            <strong>Triage &amp; routing setup</strong> — classification and handoff logic configured.
+                        </div>
+                        <div class="timeline-owner">DevRev + Amtech</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 3</div>
+                        <div class="timeline-content">
+                            <strong>User testing &amp; validation</strong> — Amtech tests triage and routing logic.
+                        </div>
+                        <div class="timeline-owner">Amtech</div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-week">Week 4</div>
+                        <div class="timeline-content">
+                            <strong>PoC readout &amp; evaluation</strong> — results reviewed against success criteria, go/no-go discussion.
+                        </div>
+                        <div class="timeline-owner">DevRev + Amtech</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
 
     <!-- CTA Section -->
     <section class="cta-section" id="contact">
         <div class="container">
             <div class="cta-content">
-                <h2>Ready to See It Live?</h2>
+                <h2>Having questions?</h2>
                 <p>
-                    Let's walk through these scenarios with your actual data and workflows.
+                    Let us know and we will assist.
                 </p>
-                <div class="cta-wrapper">
-                    <a href="#" class="cta-button" id="contact-btn">
-                        <span>Contact us</span>
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M5 12h14M12 5l7 7-7 7"/>
-                        </svg>
-                    </a>
-                    <div class="contact-options" id="contact-options">
-                        <a href="mailto:natalia.gomez@devrev.ai" id="contact-email-btn" class="contact-icon-btn email">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                <rect x="2" y="4" width="20" height="16" rx="2"/>
-                                <path d="M2 7l10 7 10-7"/>
-                            </svg>
-                            <span>Email</span>
-                        </a>
-                        <a href="https://api.whatsapp.com/send?phone=5491167395436" id="contact-whatsapp-btn" target="_blank" class="contact-icon-btn whatsapp">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-                            </svg>
-                            <span>WhatsApp</span>
-                        </a>
-                    </div>
-                </div>
+                <a href="mailto:dario.soria@devrev.ai" class="cta-button">
+                    <span>Contact us</span>
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M5 12h14M12 5l7 7-7 7"/>
+                    </svg>
+                </a>
             </div>
         </div>
     </section>
@@ -1151,29 +1133,48 @@
         </div>
     </footer>
 
-    <!-- Contact button toggle -->
+    <!-- Tab switching -->
     <script>
     (function() {
-      var contactBtn = document.getElementById('contact-btn');
-      var contactOptions = document.getElementById('contact-options');
+      var tabs = document.querySelectorAll('.nav-tab');
+      var panels = document.querySelectorAll('.tab-panel');
+      var validIds = Array.prototype.map.call(tabs, function(t) { return t.dataset.tab; });
 
-      if (contactBtn && contactOptions) {
-        contactBtn.addEventListener('click', function(e) {
-          if (contactBtn.dataset.directLink === 'true') {
-            return;
-          }
-          e.preventDefault();
-          contactBtn.classList.add('hidden');
-          contactOptions.classList.add('visible');
+      function activate(id, opts) {
+        opts = opts || {};
+        if (validIds.indexOf(id) === -1) id = validIds[0];
+
+        tabs.forEach(function(t) {
+          var isActive = t.dataset.tab === id;
+          t.classList.toggle('active', isActive);
+          t.setAttribute('aria-selected', isActive ? 'true' : 'false');
         });
 
-        document.addEventListener('click', function(e) {
-          if (!contactBtn.contains(e.target) && !contactOptions.contains(e.target)) {
-            contactBtn.classList.remove('hidden');
-            contactOptions.classList.remove('visible');
-          }
+        panels.forEach(function(p) {
+          p.classList.toggle('active', p.id === id);
         });
+
+        if (opts.updateHash !== false) {
+          var newHash = '#' + id;
+          if (window.location.hash !== newHash) {
+            history.replaceState(null, '', newHash);
+          }
+        }
       }
+
+      tabs.forEach(function(t) {
+        t.addEventListener('click', function() {
+          activate(t.dataset.tab);
+        });
+      });
+
+      window.addEventListener('hashchange', function() {
+        var id = (window.location.hash || '').replace('#', '');
+        activate(id, { updateHash: false });
+      });
+
+      var initial = (window.location.hash || '').replace('#', '');
+      activate(initial || 'scope', { updateHash: !!initial });
     })();
     </script>
 
@@ -1195,14 +1196,12 @@
       window.addEventListener('scroll', function() {
         var current = window.scrollY;
 
-        /* Switch nav appearance once past the hero */
         if (current > heroHeight - 80) {
           nav.classList.add('nav-scrolled');
         } else {
           nav.classList.remove('nav-scrolled');
         }
 
-        /* Hide on scroll down, show on scroll up */
         if (current > lastScrollY && current > 120) {
           nav.classList.add('nav-hidden');
         } else {
@@ -1211,256 +1210,6 @@
 
         lastScrollY = current;
       }, { passive: true });
-    })();
-    </script>
-
-    <!-- Customer config loader -->
-    <script>
-    (function() {
-      /*
-       * Supported customer config fields:
-       * - customer, widgetAppId, heroSubtitle, howItWorksNote
-       * - questions[], problems[]
-       * - disableCardClicks (use-case cards only)
-       * - livePanel { title, subtitle, ctaLabel, url, mockPreviewImage }
-       * - stories[] (resource story cards)
-       * - videoUrl, videoThumbnail, learnMoreUrl, contactEmail, contactWhatsApp
-       * - bookDemoUrl (optional direct link for nav/footer CTA)
-       * - navBookDemoUrl (optional direct link for top nav CTA only)
-       */
-      const path = window.location.pathname.replace(/^\/|\/$/g, '');
-
-      if (!path) {
-        document.getElementById('hero-customer').textContent = 'Your Company';
-        document.getElementById('hiw-customer').textContent = 'your company';
-        document.getElementById('hero-subtitle').textContent =
-          'This is a template. Navigate to /<customer-name> to view a customer-specific demo.';
-        return;
-      }
-
-      fetch('/customers/' + encodeURIComponent(path) + '.json')
-        .then(function(res) {
-          if (!res.ok) throw new Error('Customer not found');
-          return res.json();
-        })
-        .then(function(config) {
-          document.title = config.customer + ' Support | Powered by Computer';
-
-          document.getElementById('hero-customer').textContent = config.customer;
-          if (config.heroSubtitle) {
-            document.getElementById('hero-subtitle').textContent = config.heroSubtitle;
-          }
-
-          document.getElementById('hiw-customer').textContent = config.customer;
-          if (config.howItWorksNote) {
-            document.getElementById('hiw-note').textContent = config.howItWorksNote;
-          }
-
-          if (config.agentLabel) {
-            document.querySelectorAll('.agent-label').forEach(function(el) {
-              el.textContent = config.agentLabel;
-            });
-          }
-
-          /* Questions grid — each card gets a "COMPUTER FOR" label */
-          var qGrid = document.getElementById('questions-grid');
-          if (config.questions && config.questions.length) {
-            qGrid.innerHTML = config.questions.map(function(group) {
-              var items = group.items.map(function(q) {
-                return '<li>' + q + '</li>';
-              }).join('');
-              return '<div class="questions-card">' +
-                '<div class="questions-card-label">Computer for</div>' +
-                '<h3>' + group.title + '</h3>' +
-                '<ul>' + items + '</ul>' +
-                '</div>';
-            }).join('');
-          }
-
-          /* Problem grid */
-          var pGrid = document.getElementById('problem-grid');
-          if (config.problems && config.problems.length) {
-            pGrid.innerHTML = config.problems.map(function(p) {
-              if (p.pain) {
-                var criteriaHtml = (p.successCriteria || []).map(function(item) {
-                  return '<li>' + item + '</li>';
-                }).join('');
-                var proofHtml = p.proof
-                  ? '<div class="card-section">' +
-                      '<div class="card-section-label">Proof</div>' +
-                      '<p class="card-proof">' + p.proof + '</p>' +
-                    '</div>'
-                  : '';
-                return '<div class="problem-card">' +
-                  '<h3>' + (p.icon ? p.icon + ' ' : '') + p.title + '</h3>' +
-                  '<div class="card-section">' +
-                    '<div class="card-section-label">The Pain</div>' +
-                    '<p class="card-pain">' + p.pain + '</p>' +
-                  '</div>' +
-                  '<div class="card-section">' +
-                    '<div class="card-section-label">Success Criteria with Computer</div>' +
-                    '<ul class="card-criteria">' + criteriaHtml + '</ul>' +
-                  '</div>' +
-                  proofHtml +
-                  '</div>';
-              }
-              return '<div class="problem-card">' +
-                '<h3>' + p.title + '</h3>' +
-                '<p>' + p.description + '</p>' +
-                '<div class="problem-stat"><span>' + p.icon + '</span> ' + p.stat + '</div>' +
-                '</div>';
-            }).join('');
-          }
-
-          /* Click to open PLuG */
-          function openPlugWithMessage(msg) {
-            if (window.plugSDK && window.plugSDK.toggleWidget) {
-              window.plugSDK.toggleWidget(true, 'create_conversation', {
-                startConversationContent: msg
-              });
-            }
-          }
-
-          var livePanelMount = document.getElementById('questions-live-panel');
-          if (livePanelMount && config.livePanel) {
-            var panel = config.livePanel;
-            var previewHtml = panel.videoEmbedUrl
-              ? '<div class="live-preview live-preview-video">' +
-                  '<iframe src="' + panel.videoEmbedUrl + '" title="' + (panel.title || 'Try Computer Live') + '" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>' +
-                '</div>'
-              : panel.mockPreviewImage
-              ? '<div class="live-preview">' +
-                  '<img src="' + panel.mockPreviewImage + '" alt="' + (panel.title || 'Try Computer Live') + '">' +
-                  '<div class="live-preview-overlay"></div>' +
-                '</div>'
-              : '';
-
-            livePanelMount.innerHTML =
-              '<div class="live-panel-card">' +
-                '<div class="live-panel-head">' +
-                  '<div class="live-panel-label">Live Demo</div>' +
-                  '<h3 class="live-panel-title">' + (panel.title || 'Try Computer Live') + '</h3>' +
-                  '<p class="live-panel-subtitle">' + (panel.subtitle || 'Interact with Computer directly from this page.') + '</p>' +
-                '</div>' +
-                previewHtml +
-                '<div class="live-panel-actions">' +
-                  '<a class="cta-button live-panel-cta-link" href="' + (panel.url || '#') + '" target="_blank">' + (panel.ctaLabel || 'Launch CX Agent') + '</a>' +
-                '</div>' +
-              '</div>';
-
-            livePanelMount.classList.add('visible');
-          }
-
-          document.getElementById('questions-grid').addEventListener('click', function(e) {
-            var li = e.target.closest('li');
-            if (!li) return;
-            openPlugWithMessage(li.textContent.trim());
-          });
-
-          if (!config.disableCardClicks) {
-            document.getElementById('problem-grid').addEventListener('click', function(e) {
-              var card = e.target.closest('.problem-card');
-              if (!card) return;
-              var title = card.querySelector('h3').textContent.trim();
-              openPlugWithMessage('How can DevRev help me with ' + title + '?');
-            });
-          } else {
-            document.getElementById('problem-grid').setAttribute('data-no-click', '');
-          }
-
-          if (config.videoUrl) {
-            document.getElementById('video-link').href = config.videoUrl;
-          }
-          if (config.videoThumbnail) {
-            document.getElementById('video-thumb').src = config.videoThumbnail;
-          }
-
-          if (config.contactEmail) {
-            document.getElementById('contact-email-btn').href = 'mailto:' + config.contactEmail;
-          }
-          if (config.contactWhatsApp) {
-            document.getElementById('contact-whatsapp-btn').href =
-              'https://api.whatsapp.com/send?phone=' + config.contactWhatsApp;
-          }
-
-          if (config.bookDemoUrl) {
-            var navCta = document.querySelector('.nav-cta');
-            var footerCta = document.getElementById('contact-btn');
-            if (navCta) {
-              navCta.href = config.bookDemoUrl;
-              navCta.target = '_blank';
-              navCta.rel = 'noopener noreferrer';
-            }
-            if (footerCta) {
-              footerCta.href = config.bookDemoUrl;
-              footerCta.target = '_blank';
-              footerCta.rel = 'noopener noreferrer';
-              footerCta.dataset.directLink = 'true';
-            }
-          }
-
-          if (config.navBookDemoUrl) {
-            var navOnlyCta = document.querySelector('.nav-cta');
-            if (navOnlyCta) {
-              navOnlyCta.href = config.navBookDemoUrl;
-              navOnlyCta.target = '_blank';
-              navOnlyCta.rel = 'noopener noreferrer';
-            }
-          }
-
-          if (config.learnMoreUrl) {
-            var lmLink = document.getElementById('learn-more-link');
-            lmLink.href = config.learnMoreUrl;
-            try {
-              var u = new URL(config.learnMoreUrl);
-              lmLink.textContent = u.hostname + u.pathname + ' →';
-            } catch(e) {}
-          }
-
-          var resourcesSection = document.querySelector('.resources-section');
-          if (resourcesSection && config.replaceResourcesWithStories) {
-            resourcesSection.classList.add('replace-with-stories');
-          } else if (resourcesSection) {
-            resourcesSection.classList.remove('replace-with-stories');
-          }
-
-          /* Story cards */
-          var sRow = document.getElementById('stories-row');
-          if (sRow && config.stories && config.stories.length) {
-            sRow.innerHTML = config.stories.map(function(s) {
-              return '<a class="story-card" href="' + s.url + '" target="_blank">' +
-                '<img src="' + s.image + '" alt="' + s.title + '">' +
-                '<div class="story-card-overlay"></div>' +
-                '<div class="story-card-content">' +
-                  '<div class="story-card-label">Customer Story</div>' +
-                  '<div class="story-card-title">' + s.title + '</div>' +
-                '</div>' +
-              '</a>';
-            }).join('');
-          }
-
-          /* Init PLuG widget */
-          if (config.widgetAppId) {
-            var attempts = 0;
-            var interval = setInterval(function() {
-              if (window.plugSDK && window.plugSDK.init) {
-                clearInterval(interval);
-                window.plugSDK.init({
-                  app_id: config.widgetAppId,
-                  enable_session_recording: true
-                });
-              } else if (++attempts > 50) {
-                clearInterval(interval);
-              }
-            }, 100);
-          }
-        })
-        .catch(function() {
-          document.getElementById('hero-customer').textContent = path;
-          document.getElementById('hiw-customer').textContent = path;
-          document.getElementById('hero-subtitle').textContent =
-            'Customer configuration not found. Make sure /customers/' + path + '.json exists.';
-        });
     })();
     </script>
 
