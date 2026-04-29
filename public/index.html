@@ -540,17 +540,21 @@
         }
 
         .criteria-target {
-            display: inline-flex;
+            display: flex;
             align-items: center;
+            justify-content: center;
+            text-align: center;
             gap: 7px;
             margin-top: auto;
-            padding: 6px 12px;
+            padding: 10px 14px;
+            min-height: 56px;
             background: var(--indigo-badge-bg);
             border-radius: 8px;
             font-family: 'JetBrains Mono', monospace;
             font-size: 0.8rem;
+            line-height: 1.4;
             color: var(--indigo-title);
-            align-self: flex-start;
+            align-self: stretch;
         }
 
         .criteria-card > p,
