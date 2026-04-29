@@ -4,7 +4,7 @@
     {
       "name": "merrick-demo",
       "runtimeExecutable": "npx",
-      "runtimeArgs": ["serve", "public"],
+      "runtimeArgs": ["serve", "public", "--single"],
       "port": 3000,
       "autoPort": true
     }
