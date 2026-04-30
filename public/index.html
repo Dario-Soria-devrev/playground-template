@@ -163,6 +163,198 @@
             color: #ffffff;
         }
 
+        /* ── Auth pill in the nav ── */
+        .nav-auth {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .nav-auth-greeting {
+            font-size: 0.85rem;
+            color: var(--text-dark);
+            font-weight: 500;
+            white-space: nowrap;
+        }
+
+        .nav-auth-btn {
+            padding: 7px 18px;
+            border-radius: 100px;
+            border: 1.5px solid var(--text-dark);
+            background: transparent;
+            color: var(--text-dark);
+            font-family: inherit;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s, border-color 0.2s;
+        }
+
+        .nav-auth-btn:hover {
+            background: var(--text-dark);
+            color: var(--yellow-bright);
+        }
+
+        .nav-auth-btn.is-logged-in {
+            background: var(--text-dark);
+            color: var(--yellow-bright);
+        }
+
+        .nav-auth-btn.is-logged-in:hover {
+            background: transparent;
+            color: var(--text-dark);
+        }
+
+        /* ── Auth modal ── */
+        .auth-modal-backdrop {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(15, 15, 15, 0.55);
+            backdrop-filter: blur(6px);
+            -webkit-backdrop-filter: blur(6px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            animation: authFadeIn 0.18s ease-out;
+        }
+
+        .auth-modal-backdrop[hidden] {
+            display: none;
+        }
+
+        .auth-modal {
+            position: relative;
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            width: 100%;
+            max-width: 420px;
+            box-shadow: 0 20px 80px rgba(0, 0, 0, 0.3);
+            animation: authSlideUp 0.22s ease-out;
+        }
+
+        .auth-modal-close {
+            position: absolute;
+            top: 14px;
+            right: 14px;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: none;
+            background: transparent;
+            color: var(--text-muted);
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .auth-modal-close:hover {
+            background: rgba(0, 0, 0, 0.06);
+            color: var(--text-dark);
+        }
+
+        .auth-modal-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.6rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
+        }
+
+        .auth-modal-subtitle {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 24px;
+        }
+
+        .auth-form {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .auth-field {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .auth-field label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .auth-field input {
+            padding: 12px 14px;
+            border: 1.5px solid var(--border-light);
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 0.95rem;
+            color: var(--text-dark);
+            background: var(--white);
+            transition: border-color 0.15s, box-shadow 0.15s;
+        }
+
+        .auth-field input:focus {
+            outline: none;
+            border-color: var(--text-dark);
+            box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.06);
+        }
+
+        .auth-error {
+            color: #b3261e;
+            font-size: 0.85rem;
+            background: rgba(179, 38, 30, 0.08);
+            border-radius: 10px;
+            padding: 10px 12px;
+            margin: 0;
+        }
+
+        .auth-error[hidden] {
+            display: none;
+        }
+
+        .auth-submit {
+            margin-top: 8px;
+            padding: 13px 20px;
+            background: var(--text-dark);
+            color: var(--yellow-bright);
+            border: none;
+            border-radius: 100px;
+            font-family: inherit;
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .auth-submit:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        @keyframes authFadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes authSlideUp {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         /* ── Hero Section ── */
         .hero {
             background: var(--yellow-bright);
@@ -407,9 +599,95 @@
             grid-column: 1 / -1;
         }
 
-        /* ── Testing: Live panel card ── */
-        #testing {
+        /* ── Testing tabs (Computer & CX Agent): Live panel cards ── */
+        #computer,
+        #cx-agent {
             background: var(--yellow-faint);
+        }
+
+        /* Pair layout used by the Computer and CX Agent tabs */
+        .tab-pair-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 24px;
+            align-items: stretch;
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        /* Inside .tab-pair-grid the live-panel-card must NOT use subgrid
+           (subgrid was designed for .live-panel-wrapper's 3-row layout).
+           Override with a normal flex column so the head, video, and
+           actions sit naturally instead of being stretched into 3 rows. */
+        .tab-pair-grid .live-panel-card {
+            display: flex;
+            flex-direction: column;
+            grid-row: auto;
+            grid-template-rows: none;
+        }
+
+        /* Lavender placeholder-question card */
+        .qa-card {
+            background: var(--lavender);
+            border-radius: 20px;
+            padding: 36px;
+            box-shadow: var(--shadow-card);
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .qa-card:hover {
+            background: var(--lavender-hover);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 32px rgba(55, 48, 163, 0.12);
+        }
+
+        .qa-card-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--indigo-title);
+            margin-bottom: 22px;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .qa-card-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .qa-card-list li {
+            color: var(--text-body);
+            font-size: 0.92rem;
+            line-height: 1.55;
+            padding: 14px 0 14px 26px;
+            border-bottom: 1px solid rgba(55, 48, 163, 0.1);
+            position: relative;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            min-height: 48px;
+        }
+
+        .qa-card-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--indigo-label);
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        .qa-card-list li:last-child {
+            border-bottom: none;
         }
 
         .live-panel-wrapper {
@@ -794,6 +1072,11 @@
                 flex-direction: column;
                 grid-row: auto;
             }
+
+            .tab-pair-grid {
+                grid-template-columns: 1fr;
+                row-gap: 24px;
+            }
         }
 
         /* Phones: collapse the in-scope grid, restack the nav */
@@ -811,19 +1094,44 @@
             }
 
             nav .container {
-                flex-direction: column;
-                align-items: stretch;
-                gap: 8px;
+                display: grid;
+                grid-template-columns: 1fr auto;
+                grid-template-rows: auto auto;
+                gap: 8px 12px;
+                align-items: center;
             }
 
             .logo {
-                justify-content: center;
+                grid-column: 1;
+                grid-row: 1;
+                justify-content: flex-start;
+            }
+
+            .nav-auth {
+                grid-column: 2;
+                grid-row: 1;
+                justify-self: end;
+                gap: 8px;
+            }
+
+            .nav-auth-greeting {
+                display: none;
             }
 
             .nav-tabs {
+                grid-column: 1 / -1;
+                grid-row: 2;
                 justify-content: center;
                 gap: 4px;
                 flex-wrap: wrap;
+            }
+
+            .auth-modal {
+                padding: 28px 24px;
+            }
+
+            .auth-modal-title {
+                font-size: 1.4rem;
             }
 
             .nav-tab {
@@ -871,8 +1179,14 @@
             }
 
             .scope-card,
-            .criteria-card {
+            .criteria-card,
+            .qa-card {
                 padding: 24px;
+            }
+
+            .qa-card-title {
+                font-size: 1.3rem;
+                margin-bottom: 16px;
             }
 
             .live-panel-head {
@@ -959,9 +1273,14 @@
             </div>
             <div class="nav-tabs" role="tablist">
                 <button type="button" class="nav-tab" role="tab" data-tab="scope" aria-controls="scope" aria-selected="true">Scope</button>
-                <button type="button" class="nav-tab" role="tab" data-tab="testing" aria-controls="testing" aria-selected="false">Testing</button>
+                <button type="button" class="nav-tab" role="tab" data-tab="computer" aria-controls="computer" aria-selected="false">Computer</button>
+                <button type="button" class="nav-tab" role="tab" data-tab="cx-agent" aria-controls="cx-agent" aria-selected="false">CX Agent</button>
                 <button type="button" class="nav-tab" role="tab" data-tab="criteria" aria-controls="criteria" aria-selected="false">Success Criteria</button>
                 <button type="button" class="nav-tab" role="tab" data-tab="timeline" aria-controls="timeline" aria-selected="false">Timeline</button>
+            </div>
+            <div class="nav-auth">
+                <span class="nav-auth-greeting" id="auth-greeting" hidden></span>
+                <button type="button" class="nav-auth-btn" id="auth-btn">Log in</button>
             </div>
         </div>
     </nav>
@@ -1046,18 +1365,29 @@
             </div>
         </section>
 
-        <!-- Testing panel -->
-        <section class="section tab-panel" id="testing" role="tabpanel" aria-labelledby="testing">
+        <!-- Computer panel -->
+        <section class="section tab-panel" id="computer" role="tabpanel" aria-labelledby="computer">
             <div class="container">
                 <div class="section-header">
-                    <div class="section-label">Testing</div>
-                    <h2>Try Computer Live</h2>
+                    <div class="section-label">Computer</div>
+                    <h2>Computer for the Amtech Support Team</h2>
                     <p class="section-subtitle">
-                        Launch the interactive CX Agent and explore real conversational workflows.
+                        Explore what Computer unlocks for your support team, then launch the live demo.
                     </p>
                 </div>
 
-                <div class="live-panel-wrapper">
+                <div class="tab-pair-grid">
+                    <div class="qa-card">
+                        <h3 class="qa-card-title">What can Computer do for you?</h3>
+                        <ul class="qa-card-list">
+                            <li>Question 1</li>
+                            <li>Question 2</li>
+                            <li>Question 3</li>
+                            <li>Question 4</li>
+                            <li>Question 5</li>
+                        </ul>
+                    </div>
+
                     <div class="live-panel-card">
                         <div class="live-panel-head">
                             <div class="live-panel-label">Live Demo</div>
@@ -1075,8 +1405,34 @@
                                 allowfullscreen></iframe>
                         </div>
                         <div class="live-panel-actions">
-                            <a class="live-panel-cta-link" href="https://app.devrev.ai/blackduckdemo/computer" target="_blank" rel="noopener noreferrer">Launch Computer</a>
+                            <a class="live-panel-cta-link" href="https://app.devrev.ai/amtech-poc/computer" target="_blank" rel="noopener noreferrer">Launch Computer</a>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CX Agent panel -->
+        <section class="section tab-panel" id="cx-agent" role="tabpanel" aria-labelledby="cx-agent">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">CX Agent</div>
+                    <h2>CX Agent for Your Customers</h2>
+                    <p class="section-subtitle">
+                        Step into your customers' shoes — explore what the agent can do, then launch the live demo.
+                    </p>
+                </div>
+
+                <div class="tab-pair-grid">
+                    <div class="qa-card">
+                        <h3 class="qa-card-title">What can the CX Agent do for your customers?</h3>
+                        <ul class="qa-card-list">
+                            <li>Question 1</li>
+                            <li>Question 2</li>
+                            <li>Question 3</li>
+                            <li>Question 4</li>
+                            <li>Question 5</li>
+                        </ul>
                     </div>
 
                     <div class="live-panel-card">
@@ -1096,7 +1452,7 @@
                                 allowfullscreen></iframe>
                         </div>
                         <div class="live-panel-actions">
-                            <a class="live-panel-cta-link" href="https://www.youtube.com/watch?v=jW-tcd8-XW8" target="_blank" rel="noopener noreferrer">Sign in to CX Agent</a>
+                            <a class="live-panel-cta-link" id="cx-agent-signin" href="#" role="button">Sign in to CX Agent</a>
                         </div>
                     </div>
                 </div>
@@ -1258,6 +1614,27 @@
         </div>
     </footer>
 
+    <!-- Auth modal -->
+    <div class="auth-modal-backdrop" id="auth-modal" hidden role="dialog" aria-modal="true" aria-labelledby="auth-modal-title">
+        <div class="auth-modal" role="document">
+            <button type="button" class="auth-modal-close" id="auth-modal-close" aria-label="Close">×</button>
+            <h2 class="auth-modal-title" id="auth-modal-title">Sign in</h2>
+            <p class="auth-modal-subtitle">Enter your Amtech credentials to continue.</p>
+            <form class="auth-form" id="auth-form" novalidate>
+                <div class="auth-field">
+                    <label for="auth-email">Email</label>
+                    <input type="email" id="auth-email" name="email" autocomplete="username" required>
+                </div>
+                <div class="auth-field">
+                    <label for="auth-password">Password</label>
+                    <input type="password" id="auth-password" name="password" autocomplete="current-password" required>
+                </div>
+                <p class="auth-error" id="auth-error" hidden role="alert"></p>
+                <button type="submit" class="auth-submit">Sign in</button>
+            </form>
+        </div>
+    </div>
+
     <!-- Tab switching -->
     <script>
     (function() {
@@ -1335,6 +1712,268 @@
 
         lastScrollY = current;
       }, { passive: true });
+    })();
+    </script>
+
+    <!--
+      Auth (client-side only — bypassable by anyone with devtools).
+      Hooks for future gating: when a session is active this script sets
+        body[data-auth="true"]
+        body[data-auth-email="<email>"]
+      Future code can gate the CX Agent with patterns like:
+        body:not([data-auth="true"]) .nav-tab[data-tab="cx-agent"] { display: none; }
+        or by intercepting tab activation in the tab-switching script above.
+
+      The auth IIFE also boots the DevRev CX Agent (plugSDK) widget in the
+      bottom-right corner whenever a session is active — on page load if the
+      user is already logged in, and right after a successful sign-in. The
+      "Sign in to CX Agent" button on the CX Agent tab opens this same modal
+      when the user is not yet logged in.
+    -->
+    <script>
+    (function() {
+      var USERS = {
+        'jordanharris@email.com':  { name: 'Jordan Harris' },
+        'carolsmith@email.com':    { name: 'Carol Smith' },
+        'ashstonmartin@email.com': { name: 'Ashston Martin' },
+        'cadieinlow@email.com':    { name: 'Cadie Inlow' }
+      };
+      var PASSWORD    = 'Amtech-poc1';
+      var STORAGE_KEY = 'amtech-poc-auth';
+
+      // CX Agent (DevRev plugSDK) wiring.
+      // We use plugSDK's client-side `identity` flow (beta) instead of the
+      // server-side `auth-tokens.create` flow because the latter requires an
+      // Application Access Token (AAT) that must never be exposed to the
+      // browser. The value below is the plug's app_id (a reference to the
+      // plug_setting object — safe to expose), not an AAT.
+      var CX_APP_ID      = 'DvRvStPZG9uOmNvcmU6ZHZydi11cy0xOmRldm8vMW9FdU13R0lzczpwbHVnX3NldHRpbmcvMV9ffHxfXzIwMjYtMDQtMjkgMTg6MTI6NTUuMDE0Mzk2NTQ5ICswMDAwIFVUQw==xlxendsDvRv';
+      var CX_PLUG_SRC    = 'https://plug-platform.devrev.ai/static/plug.js';
+      var cxScriptLoaded = false;
+      var cxInitialized  = false;
+
+      var authBtn       = document.getElementById('auth-btn');
+      var greetingEl    = document.getElementById('auth-greeting');
+      var modal         = document.getElementById('auth-modal');
+      var modalContent  = modal ? modal.querySelector('.auth-modal') : null;
+      var closeBtn      = document.getElementById('auth-modal-close');
+      var form          = document.getElementById('auth-form');
+      var emailInput    = document.getElementById('auth-email');
+      var passwordInput = document.getElementById('auth-password');
+      var errorEl       = document.getElementById('auth-error');
+      var cxBtn         = document.getElementById('cx-agent-signin');
+      var lastFocus     = null;
+
+      if (!authBtn || !modal || !form) return;
+
+      function getSession() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return null;
+          var session = JSON.parse(raw);
+          if (session && session.email && USERS[session.email]) {
+            return session;
+          }
+          return null;
+        } catch (e) {
+          return null;
+        }
+      }
+
+      function applyAuthState(session) {
+        if (session) {
+          document.body.setAttribute('data-auth', 'true');
+          document.body.setAttribute('data-auth-email', session.email);
+          authBtn.textContent = 'Log out';
+          authBtn.classList.add('is-logged-in');
+          greetingEl.textContent = 'Hi, ' + session.name;
+          greetingEl.hidden = false;
+          if (cxBtn) cxBtn.textContent = 'Sign out of CX Agent';
+          loadCxAgentWidget(session.email);
+        } else {
+          document.body.removeAttribute('data-auth');
+          document.body.removeAttribute('data-auth-email');
+          authBtn.textContent = 'Log in';
+          authBtn.classList.remove('is-logged-in');
+          greetingEl.textContent = '';
+          greetingEl.hidden = true;
+          if (cxBtn) cxBtn.textContent = 'Sign in to CX Agent';
+          shutdownCxAgentWidget();
+        }
+      }
+
+      function logout() {
+        try { localStorage.removeItem(STORAGE_KEY); } catch (err) {}
+        applyAuthState(null);
+      }
+
+      // Loads (once) and initializes the DevRev CX Agent widget for the
+      // signed-in user using the client-side `identity` flow. Safe to call
+      // multiple times — the guard prevents duplicate inits. Errors reset the
+      // guards so a retry can succeed.
+      function loadCxAgentWidget(userEmail) {
+        if (cxInitialized) return;
+        cxInitialized = true;
+
+        var user = USERS[userEmail] || { name: userEmail };
+
+        function initPlug() {
+          if (!window.plugSDK || typeof window.plugSDK.init !== 'function') {
+            console.error('[CX Agent] plugSDK is not available.');
+            cxInitialized = false;
+            return;
+          }
+          // If a previous Plug instance exists (e.g. user logged out then in
+          // again as someone else without a page reload), tear it down first.
+          if (window.plugSDK.isPlugInitialized) {
+            try { window.plugSDK.shutdown(); } catch (e) {}
+          }
+          try {
+            // Client-side `identity` mode only supports user_ref + user_traits.
+            // account_ref / account_traits in this object cause the SDK's
+            // /internal/rev-users.identify call to return HTTP 400 — those
+            // belong to the server-side session_token flow, not this one.
+            window.plugSDK.init({
+              app_id: CX_APP_ID,
+              identity: {
+                user_ref: userEmail,
+                user_traits: {
+                  email: userEmail,
+                  display_name: user.name
+                }
+              }
+            });
+          } catch (err) {
+            console.error('[CX Agent] plugSDK.init threw:', err);
+            cxInitialized = false;
+          }
+        }
+
+        if (window.plugSDK && typeof window.plugSDK.init === 'function') {
+          // Script was loaded earlier in this page session — re-init only.
+          initPlug();
+          return;
+        }
+
+        if (cxScriptLoaded) return;
+        cxScriptLoaded = true;
+        var script = document.createElement('script');
+        script.src = CX_PLUG_SRC;
+        script.type = 'text/javascript';
+        script.onload = initPlug;
+        script.onerror = function() {
+          console.error('[CX Agent] failed to load plug.js');
+          cxScriptLoaded = false;
+          cxInitialized = false;
+        };
+        document.head.appendChild(script);
+      }
+
+      // Best-effort shutdown so the widget hides on logout. The exact API
+      // varies between plugSDK versions, so try the common method names.
+      function shutdownCxAgentWidget() {
+        cxInitialized = false;
+        if (!window.plugSDK) return;
+        try {
+          if (typeof window.plugSDK.shutdown === 'function') {
+            window.plugSDK.shutdown();
+          } else if (typeof window.plugSDK.unmount === 'function') {
+            window.plugSDK.unmount();
+          } else if (typeof window.plugSDK.destroy === 'function') {
+            window.plugSDK.destroy();
+          }
+        } catch (e) {
+          // Ignore — the page-load gate (`cxInitialized`) is what matters
+          // for not double-initing on the next sign-in.
+        }
+      }
+
+      function showError(msg) {
+        errorEl.textContent = msg;
+        errorEl.hidden = false;
+      }
+
+      function clearError() {
+        errorEl.textContent = '';
+        errorEl.hidden = true;
+      }
+
+      function openModal() {
+        clearError();
+        form.reset();
+        lastFocus = document.activeElement;
+        modal.hidden = false;
+        document.body.style.overflow = 'hidden';
+        setTimeout(function() {
+          if (emailInput) emailInput.focus();
+        }, 50);
+      }
+
+      function closeModal() {
+        modal.hidden = true;
+        document.body.style.overflow = '';
+        if (lastFocus && typeof lastFocus.focus === 'function') {
+          lastFocus.focus();
+        } else {
+          authBtn.focus();
+        }
+      }
+
+      function handleSubmit(e) {
+        e.preventDefault();
+        var email = (emailInput.value || '').trim().toLowerCase();
+        var password = passwordInput.value || '';
+        var user = USERS[email];
+
+        if (user && password === PASSWORD) {
+          var session = { email: email, name: user.name, ts: Date.now() };
+          try {
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+          } catch (err) {
+            // Storage might be unavailable in private mode; still apply state for this session.
+          }
+          applyAuthState(session);
+          closeModal();
+        } else {
+          showError('Invalid email or password.');
+          passwordInput.value = '';
+          passwordInput.focus();
+        }
+      }
+
+      authBtn.addEventListener('click', function() {
+        if (document.body.getAttribute('data-auth') === 'true') {
+          logout();
+        } else {
+          openModal();
+        }
+      });
+
+      if (cxBtn) {
+        cxBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+          if (document.body.getAttribute('data-auth') === 'true') {
+            logout();
+          } else {
+            openModal();
+          }
+        });
+      }
+
+      closeBtn.addEventListener('click', closeModal);
+
+      modal.addEventListener('click', function(e) {
+        // Close only when the click lands on the backdrop, not on the modal card
+        if (e.target === modal) closeModal();
+      });
+
+      document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && !modal.hidden) closeModal();
+      });
+
+      form.addEventListener('submit', handleSubmit);
+
+      applyAuthState(getSession());
     })();
     </script>
 
