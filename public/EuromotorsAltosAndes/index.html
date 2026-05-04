@@ -415,7 +415,6 @@
         .hero-subtitle {
             font-size: 1.1rem;
             color: var(--text-body);
-            max-width: 600px;
             font-weight: 400;
             line-height: 1.7;
         }
@@ -1340,13 +1339,10 @@
     <section class="hero">
         <div class="container">
             <div class="hero-content">
-                <div class="badge">Prueba de Concepto</div>
-                <h1>
-                    <span class="highlight-word">Euromotors Altos Andes</span><br>
-                    Prueba de Concepto
-                </h1>
+                <div class="badge">PRUEBA DE CONCEPTO · ALTOS ANDES</div>
+                <h1>Computer para Ventas</h1>
                 <p class="hero-subtitle">
-                    DevRev × Euromotors Altos Andes — Computer para Ventas. Una prueba de concepto de 3 semanas (30 de abril – 22 de mayo, 2026) para implementar un asistente de IA confiable, libre de alucinaciones, que atienda las consultas de clientes Jetour y capture leads de ventas con creación automática en Oracle CX.
+                    Un asistente de IA que responde con precisión y crea leads automáticamente en Oracle CX.
                 </p>
             </div>
         </div>
@@ -1362,7 +1358,7 @@
                     <div class="section-label">Alcance</div>
                     <h2>Definición del Problema y Alcance del Trabajo</h2>
                     <p class="section-subtitle">
-                        Por qué importa esta PoC y qué entregaremos en 2 semanas.
+                        Por qué importa esta PoC y qué entregaremos.
                     </p>
                 </div>
 
@@ -1814,6 +1810,19 @@
 
         var user = USERS[userEmail] || { name: userEmail };
 
+        // The plugSDK client-side `identity` flow requires a `user_ref` that
+        // is NOT already bound to a "verified" Rev User in the DevRev
+        // workspace. If the workspace already has a Rev User created via a
+        // server-side `session_token` flow / SSO with the same email, using
+        // the raw email as `user_ref` makes /internal/rev-users.identify
+        // return HTTP 409 ("input external ref is already associated with
+        // verified user."). plugSDK then aborts initialization and never
+        // injects the launcher iframe — the chatbot disappears silently.
+        // Namespacing the ref with a PoC-specific prefix sidesteps the
+        // collision; the real email still flows through user_traits so the
+        // agent sees the correct contact.
+        var userRef = 'altosandes-poc-' + userEmail.toLowerCase();
+
         function initPlug() {
           if (!window.plugSDK || typeof window.plugSDK.init !== 'function') {
             console.error('[CX Agent] plugSDK is not available.');
@@ -1833,7 +1842,7 @@
             window.plugSDK.init({
               app_id: CX_APP_ID,
               identity: {
-                user_ref: userEmail,
+                user_ref: userRef,
                 user_traits: {
                   email: userEmail,
                   display_name: user.name
