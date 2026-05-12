@@ -1736,8 +1736,11 @@
         'jordanharris@email.com':  { name: 'Jordan Harris' },
         'carolsmith@email.com':    { name: 'Carol Smith' },
         'ashstonmartin@email.com': { name: 'Ashston Martin' },
-        'cadieinlow@email.com':    { name: 'Cadie Inlow' }
+        'cadieinlow@email.com':    { name: 'Cadie Inlow' },
+        'ila@amtech.com':          { name: 'Ila', password: 'Amtech123' }
       };
+      // Default password applied to any user that does NOT define its own
+      // `password` override in the USERS map above.
       var PASSWORD    = 'Amtech-poc1';
       var STORAGE_KEY = 'amtech-poc-auth';
 
@@ -1925,7 +1928,7 @@
         var password = passwordInput.value || '';
         var user = USERS[email];
 
-        if (user && password === PASSWORD) {
+        if (user && password === (user.password || PASSWORD)) {
           var session = { email: email, name: user.name, ts: Date.now() };
           try {
             localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
