@@ -1820,6 +1820,21 @@
 
         var user = USERS[userEmail] || { name: userEmail };
 
+        // The plugSDK client-side `identity` flow requires a `user_ref` that
+        // is NOT already bound to a "verified" Rev User in the DevRev
+        // workspace. If the workspace already has a Rev User created via a
+        // server-side `session_token` flow / SSO / prior import with the
+        // same email, using the raw email as `user_ref` makes
+        // /internal/rev-users.identify return HTTP 409 ("input external ref
+        // is already associated with verified user."). plugSDK then aborts
+        // initialization and never injects the launcher iframe — the
+        // chatbot disappears silently after login. Namespacing the ref
+        // with a PoC-specific prefix sidesteps the collision; the real
+        // email still flows through user_traits so the agent sees the
+        // correct contact. (Same fix shipped earlier for the Altos Andes
+        // and Volkswagen subsites.)
+        var userRef = 'amtech-poc-' + userEmail.toLowerCase();
+
         function initPlug() {
           if (!window.plugSDK || typeof window.plugSDK.init !== 'function') {
             console.error('[CX Agent] plugSDK is not available.');
@@ -1839,7 +1854,7 @@
             window.plugSDK.init({
               app_id: CX_APP_ID,
               identity: {
-                user_ref: userEmail,
+                user_ref: userRef,
                 user_traits: {
                   email: userEmail,
                   display_name: user.name
