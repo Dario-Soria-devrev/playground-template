@@ -10,9 +10,17 @@ For repo orientation and the critical pitfalls list, read [`CLAUDE.md`](../CLAUD
 
 The single most important step on every new project: **verify the DevRev MCP credentials point to the right customer workspace.**
 
-1. Check whether a `user-devrev_<Customer>` MCP server already exists (see `/Users/dariosoria/.cursor/projects/.../mcps/`).
-2. If it does not, or if it points to a previous customer's tenant, **stop and ask the user to update it.** Reference: "Necesito actualizar las credenciales del MCP de DevRev para apuntar al workspace de `<Customer>`. ¿Lo confirmás antes de seguir?"
-3. Once the user confirms, run `get_current_user` against `user-devrev_<Customer>` and verify the returned `devoid` matches the workspace that will own the new plug `app_id`. Print the verification result in the chat before continuing.
+There is a single MCP server named `user-devrev`. The user re-points its credentials manually when switching between customer workspaces (an older scheme had per-customer `user-devrev_<Customer>` servers but it has been retired).
+
+1. Call `get_current_user` against the `user-devrev` MCP.
+2. Inspect the returned `devoid` and compare against the workspace that will own the customer's plug `app_id`:
+   - Amtech → `1oEuMwGIss`
+   - Altos Andes → `1seWEKR7EE`
+   - Volkswagen → `1WFFmxNvEE`
+   - Phenom → `1kDBFjrvrr`
+   - New customer → decode the middle of their plug `app_id` from base64 to read the `devo/<id>`.
+3. If the `devoid` does NOT match the customer's workspace, **stop and ask the user to update the MCP credentials.** Reference: *"Necesito que actualices las credenciales del MCP `user-devrev` para apuntar al workspace de `<Customer>` (`devo/<id>`). Cuando lo hagas, confirmame y sigo."*
+4. Once the user confirms, re-run `get_current_user` and print the verification result in the chat before continuing.
 
 Why this matters: every prior verification step we do (Rev User IDs, plug-settings, tickets, conversations) goes through this MCP. Wrong tenant = misleading data and wasted turns. The user explicitly asked to be reminded of this on every new project.
 
@@ -71,6 +79,7 @@ cp public/<source>/index.html public/<Customer>/index.html
 - [ ] `CX_APP_ID = '<plug_setting_id>'`
 - [ ] `userRef` prefix: `'<customer-slug>-poc-' + userEmail.toLowerCase()`
 - [ ] `USERS` map — lowercase email keys, `{ name }` per entry; add `password: '...'` only for users with a non-default password
+- [ ] Verify `function logout()` ends with `location.reload()` — never `applyAuthState(null)` alone (see Known plug-SDK quirks below). All templates carry the fix as of commit `b917c26`, but if cloning from an older snapshot or hand-writing the IIFE, double-check.
 
 ### Tabs
 
@@ -184,7 +193,34 @@ Reference implementation already used: see the agent transcript "Altos Andes Rev
 
 ---
 
-## 9. Anti-patterns — do not do these
+## 9. Known DevRev plug behaviour (kept for posterity)
+
+- Each unique `user_ref` creates one Rev User on first `identify`. Subsequent identify calls return the same `REVU-id`.
+- `rev-users.identify` is idempotent get-or-create — calling it once "creates" the user. Auditing the allowlist by running identify for every email will lazily materialise any missing Rev Users in the workspace. Useful for pre-creating customer contacts before kick-off.
+- A "verified Rev User" (created via server-side `session_token` flow or SSO with the same email) cannot be re-identified from a client without throwing 409. The customer-prefix namespacing on `user_ref` avoids this completely.
+- Conversations in DevRev are attributed to whichever Rev User was identified when the conversation started. Many conversations attributed to a single `REVU-id` usually means that user (often the test/dev user) is the dominant tester, not that the identify flow is broken — unless the dual-session bug below is active.
+
+### Dual plug-session bug on runtime identity switch
+
+**`plugSDK.shutdown()` does NOT remove the iframes it injects**, nor invalidate the active DevRev session token. The launcher and widget iframes keep running in the DOM with the previous user's identity, and the previous iframe periodically re-fires `rev-users.identify` with the *old* `user_ref` (refresh / re-auth). Calling `plugSDK.init({newIdentity})` after `shutdown` adds a *second* set of iframes alongside the old ones rather than replacing them. End result: two plug sessions live in parallel, conversations attributed to the wrong user, observable in DevRev workflows as "every chat shows the first user who ever opened the chatbot".
+
+**The only reliable cure is to `location.reload()` on logout** — the next page load with no session in `localStorage` produces a fresh page with no plug widget at all, and the subsequent login boots a single, fresh plug instance with the correct identity. This is encoded in every subsite's `function logout()` (commit `b917c26`) and **must** be preserved when scaffolding a new subsite or editing the auth IIFE.
+
+Reproduction trace (production, May 19 2026, before the fix):
+
+1. Login as Dario → `rev-users.identify` body has `user_ref=altosandes-poc-dario.soria@devrev.ai`, returns `REVU-50PRAlnJ`. Two plug iframes in DOM.
+2. Logout. `plugSDK.shutdown()` runs, `plugInited=false`, but the two iframes are still in the DOM.
+3. Login as Mariana. Two new iframes injected — DOM now has FOUR iframes total.
+4. Two `rev-users.identify` calls fire within seconds:
+   - `user_ref=altosandes-poc-dario.soria@devrev.ai` (from the *old* Dario iframe doing a refresh) → REVU-50PRAlnJ
+   - `user_ref=altosandes-poc-mrodriguez@euroconnect.com.pe` (from the new Mariana iframe) → REVU-1AAXiCvzh
+5. User's chat clicks routed to the older iframe → all tickets attributed to Dario.
+
+After the fix: logout → `location.reload()` → `window.plugSDK === undefined`, 0 iframes, `localStorage` empty. Login as Mariana → one identify with Mariana's `user_ref`, one set of iframes. Clean.
+
+---
+
+## 10. Anti-patterns — do not do these
 
 - Do not touch existing subsites when adding a new one. They are all live and being shared with active customers.
 - Do not commit secrets (passwords are fine — they're shared and intentionally exposed in client JS for the demo; but do not commit anything that would actually grant DevRev API access, like service tokens or AATs).
@@ -192,3 +228,4 @@ Reference implementation already used: see the agent transcript "Altos Andes Rev
 - Do not rename or delete an existing subsite without explicit confirmation from the user — the URL is in the wild.
 - Do not run `vercel --prod --yes` from `public/`. See pitfall #4.
 - Do not push to `origin`. Always `pocwebsite main`.
+- Do not "optimise" `function logout()` to skip the `location.reload()` — see section 9. The runtime identity-switch path in plugSDK is broken; the reload is the cure, not a nice-to-have.
