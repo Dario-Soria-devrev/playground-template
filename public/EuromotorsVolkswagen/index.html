@@ -1835,7 +1835,19 @@
 
       function logout() {
         try { localStorage.removeItem(STORAGE_KEY); } catch (err) {}
-        applyAuthState(null);
+        // Hard-reload instead of in-place teardown. plugSDK.shutdown()
+        // leaves the launcher / widget iframes in the DOM with a still-
+        // valid session token, and a subsequent plugSDK.init({newUser})
+        // creates a SECOND set of iframes alongside them — so logout +
+        // re-login as a different user ends up with two live plug
+        // sessions in parallel. DevRev's identify API is then called
+        // by both iframes (the old one with the previous user_ref, the
+        // new one with the current user_ref), and conversations / new
+        // tickets get attributed to whichever iframe handles the
+        // user's click — typically the older one. A hard reload is
+        // the only reliable way to guarantee plug is fully torn down
+        // before the next login.
+        location.reload();
       }
 
       // Loads (once) and initializes the DevRev CX Agent widget for the
