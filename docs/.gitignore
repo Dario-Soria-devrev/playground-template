@@ -1,0 +1,5 @@
+# Customer PoC documents are confidential — keep them local only.
+# Markdown docs (playbooks, runbooks) are tracked.
+*
+!.gitignore
+!*.md
