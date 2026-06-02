@@ -1002,6 +1002,480 @@
             text-align: center;
         }
 
+        /* ── Resultados ── */
+        #resultados {
+            background: linear-gradient(180deg, #F4EFFF 0%, #FBF8FF 60%, var(--white) 100%);
+        }
+
+        .results-intro {
+            max-width: 720px;
+            margin: 0 auto 36px;
+            text-align: center;
+            color: var(--text-body);
+            font-size: 0.98rem;
+            line-height: 1.65;
+        }
+
+        .results-kpis {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
+            max-width: 1080px;
+            margin: 0 auto 36px;
+        }
+
+        .kpi-card {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 18px;
+            padding: 22px 20px;
+            box-shadow: var(--shadow-card);
+            text-align: left;
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .kpi-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--indigo-title), var(--indigo-label));
+            opacity: 0.85;
+        }
+
+        .kpi-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 32px rgba(55, 48, 163, 0.14);
+        }
+
+        .kpi-card-label {
+            font-size: 0.66rem;
+            font-weight: 700;
+            color: var(--indigo-label);
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .kpi-card-value {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 2.4rem;
+            font-weight: 800;
+            line-height: 1;
+            color: var(--text-dark);
+            letter-spacing: -0.03em;
+            margin-bottom: 6px;
+        }
+
+        .kpi-card-caption {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1.4fr 1fr;
+            gap: 20px;
+            max-width: 1080px;
+            margin: 0 auto 24px;
+            align-items: stretch;
+        }
+
+        .results-card {
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 20px;
+            padding: 28px;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .results-card-label {
+            font-size: 0.66rem;
+            font-weight: 700;
+            color: var(--indigo-label);
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .results-card-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 800;
+            color: var(--indigo-title);
+            margin-bottom: 6px;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
+        .results-card-subtitle {
+            color: var(--text-muted);
+            font-size: 0.86rem;
+            line-height: 1.55;
+            margin-bottom: 22px;
+        }
+
+        /* Bar chart — tester blocks with dual bars (conv + msg) */
+        .results-chart {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .results-tester {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .results-tester-name {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
+        }
+
+        .results-bar-row {
+            display: grid;
+            grid-template-columns: 44px 1fr 56px;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .results-bar-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: var(--indigo-label);
+            letter-spacing: 0.06em;
+        }
+
+        .results-bar-track {
+            height: 16px;
+            background: rgba(55, 48, 163, 0.07);
+            border-radius: 6px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .results-bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            width: 0;
+            min-width: 3px;
+            transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .results-bar-fill--conv {
+            background: linear-gradient(90deg, #5B21B6 0%, #3730A3 100%);
+        }
+
+        .results-bar-fill--msg {
+            background: linear-gradient(90deg, #A78BFA 0%, #7C3AED 100%);
+        }
+
+        #resultados.active .results-bar-fill {
+            width: var(--pct);
+        }
+
+        .results-bar-value {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.86rem;
+            font-weight: 700;
+            color: var(--indigo-title);
+            text-align: right;
+            white-space: nowrap;
+        }
+
+        .results-bar-value-suffix {
+            font-size: 0.62rem;
+            font-weight: 600;
+            color: var(--text-light);
+            margin-left: 2px;
+            letter-spacing: 0.04em;
+        }
+
+        .results-chart-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+
+        .results-chart-legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .results-chart-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .results-chart-legend-dot--conv {
+            background: linear-gradient(90deg, #5B21B6 0%, #3730A3 100%);
+        }
+
+        .results-chart-legend-dot--msg {
+            background: linear-gradient(90deg, #A78BFA 0%, #7C3AED 100%);
+        }
+
+        .results-chart-footer {
+            margin-top: 22px;
+            padding-top: 18px;
+            border-top: 1px solid var(--border-light);
+            font-size: 0.84rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+        }
+
+        .results-chart-footer strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* Lead conversion / donut card */
+        .results-donut-wrapper {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            flex: 1;
+        }
+
+        .results-donut {
+            position: relative;
+            width: 180px;
+            height: 180px;
+        }
+
+        .results-donut svg {
+            width: 100%;
+            height: 100%;
+            transform: rotate(-90deg);
+        }
+
+        .results-donut-track {
+            stroke: rgba(55, 48, 163, 0.1);
+        }
+
+        .results-donut-fill {
+            stroke: url(#donutGradient);
+            stroke-linecap: round;
+            stroke-dasharray: 295.31;
+            stroke-dashoffset: 295.31;
+            transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        #resultados.active .results-donut-fill {
+            stroke-dashoffset: var(--dashoffset);
+        }
+
+        .results-donut-center {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .results-donut-pct {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+
+        .results-donut-pct-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: var(--indigo-label);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 6px;
+        }
+
+        .results-donut-detail {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            line-height: 1.55;
+            max-width: 220px;
+        }
+
+        .results-donut-detail strong {
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* Versions timeline */
+        .results-versions {
+            max-width: 1080px;
+            margin: 0 auto 28px;
+        }
+
+        .versions-track {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 14px;
+            margin-top: 4px;
+        }
+
+        .version-pill {
+            background: var(--lavender);
+            border-radius: 14px;
+            padding: 18px 18px;
+            position: relative;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+        }
+
+        .version-pill:hover {
+            background: var(--lavender-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(55, 48, 163, 0.12);
+        }
+
+        .version-pill-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.74rem;
+            font-weight: 700;
+            color: var(--indigo-label);
+            letter-spacing: 0.05em;
+            margin-bottom: 6px;
+        }
+
+        .version-pill-title {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--indigo-title);
+            margin-bottom: 6px;
+            line-height: 1.25;
+        }
+
+        .version-pill-text {
+            font-size: 0.82rem;
+            color: var(--text-body);
+            line-height: 1.5;
+        }
+
+        /* Insight callout */
+        .results-insight {
+            max-width: 1080px;
+            margin: 0 auto;
+            background: var(--text-dark);
+            color: var(--white);
+            border-radius: 20px;
+            padding: 28px 32px;
+            display: grid;
+            grid-template-columns: auto 1fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .results-insight-icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 12px;
+            background: var(--yellow-bright);
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-weight: 800;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+        }
+
+        .results-insight h3 {
+            font-family: 'Bricolage Grotesque', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            letter-spacing: -0.015em;
+            color: var(--yellow-bright);
+        }
+
+        .results-insight p {
+            color: rgba(255, 255, 255, 0.82);
+            font-size: 0.92rem;
+            line-height: 1.65;
+        }
+
+        .results-insight p + p {
+            margin-top: 8px;
+        }
+
+        @media (max-width: 968px) {
+            .results-kpis {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .versions-track {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 640px) {
+            .results-kpis {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+
+            .kpi-card {
+                padding: 20px 18px;
+            }
+
+            .kpi-card-value {
+                font-size: 2.1rem;
+            }
+
+            .results-card {
+                padding: 24px 22px;
+            }
+
+            .results-bar-row {
+                grid-template-columns: 110px 1fr 32px;
+                gap: 10px;
+            }
+
+            .results-bar-name {
+                font-size: 0.8rem;
+            }
+
+            .versions-track {
+                grid-template-columns: 1fr;
+            }
+
+            .results-insight {
+                padding: 24px 22px;
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* ── CTA Section ── */
         .cta-section {
             text-align: center;
@@ -1327,6 +1801,7 @@
                 <button type="button" class="nav-tab" role="tab" data-tab="cx-agent" aria-controls="cx-agent" aria-selected="false">CX Agent</button>
                 <button type="button" class="nav-tab" role="tab" data-tab="criteria" aria-controls="criteria" aria-selected="false">Criterios</button>
                 <button type="button" class="nav-tab" role="tab" data-tab="timeline" aria-controls="timeline" aria-selected="false">Cronograma</button>
+                <button type="button" class="nav-tab" role="tab" data-tab="resultados" aria-controls="resultados" aria-selected="false">Resultados</button>
             </div>
             <div class="nav-auth">
                 <span class="nav-auth-greeting" id="auth-greeting" hidden></span>
@@ -1570,6 +2045,243 @@
                             <strong>Cierre y evaluación</strong> — iteración sobre el feedback de la semana anterior. Tercera sesión de feedback. Presentación de resultados contra los criterios de éxito y decisión formal de go/no-go.
                         </div>
                         <div class="timeline-owner">DevRev + Euromotors</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resultados panel -->
+        <section class="section tab-panel" id="resultados" role="tabpanel" aria-labelledby="resultados">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Resultados</div>
+                    <h2>Resultados Medidos de la PoC</h2>
+                    <p class="section-subtitle">
+                        Una mirada cuantitativa al trabajo realizado durante las tres semanas de prueba: lo que se ingestó, lo que se iteró y lo que el agente generó en Oracle CX.
+                    </p>
+                </div>
+
+                <p class="results-intro">
+                    Durante el período de testeo, el equipo de Altos Andes ejecutó <strong>35 conversaciones</strong> con el agente de DevRev intercambiando <strong>262 mensajes</strong>. A partir de ese trabajo conjunto, validamos la base de conocimiento, iteramos el comportamiento del agente cuatro veces y medimos el flujo de creación de leads end-to-end hacia Oracle CX.
+                </p>
+
+                <div class="results-kpis">
+                    <div class="kpi-card">
+                        <div class="kpi-card-label">Base de conocimiento</div>
+                        <div class="kpi-card-value">13</div>
+                        <div class="kpi-card-caption">Artículos ingestados sobre modelos Jetour</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-card-label">Iteración del agente</div>
+                        <div class="kpi-card-value">4</div>
+                        <div class="kpi-card-caption">Versiones publicadas durante la PoC</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-card-label">Testeo del equipo</div>
+                        <div class="kpi-card-value">35</div>
+                        <div class="kpi-card-caption">Conversaciones ejecutadas por 5 testers</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-card-label">Profundidad del testeo</div>
+                        <div class="kpi-card-value">262</div>
+                        <div class="kpi-card-caption">Mensajes enviados por el equipo</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-card-label">Salida en Oracle CX</div>
+                        <div class="kpi-card-value">33</div>
+                        <div class="kpi-card-caption">Leads creados automáticamente por el agente</div>
+                    </div>
+                </div>
+
+                <div class="results-grid">
+                    <div class="results-card">
+                        <div class="results-card-label">Distribución del testeo</div>
+                        <h3 class="results-card-title">Conversaciones y mensajes por tester</h3>
+                        <p class="results-card-subtitle">
+                            Cada miembro del equipo de Altos Andes ejecutó conversaciones contra el agente y midió la profundidad de cada flujo a través de los mensajes intercambiados.
+                        </p>
+
+                        <div class="results-chart-legend">
+                            <span class="results-chart-legend-item">
+                                <span class="results-chart-legend-dot results-chart-legend-dot--conv"></span>
+                                Conversaciones
+                            </span>
+                            <span class="results-chart-legend-item">
+                                <span class="results-chart-legend-dot results-chart-legend-dot--msg"></span>
+                                Mensajes enviados
+                            </span>
+                        </div>
+
+                        <div class="results-chart" role="img" aria-label="Conversaciones y mensajes por tester">
+                            <div class="results-tester">
+                                <div class="results-tester-name">Sasha Jochamowitz</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">CONV</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--conv" style="--pct: 100%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">19</div>
+                                </div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">MSG</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--msg" style="--pct: 100%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">178</div>
+                                </div>
+                            </div>
+
+                            <div class="results-tester">
+                                <div class="results-tester-name">Mariana Rodriguez</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">CONV</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--conv" style="--pct: 31.6%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">6</div>
+                                </div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">MSG</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--msg" style="--pct: 24.7%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">44</div>
+                                </div>
+                            </div>
+
+                            <div class="results-tester">
+                                <div class="results-tester-name">Karen Salazar</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">CONV</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--conv" style="--pct: 15.8%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">3</div>
+                                </div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">MSG</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--msg" style="--pct: 15.2%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">27</div>
+                                </div>
+                            </div>
+
+                            <div class="results-tester">
+                                <div class="results-tester-name">Carlos Ballesteros</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">CONV</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--conv" style="--pct: 31.6%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">6</div>
+                                </div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">MSG</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--msg" style="--pct: 6.7%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">12</div>
+                                </div>
+                            </div>
+
+                            <div class="results-tester">
+                                <div class="results-tester-name">Mayra Gutierrez</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">CONV</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--conv" style="--pct: 5.3%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">1</div>
+                                </div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">MSG</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--msg" style="--pct: 0.6%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">1</div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="results-chart-footer">
+                            <strong>35 conversaciones · 262 mensajes</strong> · Sasha lideró tanto en cobertura (54% de las conversaciones) como en profundidad (68% de los mensajes). Karen aportó conversaciones cortas pero densas (~9 mensajes por flujo), útiles para validar el manejo de objeciones.
+                        </div>
+                    </div>
+
+                    <div class="results-card">
+                        <div class="results-card-label">Captura de leads</div>
+                        <h3 class="results-card-title">Conversaciones que generaron lead</h3>
+                        <p class="results-card-subtitle">
+                            Proporción de conversaciones de prueba que terminaron creando un lead en Oracle CX a través de la integración configurada.
+                        </p>
+
+                        <div class="results-donut-wrapper">
+                            <div class="results-donut" style="--dashoffset: 16.83;">
+                                <svg viewBox="0 0 120 120" aria-hidden="true">
+                                    <defs>
+                                        <linearGradient id="donutGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                                            <stop offset="0%" stop-color="#5B21B6"/>
+                                            <stop offset="100%" stop-color="#3730A3"/>
+                                        </linearGradient>
+                                    </defs>
+                                    <circle class="results-donut-track" cx="60" cy="60" r="47" fill="none" stroke-width="13"/>
+                                    <circle class="results-donut-fill" cx="60" cy="60" r="47" fill="none" stroke-width="13"/>
+                                </svg>
+                                <div class="results-donut-center">
+                                    <div class="results-donut-pct">94%</div>
+                                    <div class="results-donut-pct-label">captura de lead</div>
+                                </div>
+                            </div>
+                            <p class="results-donut-detail">
+                                <strong>33 leads</strong> generados en Oracle CX a partir de <strong>35 conversaciones</strong> probadas por el equipo.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-versions">
+                    <div class="results-card" style="background: transparent; border: none; box-shadow: none; padding: 0;">
+                        <div class="results-card-label">Iteración continua</div>
+                        <h3 class="results-card-title">4 versiones del agente publicadas durante la PoC</h3>
+                        <p class="results-card-subtitle">
+                            Cada versión incorporó feedback directo del equipo de Altos Andes para mejorar precisión, tono y manejo de objeciones.
+                        </p>
+                    </div>
+                    <div class="versions-track">
+                        <div class="version-pill">
+                            <div class="version-pill-tag">v1 · Baseline</div>
+                            <div class="version-pill-title">Carga inicial</div>
+                            <div class="version-pill-text">Agente con la base de conocimiento y el flujo de descubrimiento básico.</div>
+                        </div>
+                        <div class="version-pill">
+                            <div class="version-pill-tag">v2 · Feedback #1</div>
+                            <div class="version-pill-title">Tono y precisión</div>
+                            <div class="version-pill-text">Ajustes en tono comercial y precisión en respuestas de modelos Jetour.</div>
+                        </div>
+                        <div class="version-pill">
+                            <div class="version-pill-tag">v3 · Oracle CX</div>
+                            <div class="version-pill-title">Creación de leads</div>
+                            <div class="version-pill-text">Activación de la integración y validación del flujo end-to-end con Oracle CX.</div>
+                        </div>
+                        <div class="version-pill">
+                            <div class="version-pill-tag">v4 · Feedback #2</div>
+                            <div class="version-pill-title">Calificación afinada</div>
+                            <div class="version-pill-text">Refinamiento de los criterios de calificación y manejo de casos borde.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="results-insight">
+                    <div class="results-insight-icon">i</div>
+                    <div>
+                        <h3>Lo que muestran los datos</h3>
+                        <p>
+                            En tres semanas, DevRev pasó de cero a un agente productivo: 13 documentos de Jetour ingestados, cuatro ciclos de iteración rápida con feedback real del negocio, y un flujo de captura de leads que llega hasta Oracle CX sin intervención humana.
+                        </p>
+                        <p>
+                            El testeo no fue superficial: 5 usuarios distintos sostuvieron <strong>262 mensajes</strong> a lo largo de 35 conversaciones — un promedio de ~7,5 mensajes por flujo, consistente con el ida-y-vuelta de un descubrimiento real. El 94% de esas conversaciones terminó creando un lead en Oracle, validando la viabilidad técnica de los dos casos de uso del alcance y dejando una base medible para la decisión de go/no-go.
+                        </p>
                     </div>
                 </div>
             </div>
