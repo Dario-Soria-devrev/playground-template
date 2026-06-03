@@ -1034,8 +1034,8 @@
 
         .results-kpis {
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 14px;
             max-width: 1080px;
             margin: 0 auto 36px;
         }
@@ -1044,7 +1044,7 @@
             background: var(--white);
             border: 1px solid var(--border-light);
             border-radius: 18px;
-            padding: 24px 22px;
+            padding: 22px 20px;
             box-shadow: var(--shadow-card);
             text-align: left;
             position: relative;
@@ -1079,7 +1079,7 @@
 
         .kpi-card-value {
             font-family: 'Bricolage Grotesque', sans-serif;
-            font-size: 2.6rem;
+            font-size: 2.4rem;
             font-weight: 800;
             line-height: 1;
             color: var(--text-dark);
@@ -1138,50 +1138,63 @@
             margin-bottom: 22px;
         }
 
-        /* Single-bar chart for VW (no messages data) */
+        /* Bar chart — tester blocks with dual bars (conv + msg) */
         .results-chart {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 18px;
+        }
+
+        .results-tester {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .results-tester-name {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin-bottom: 4px;
         }
 
         .results-bar-row {
             display: grid;
-            grid-template-columns: 170px 1fr 40px;
+            grid-template-columns: 44px 1fr 56px;
             align-items: center;
-            gap: 14px;
+            gap: 12px;
         }
 
-        .results-bar-name {
-            font-size: 0.85rem;
-            font-weight: 600;
-            color: var(--text-dark);
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        .results-bar-name--muted {
-            color: var(--text-muted);
-            font-style: italic;
-            font-weight: 500;
+        .results-bar-tag {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem;
+            font-weight: 700;
+            color: var(--indigo-label);
+            letter-spacing: 0.06em;
         }
 
         .results-bar-track {
-            height: 26px;
+            height: 16px;
             background: rgba(55, 48, 163, 0.07);
-            border-radius: 8px;
+            border-radius: 6px;
             overflow: hidden;
             position: relative;
         }
 
         .results-bar-fill {
             height: 100%;
-            background: linear-gradient(90deg, #5B21B6 0%, #3730A3 100%);
-            border-radius: 8px;
+            border-radius: 6px;
             width: 0;
             min-width: 3px;
             transition: width 0.9s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .results-bar-fill--conv {
+            background: linear-gradient(90deg, #5B21B6 0%, #3730A3 100%);
+        }
+
+        .results-bar-fill--msg {
+            background: linear-gradient(90deg, #A78BFA 0%, #7C3AED 100%);
         }
 
         #resultados.active .results-bar-fill {
@@ -1190,10 +1203,42 @@
 
         .results-bar-value {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.92rem;
+            font-size: 0.86rem;
             font-weight: 700;
             color: var(--indigo-title);
             text-align: right;
+            white-space: nowrap;
+        }
+
+        .results-chart-legend {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            margin-bottom: 14px;
+        }
+
+        .results-chart-legend-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.78rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .results-chart-legend-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 3px;
+            display: inline-block;
+        }
+
+        .results-chart-legend-dot--conv {
+            background: linear-gradient(90deg, #5B21B6 0%, #3730A3 100%);
+        }
+
+        .results-chart-legend-dot--msg {
+            background: linear-gradient(90deg, #A78BFA 0%, #7C3AED 100%);
         }
 
         .results-chart-footer {
@@ -2042,7 +2087,7 @@
                 </div>
 
                 <p class="results-intro">
-                    Durante el período de testeo, el equipo de Euromotors Volkswagen junto con pruebas internas ejecutaron <strong>29 conversaciones</strong> con el agente de DevRev. A partir de ese trabajo conjunto, validamos la base de conocimiento de modelos Volkswagen, iteramos el comportamiento del agente cuatro veces y medimos el flujo de creación de leads end-to-end en DevRev.
+                    Durante el período de testeo, el equipo de Euromotors Volkswagen ejecutó <strong>15 conversaciones</strong> con el agente de DevRev intercambiando <strong>334 mensajes</strong>. A partir de ese trabajo conjunto, validamos la base de conocimiento de modelos Volkswagen, iteramos el comportamiento del agente cuatro veces y medimos el flujo de creación de leads end-to-end en DevRev.
                 </p>
 
                 <div class="results-kpis">
@@ -2058,12 +2103,17 @@
                     </div>
                     <div class="kpi-card">
                         <div class="kpi-card-label">Testeo del equipo</div>
-                        <div class="kpi-card-value">29</div>
-                        <div class="kpi-card-caption">Conversaciones ejecutadas con el agente</div>
+                        <div class="kpi-card-value">15</div>
+                        <div class="kpi-card-caption">Conversaciones ejecutadas por 7 testers</div>
+                    </div>
+                    <div class="kpi-card">
+                        <div class="kpi-card-label">Profundidad del testeo</div>
+                        <div class="kpi-card-value">334</div>
+                        <div class="kpi-card-caption">Mensajes enviados por el equipo</div>
                     </div>
                     <div class="kpi-card">
                         <div class="kpi-card-label">Salida en DevRev</div>
-                        <div class="kpi-card-value">9</div>
+                        <div class="kpi-card-value">3</div>
                         <div class="kpi-card-caption">Leads creados automáticamente por el agente</div>
                     </div>
                 </div>
@@ -2071,58 +2121,152 @@
                 <div class="results-grid">
                     <div class="results-card">
                         <div class="results-card-label">Distribución del testeo</div>
-                        <h3 class="results-card-title">Conversaciones por tester</h3>
+                        <h3 class="results-card-title">Conversaciones y mensajes por tester</h3>
                         <p class="results-card-subtitle">
-                            Volumen de conversaciones ejecutadas contra el agente por cada miembro del equipo durante la fase de prueba.
+                            Cada miembro del equipo de Euromotors Volkswagen ejecutó conversaciones contra el agente y midió la profundidad de cada flujo a través de los mensajes intercambiados.
                         </p>
 
-                        <div class="results-chart" role="img" aria-label="Conversaciones por tester">
-                            <div class="results-bar-row">
-                                <div class="results-bar-name">Dario Soria · DevRev</div>
-                                <div class="results-bar-track">
-                                    <div class="results-bar-fill" style="--pct: 100%;"></div>
+                        <div class="results-chart-legend">
+                            <span class="results-chart-legend-item">
+                                <span class="results-chart-legend-dot results-chart-legend-dot--conv"></span>
+                                Conversaciones
+                            </span>
+                            <span class="results-chart-legend-item">
+                                <span class="results-chart-legend-dot results-chart-legend-dot--msg"></span>
+                                Mensajes enviados
+                            </span>
+                        </div>
+
+                        <div class="results-chart" role="img" aria-label="Conversaciones y mensajes por tester">
+                            <div class="results-tester">
+                                <div class="results-tester-name">Mariana Rodriguez</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">CONV</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--conv" style="--pct: 100%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">4</div>
                                 </div>
-                                <div class="results-bar-value">21</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">MSG</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--msg" style="--pct: 100%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">94</div>
+                                </div>
                             </div>
-                            <div class="results-bar-row">
-                                <div class="results-bar-name">Carlos Boñon</div>
-                                <div class="results-bar-track">
-                                    <div class="results-bar-fill" style="--pct: 9.5%;"></div>
+
+                            <div class="results-tester">
+                                <div class="results-tester-name">Nicolás Caballero</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">CONV</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--conv" style="--pct: 75%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">3</div>
                                 </div>
-                                <div class="results-bar-value">2</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">MSG</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--msg" style="--pct: 59.6%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">56</div>
+                                </div>
                             </div>
-                            <div class="results-bar-row">
-                                <div class="results-bar-name">Mariana Rodriguez</div>
-                                <div class="results-bar-track">
-                                    <div class="results-bar-fill" style="--pct: 9.5%;"></div>
+
+                            <div class="results-tester">
+                                <div class="results-tester-name">Sebastián Sarmiento</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">CONV</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--conv" style="--pct: 50%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">2</div>
                                 </div>
-                                <div class="results-bar-value">2</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">MSG</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--msg" style="--pct: 97.9%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">92</div>
+                                </div>
                             </div>
-                            <div class="results-bar-row">
-                                <div class="results-bar-name">Mayra Gutierrez</div>
-                                <div class="results-bar-track">
-                                    <div class="results-bar-fill" style="--pct: 9.5%;"></div>
+
+                            <div class="results-tester">
+                                <div class="results-tester-name">Mayra Gutierrez</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">CONV</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--conv" style="--pct: 50%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">2</div>
                                 </div>
-                                <div class="results-bar-value">2</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">MSG</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--msg" style="--pct: 46.8%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">44</div>
+                                </div>
                             </div>
-                            <div class="results-bar-row">
-                                <div class="results-bar-name">Lucero Medina</div>
-                                <div class="results-bar-track">
-                                    <div class="results-bar-fill" style="--pct: 4.8%;"></div>
+
+                            <div class="results-tester">
+                                <div class="results-tester-name">Carlos Boñon</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">CONV</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--conv" style="--pct: 50%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">2</div>
                                 </div>
-                                <div class="results-bar-value">1</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">MSG</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--msg" style="--pct: 13.8%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">13</div>
+                                </div>
                             </div>
-                            <div class="results-bar-row">
-                                <div class="results-bar-name">Sebastián Sarmiento</div>
-                                <div class="results-bar-track">
-                                    <div class="results-bar-fill" style="--pct: 4.8%;"></div>
+
+                            <div class="results-tester">
+                                <div class="results-tester-name">M. Caballero</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">CONV</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--conv" style="--pct: 25%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">1</div>
                                 </div>
-                                <div class="results-bar-value">1</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">MSG</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--msg" style="--pct: 31.9%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">30</div>
+                                </div>
+                            </div>
+
+                            <div class="results-tester">
+                                <div class="results-tester-name">Lucero Medina</div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">CONV</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--conv" style="--pct: 25%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">1</div>
+                                </div>
+                                <div class="results-bar-row">
+                                    <div class="results-bar-tag">MSG</div>
+                                    <div class="results-bar-track">
+                                        <div class="results-bar-fill results-bar-fill--msg" style="--pct: 5.3%;"></div>
+                                    </div>
+                                    <div class="results-bar-value">5</div>
+                                </div>
                             </div>
                         </div>
 
                         <div class="results-chart-footer">
-                            <strong>29 conversaciones en total</strong> · La mayor parte del volumen lo aportó el testing interno de DevRev (Dario, 21 conversaciones); los testers de Euromotors aportaron menor volumen pero con foco en flujos de calificación reales de clientes potenciales.
+                            <strong>15 conversaciones · 334 mensajes</strong> · Mariana lideró en cobertura (4 conversaciones, 94 mensajes). Sebastián destaca en profundidad: con sólo 2 conversaciones envió 92 mensajes (~46 por flujo), un patrón consistente con descubrimiento real y manejo de objeciones.
                         </div>
                     </div>
 
@@ -2134,7 +2278,7 @@
                         </p>
 
                         <div class="results-donut-wrapper">
-                            <div class="results-donut" style="--dashoffset: 203.66;">
+                            <div class="results-donut" style="--dashoffset: 236.25;">
                                 <svg viewBox="0 0 120 120" aria-hidden="true">
                                     <defs>
                                         <linearGradient id="donutGradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -2146,12 +2290,12 @@
                                     <circle class="results-donut-fill" cx="60" cy="60" r="47" fill="none" stroke-width="13"/>
                                 </svg>
                                 <div class="results-donut-center">
-                                    <div class="results-donut-pct">31%</div>
+                                    <div class="results-donut-pct">20%</div>
                                     <div class="results-donut-pct-label">captura de lead</div>
                                 </div>
                             </div>
                             <p class="results-donut-detail">
-                                <strong>9 leads</strong> generados en DevRev a partir de <strong>29 conversaciones</strong> probadas. El resto fueron consultas exploratorias sin intención de compra inmediata.
+                                <strong>3 leads</strong> generados en DevRev a partir de <strong>15 conversaciones</strong> probadas por el equipo. El resto fueron consultas exploratorias sin intención de compra inmediata.
                             </p>
                         </div>
                     </div>
@@ -2197,7 +2341,7 @@
                             En tres semanas, DevRev pasó de cero a un agente productivo: 15 documentos Volkswagen ingestados (fichas técnicas de Polo, Tera, Nivus, T‑Cross, Taos, Tiguan, Amarok, Teramont, Jetta, Virtus y Saveiro, más FAQ, glosario, talleres y precios actualizados), cuatro ciclos de iteración rápida con feedback real del negocio, y un flujo de captura de leads que llega hasta DevRev sin intervención humana.
                         </p>
                         <p>
-                            El testeo sumó <strong>29 conversaciones</strong> entre pruebas dirigidas del equipo de Euromotors y pruebas internas de DevRev. <strong>9 conversaciones (31%)</strong> derivaron en lead creado en DevRev, validando la viabilidad técnica de los dos casos de uso del alcance — atención al cliente y captura de leads de ventas — y dejando una base medible para la decisión de go/no-go.
+                            El testeo no fue superficial: 7 testers de Euromotors sostuvieron <strong>334 mensajes</strong> a lo largo de 15 conversaciones — un promedio de ~22 mensajes por flujo, consistente con el ida-y-vuelta de un descubrimiento real. <strong>3 conversaciones (20%)</strong> terminaron creando un lead en DevRev, validando la viabilidad técnica de los dos casos de uso del alcance — atención al cliente y captura de leads de ventas — y dejando una base medible para la decisión de go/no-go.
                         </p>
                     </div>
                 </div>
