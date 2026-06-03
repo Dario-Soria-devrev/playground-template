@@ -1792,6 +1792,28 @@
                 padding: 4px 12px;
             }
         }
+
+        /* ── Resultados tab gating ──
+           Internal-only tab. Hidden by default; shown only when the
+           authenticated user's email is on the allow-list.
+        */
+        .nav-tab[data-tab="resultados"] {
+            display: none;
+        }
+
+        #resultados.tab-panel.active {
+            display: none;
+        }
+
+        body[data-auth-email="dario.soria@devrev.ai"] .nav-tab[data-tab="resultados"],
+        body[data-auth-email="micaela.ahedo@devrev.ai"] .nav-tab[data-tab="resultados"] {
+            display: inline-block;
+        }
+
+        body[data-auth-email="dario.soria@devrev.ai"] #resultados.tab-panel.active,
+        body[data-auth-email="micaela.ahedo@devrev.ai"] #resultados.tab-panel.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -2555,6 +2577,27 @@
         }
       }
 
+      // Allow-list for the internal-only Resultados tab. Mirrors the CSS
+      // gating in the <style> block so the URL hash never lands a viewer
+      // on a blank page.
+      var RESULTADOS_ALLOWED_EMAILS = [
+        'dario.soria@devrev.ai',
+        'micaela.ahedo@devrev.ai'
+      ];
+
+      function canSeeResultados(session) {
+        return !!(session && RESULTADOS_ALLOWED_EMAILS.indexOf(session.email) !== -1);
+      }
+
+      function gateResultadosHash(session) {
+        var hash = (window.location.hash || '').replace('#', '');
+        if (hash === 'resultados' && !canSeeResultados(session)) {
+          // Setting location.hash automatically fires the hashchange event,
+          // so the tabs script picks it up and activates the Alcance panel.
+          location.hash = 'scope';
+        }
+      }
+
       function applyAuthState(session) {
         if (session) {
           document.body.setAttribute('data-auth', 'true');
@@ -2575,6 +2618,7 @@
           if (cxBtn) cxBtn.textContent = 'Iniciar sesión en el Asistente';
           shutdownCxAgentWidget();
         }
+        gateResultadosHash(session);
       }
 
       function logout() {
