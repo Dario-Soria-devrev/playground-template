@@ -1847,6 +1847,13 @@
             font-weight: 400;
         }
 
+        /* The ROI metric lists reuse .card-criteria, whose scope-card variant
+           injects a "✓" via ::before. Those rows have no left padding, so the
+           checkmark overlaps the first letter. Suppress it inside the ROI panel. */
+        #roi .card-criteria li::before {
+            content: none;
+        }
+
         /* ── ROI tab gating ──
            Internal-only tab. Hidden by default; shown only when the
            authenticated user's email is on the allow-list.
