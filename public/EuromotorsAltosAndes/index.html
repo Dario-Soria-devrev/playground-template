@@ -1784,6 +1784,77 @@
                 padding: 4px 12px;
             }
         }
+
+        /* ── ROI: lists inside the statement cards (Resumen / Conclusiones) ── */
+        .problem-statement-card ul {
+            margin: 16px 0 20px;
+            padding-left: 22px;
+            color: var(--text-body);
+            font-size: 0.975rem;
+            line-height: 1.7;
+        }
+
+        .problem-statement-card li {
+            margin-bottom: 12px;
+        }
+
+        .problem-statement-card li:last-child {
+            margin-bottom: 0;
+        }
+
+        /* ── ROI: editable numbers ── */
+        .roi-editable {
+            display: inline-block;
+            padding: 2px 6px;
+            border-radius: 4px;
+            background: rgba(55, 48, 163, 0.08);
+            color: var(--indigo-title);
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.15s, transform 0.15s;
+            border: 2px solid transparent;
+        }
+
+        .roi-editable:hover {
+            background: rgba(55, 48, 163, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .roi-editable:focus {
+            outline: none;
+            border-color: var(--indigo-title);
+            background: var(--white);
+        }
+
+        .roi-hint {
+            display: inline-block;
+            margin-left: 8px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 400;
+        }
+
+        /* ── ROI tab gating ──
+           Internal-only tab. Hidden by default; shown only when the
+           authenticated user's email is on the allow-list.
+        */
+        .nav-tab[data-tab="roi"] {
+            display: none;
+        }
+
+        #roi.tab-panel.active {
+            display: none;
+        }
+
+        body[data-auth-email="dario.soria@devrev.ai"] .nav-tab[data-tab="roi"],
+        body[data-auth-email="micaela.ahedo@devrev.ai"] .nav-tab[data-tab="roi"] {
+            display: inline-block;
+        }
+
+        body[data-auth-email="dario.soria@devrev.ai"] #roi.tab-panel.active,
+        body[data-auth-email="micaela.ahedo@devrev.ai"] #roi.tab-panel.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -1802,6 +1873,7 @@
                 <button type="button" class="nav-tab" role="tab" data-tab="criteria" aria-controls="criteria" aria-selected="false">Criterios</button>
                 <button type="button" class="nav-tab" role="tab" data-tab="timeline" aria-controls="timeline" aria-selected="false">Cronograma</button>
                 <button type="button" class="nav-tab" role="tab" data-tab="resultados" aria-controls="resultados" aria-selected="false">Resultados</button>
+                <button type="button" class="nav-tab" role="tab" data-tab="roi" aria-controls="roi" aria-selected="false">ROI</button>
             </div>
             <div class="nav-auth">
                 <span class="nav-auth-greeting" id="auth-greeting" hidden></span>
@@ -2287,6 +2359,210 @@
             </div>
         </section>
 
+        <!-- ROI panel -->
+        <section class="section tab-panel" id="roi" role="tabpanel" aria-labelledby="roi">
+            <div class="container">
+                <div class="section-header">
+                    <div class="section-label">Retorno de Inversión</div>
+                    <h2>Business Case DevRev × Euromotors</h2>
+                    <p class="section-subtitle">
+                        Análisis financiero y proyección a 3 años del impacto de implementar IA conversacional para atención y ventas.
+                    </p>
+                </div>
+
+                <div class="problem-statement-card">
+                    <h2>Resumen Ejecutivo</h2>
+                    <p>
+                        Euromotors, representante oficial de marcas como Jetour, Audi, Ford y Ducati en Perú, enfrenta una creciente necesidad de unificar y potenciar sus canales digitales de atención, captación de leads y posventa. Actualmente, sus distintas marcas prueban soluciones independientes que no logran escalar ni brindar una experiencia consistente.
+                    </p>
+                    <p>
+                        Desde DevRev proponemos una solución de IA conversacional omnicanal, comenzando con la marca Jetour, para automatizar la atención al cliente, optimizar el funnel de ventas y escalar la atención digital con eficiencia y trazabilidad.
+                    </p>
+                </div>
+
+                <div class="scope-subheader">
+                    <div class="section-label">Variables Ajustables</div>
+                    <h2>Configura tu Escenario</h2>
+                    <p class="section-subtitle">
+                        Haz clic en cualquier número resaltado para ajustarlo. Los cálculos se actualizan automáticamente.
+                    </p>
+                </div>
+
+                <div class="in-scope-grid">
+                    <div class="scope-card">
+                        <div class="scope-card-label">Situación Actual</div>
+                        <h3>Métricas Base</h3>
+                        <div class="card-section">
+                            <ul class="card-criteria" style="list-style: none; padding: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid rgba(55,48,163,0.1);">
+                                    <strong>Visitantes web/mes:</strong> <span class="roi-editable" contenteditable="true" data-var="webVisitors">500,000</span>
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid rgba(55,48,163,0.1);">
+                                    <strong>Leads mensuales:</strong> <span class="roi-editable" contenteditable="true" data-var="currentLeads">3,000</span>
+                                    <span class="roi-hint">(<span id="current-lead-rate">0.84%</span>)</span>
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid rgba(55,48,163,0.1);">
+                                    <strong>Ventas mensuales:</strong> <span class="roi-editable" contenteditable="true" data-var="currentSales">130</span>
+                                    <span class="roi-hint">(<span id="current-conversion-rate">1.3%</span> conversión)</span>
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid rgba(55,48,163,0.1);">
+                                    <strong>Personal:</strong> <span class="roi-editable" contenteditable="true" data-var="staffCount">2</span> personas
+                                </li>
+                                <li style="padding: 8px 0;">
+                                    <strong>Costo por persona:</strong> USD <span class="roi-editable" contenteditable="true" data-var="staffCost">500</span>/mes
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="scope-card">
+                        <div class="scope-card-label">Con DevRev</div>
+                        <h3>Proyecciones</h3>
+                        <div class="card-section">
+                            <ul class="card-criteria" style="list-style: none; padding: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid rgba(55,48,163,0.1);">
+                                    <strong>Tasa de inicio de chat:</strong> <span class="roi-editable" contenteditable="true" data-var="chatInitiationRate">2.5</span>%
+                                    <span class="roi-hint">(<span id="chat-initiations">12,500</span> chats/mes)</span>
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid rgba(55,48,163,0.1);">
+                                    <strong>Chat → Lead:</strong> <span class="roi-editable" contenteditable="true" data-var="chatToLeadRate">26.7</span>%
+                                    <span class="roi-hint">(<span id="projected-leads">2,003</span> leads/mes)</span>
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid rgba(55,48,163,0.1);">
+                                    <strong>Lead → Venta:</strong> <span class="roi-editable" contenteditable="true" data-var="targetConversion">5</span>%
+                                    <span class="roi-hint">(<span id="target-sales">80</span> ventas/mes)</span>
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid rgba(55,48,163,0.1);">
+                                    <strong>Reducción operativa:</strong> <span class="roi-editable" contenteditable="true" data-var="staffReduction">50</span>%
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid rgba(55,48,163,0.1);">
+                                    <strong>Precio vehículo:</strong> USD <span class="roi-editable" contenteditable="true" data-var="vehiclePrice">18,000</span>
+                                </li>
+                                <li style="padding: 8px 0;">
+                                    <strong>Margen neto:</strong> <span class="roi-editable" contenteditable="true" data-var="profitMargin">5</span>%
+                                    <span class="roi-hint">(USD <span id="profit-per-sale">900</span>/venta)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="scope-card scope-card-wide">
+                        <div class="scope-card-label">Inversión DevRev</div>
+                        <h3>Costos del Proyecto</h3>
+                        <div class="card-section">
+                            <ul class="card-criteria" style="list-style: none; padding: 0;">
+                                <li style="padding: 8px 0; border-bottom: 1px solid rgba(55,48,163,0.1);">
+                                    <strong>Conversaciones/mes:</strong> <span id="conversation-cost-display">USD 2,250</span>
+                                    <span class="roi-hint">(<span id="conversations-total">7,500</span> × USD 0.30)</span>
+                                </li>
+                                <li style="padding: 8px 0; border-bottom: 1px solid rgba(55,48,163,0.1);">
+                                    <strong>Implementación única:</strong> USD 15,000
+                                </li>
+                                <li style="padding: 8px 0;">
+                                    <strong>Licencias anuales:</strong> USD 1,799
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="scope-subheader" style="margin-top: 48px;">
+                    <div class="section-label">Resultados</div>
+                    <h2>Análisis Año 1</h2>
+                </div>
+
+                <div class="criteria-grid">
+                    <div class="criteria-card">
+                        <div class="criteria-card-index">Beneficios</div>
+                        <h3 id="benefit-year1" style="color: var(--indigo-title);">USD 331,000</h3>
+                        <ul class="criteria-feedback">
+                            <li>Ahorro operativo (<span id="staff-reduction-display">50</span>%): <span id="staff-savings">USD 6,000</span></li>
+                            <li>Ventas adicionales: <span id="additional-sales-year">360</span>/año</li>
+                            <li>Margen adicional (<span id="margin-display">5</span>%): <span id="conversion-benefit">USD 324,000</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="criteria-card">
+                        <div class="criteria-card-index">Inversión</div>
+                        <h3 id="investment-year1" style="color: var(--indigo-title);">USD 54,299</h3>
+                        <ul class="criteria-feedback" style="margin-top: 12px;">
+                            <li>Conversaciones: <span id="inv-conversations">USD 37,500</span></li>
+                            <li>Implementación: <span id="inv-implementation">USD 15,000</span></li>
+                            <li>Licencias: <span id="inv-licenses">USD 1,799</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="criteria-card">
+                        <div class="criteria-card-index">Retorno</div>
+                        <h3 id="roi-year1" style="font-size: 2.5rem; color: var(--indigo-title); line-height: 1;">+509%</h3>
+                        <p style="margin-top: 16px; font-size: 0.9rem;">
+                            Break-even proyectado entre los meses 4 y 5
+                        </p>
+                    </div>
+                </div>
+
+                <div class="scope-subheader" style="margin-top: 48px;">
+                    <div class="section-label">Proyección 3 Años</div>
+                    <h2>ROI Acumulado</h2>
+                </div>
+
+                <div class="criteria-grid">
+                    <div class="criteria-card">
+                        <div class="criteria-card-index">Año 1</div>
+                        <h3 style="color: var(--indigo-title);">ROI: <span id="roi-y1">+509%</span></h3>
+                        <ul class="criteria-feedback">
+                            <li>Inversión: <span id="inv-y1">USD 54,299</span></li>
+                            <li>Beneficio: <span id="ben-y1">USD 331,000</span></li>
+                        </ul>
+                    </div>
+
+                    <div class="criteria-card">
+                        <div class="criteria-card-index">Año 2</div>
+                        <h3 style="color: var(--indigo-title);">ROI: <span id="roi-y2">+826%</span></h3>
+                        <ul class="criteria-feedback">
+                            <li>Inversión: <span id="inv-y2">USD 39,299</span></li>
+                            <li>Beneficio: <span id="ben-y2">USD 364,100</span></li>
+                            <li>Crecimiento: <span class="roi-editable" contenteditable="true" data-var="year2Growth">10</span>%</li>
+                        </ul>
+                    </div>
+
+                    <div class="criteria-card">
+                        <div class="criteria-card-index">Año 3</div>
+                        <h3 style="color: var(--indigo-title);">ROI: <span id="roi-y3">+920%</span></h3>
+                        <ul class="criteria-feedback">
+                            <li>Inversión: <span id="inv-y3">USD 39,299</span></li>
+                            <li>Beneficio: <span id="ben-y3">USD 400,510</span></li>
+                            <li>Crecimiento: <span class="roi-editable" contenteditable="true" data-var="year3Growth">10</span>%</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="problem-statement-card" style="margin-top: 40px; background: linear-gradient(135deg, var(--yellow-bright) 0%, var(--yellow-mid) 100%);">
+                    <h2>ROI Acumulado 3 Años</h2>
+                    <p style="font-size: 1.1rem; margin: 20px 0 8px;">
+                        <strong>Inversión total:</strong> <span id="total-investment-3y">USD 132,897</span>
+                    </p>
+                    <p style="font-size: 1.1rem; margin: 8px 0 20px;">
+                        <strong>Beneficio total:</strong> <span id="total-benefit-3y">USD 1,095,610</span>
+                    </p>
+                    <p style="font-size: 2.2rem; color: var(--indigo-title); font-weight: 800; margin-top: 20px;">
+                        ROI: <span id="roi-cumulative">+724%</span>
+                    </p>
+                </div>
+
+                <div class="problem-statement-card" style="margin-top: 32px;">
+                    <h2>Conclusiones</h2>
+                    <ul>
+                        <li>La inversión se justifica con sólo <strong><span id="breakeven-sales">4</span> ventas adicionales al año</strong>.</li>
+                        <li>Con <strong><span id="conclusion-chat-rate">2.5%</span></strong> de visitantes iniciando chat, se proyectan <strong><span id="conclusion-chats">12,500</span> conversaciones/mes</strong>.</li>
+                        <li>El canal digital se transforma en <strong>una palanca comercial medible</strong> con ROI de <strong><span id="conclusion-roi">+509%</span></strong> en el primer año.</li>
+                        <li>DevRev permite <strong>centralizar, automatizar y escalar</strong> con bajo costo marginal.</li>
+                        <li>La solución puede replicarse en todas las marcas del grupo <strong>sin reconstrucción</strong>.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
     </main>
 
     <!-- CTA Section -->
@@ -2486,6 +2762,27 @@
         }
       }
 
+      // Allow-list for the internal-only ROI tab. Mirrors the CSS gating
+      // in the <style> block so the URL hash never lands a viewer on a
+      // blank page.
+      var ROI_ALLOWED_EMAILS = [
+        'dario.soria@devrev.ai',
+        'micaela.ahedo@devrev.ai'
+      ];
+
+      function canSeeRoi(session) {
+        return !!(session && ROI_ALLOWED_EMAILS.indexOf(session.email) !== -1);
+      }
+
+      function gateRoiHash(session) {
+        var hash = (window.location.hash || '').replace('#', '');
+        if (hash === 'roi' && !canSeeRoi(session)) {
+          // Setting location.hash automatically fires the hashchange event,
+          // so the tabs script picks it up and activates the Alcance panel.
+          location.hash = 'scope';
+        }
+      }
+
       function applyAuthState(session) {
         if (session) {
           document.body.setAttribute('data-auth', 'true');
@@ -2506,6 +2803,7 @@
           if (cxBtn) cxBtn.textContent = 'Iniciar sesión en el Asistente';
           shutdownCxAgentWidget();
         }
+        gateRoiHash(session);
       }
 
       function logout() {
@@ -2705,6 +3003,187 @@
       form.addEventListener('submit', handleSubmit);
 
       applyAuthState(getSession());
+    })();
+    </script>
+
+    <!-- ROI Calculator with Inline Editing -->
+    <script>
+    (function() {
+      var roiVars = {
+        webVisitors: 500000,
+        currentLeads: 3000,
+        currentSales: 130,
+        staffCost: 500,
+        staffCount: 2,
+        targetConversion: 5,
+        staffReduction: 50,
+        vehiclePrice: 18000,
+        profitMargin: 5,
+        year2Growth: 10,
+        year3Growth: 10,
+        chatInitiationRate: 2.5,
+        chatToLeadRate: 26.7
+      };
+
+      var FIXED_COSTS = {
+        costPerConversation: 0.30,
+        implementationCost: 15000,
+        licenseCost: 1799
+      };
+
+      function parseNumber(text) {
+        return parseFloat(text.replace(/,/g, '')) || 0;
+      }
+
+      function formatNumber(num) {
+        return Math.round(num).toLocaleString('es-PE');
+      }
+
+      function formatDecimal(num) {
+        return num.toLocaleString('es-PE', { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+      }
+
+      function formatCurrency(num) {
+        return 'USD ' + formatNumber(num);
+      }
+
+      function formatPercent(num) {
+        return (num >= 0 ? '+' : '') + Math.round(num) + '%';
+      }
+
+      function calculate() {
+        var currentLeadRate = (roiVars.currentLeads / roiVars.webVisitors) * 100;
+        var currentConvRate = (roiVars.currentSales / roiVars.currentLeads) * 100;
+        var chatInitiations = (roiVars.webVisitors * roiVars.chatInitiationRate) / 100;
+        var projectedLeads = (chatInitiations * roiVars.chatToLeadRate) / 100;
+        var targetSales = (projectedLeads * roiVars.targetConversion) / 100;
+        var addSalesMonth = targetSales - roiVars.currentSales;
+        var addSalesYear = addSalesMonth * 12;
+        var profitPerSale = (roiVars.vehiclePrice * roiVars.profitMargin) / 100;
+
+        var staffSavings = (roiVars.staffCount * roiVars.staffCost * 12 * roiVars.staffReduction) / 100;
+        var conversionBenefit = addSalesYear * profitPerSale;
+        var benefitY1 = staffSavings + conversionBenefit + 1000;
+
+        var conversationsMonthly = chatInitiations;
+        var convCostMonthly = conversationsMonthly * FIXED_COSTS.costPerConversation;
+        var convCostYearly = convCostMonthly * 12;
+        var invY1 = convCostYearly + FIXED_COSTS.implementationCost + FIXED_COSTS.licenseCost;
+        var roiY1 = ((benefitY1 - invY1) / invY1) * 100;
+
+        var benefitY2 = benefitY1 * (1 + roiVars.year2Growth / 100);
+        var invY2 = convCostYearly + FIXED_COSTS.licenseCost;
+        var roiY2 = ((benefitY2 - invY2) / invY2) * 100;
+
+        var benefitY3 = benefitY2 * (1 + roiVars.year3Growth / 100);
+        var invY3 = invY2;
+        var roiY3 = ((benefitY3 - invY3) / invY3) * 100;
+
+        var totalInv = invY1 + invY2 + invY3;
+        var totalBen = benefitY1 + benefitY2 + benefitY3;
+        var roiCum = ((totalBen - totalInv) / totalInv) * 100;
+
+        return {
+          currentLeadRate: currentLeadRate,
+          currentConvRate: currentConvRate,
+          chatInitiations: chatInitiations,
+          projectedLeads: projectedLeads,
+          targetSales: targetSales,
+          addSalesMonth: addSalesMonth,
+          addSalesYear: addSalesYear,
+          profitPerSale: profitPerSale,
+          staffSavings: staffSavings,
+          conversionBenefit: conversionBenefit,
+          benefitY1: benefitY1,
+          conversationsMonthly: conversationsMonthly,
+          convCostMonthly: convCostMonthly,
+          convCostYearly: convCostYearly,
+          invY1: invY1,
+          roiY1: roiY1,
+          benefitY2: benefitY2,
+          invY2: invY2,
+          roiY2: roiY2,
+          benefitY3: benefitY3,
+          invY3: invY3,
+          roiY3: roiY3,
+          totalInv: totalInv,
+          totalBen: totalBen,
+          roiCum: roiCum
+        };
+      }
+
+      function updateDisplay() {
+        var calc = calculate();
+
+        document.getElementById('current-lead-rate').textContent = calc.currentLeadRate.toFixed(2) + '%';
+        document.getElementById('chat-initiations').textContent = formatNumber(calc.chatInitiations);
+        document.getElementById('projected-leads').textContent = formatNumber(calc.projectedLeads);
+        document.getElementById('conversations-total').textContent = formatNumber(calc.conversationsMonthly);
+        document.getElementById('conversation-cost-display').textContent = formatCurrency(calc.convCostMonthly);
+        document.getElementById('current-conversion-rate').textContent = calc.currentConvRate.toFixed(1) + '%';
+        document.getElementById('target-sales').textContent = Math.round(calc.targetSales);
+        document.getElementById('profit-per-sale').textContent = formatNumber(calc.profitPerSale);
+        document.getElementById('benefit-year1').textContent = formatCurrency(calc.benefitY1);
+        document.getElementById('staff-savings').textContent = formatCurrency(calc.staffSavings);
+        document.getElementById('additional-sales-year').textContent = Math.round(calc.addSalesYear);
+        document.getElementById('conversion-benefit').textContent = formatCurrency(calc.conversionBenefit);
+        document.getElementById('investment-year1').textContent = formatCurrency(calc.invY1);
+        document.getElementById('roi-year1').textContent = formatPercent(calc.roiY1);
+
+        document.getElementById('roi-y1').textContent = formatPercent(calc.roiY1);
+        document.getElementById('inv-y1').textContent = formatCurrency(calc.invY1);
+        document.getElementById('ben-y1').textContent = formatCurrency(calc.benefitY1);
+
+        document.getElementById('roi-y2').textContent = formatPercent(calc.roiY2);
+        document.getElementById('inv-y2').textContent = formatCurrency(calc.invY2);
+        document.getElementById('ben-y2').textContent = formatCurrency(calc.benefitY2);
+
+        document.getElementById('roi-y3').textContent = formatPercent(calc.roiY3);
+        document.getElementById('inv-y3').textContent = formatCurrency(calc.invY3);
+        document.getElementById('ben-y3').textContent = formatCurrency(calc.benefitY3);
+
+        document.getElementById('total-investment-3y').textContent = formatCurrency(calc.totalInv);
+        document.getElementById('total-benefit-3y').textContent = formatCurrency(calc.totalBen);
+        document.getElementById('roi-cumulative').textContent = formatPercent(calc.roiCum);
+
+        document.getElementById('staff-reduction-display').textContent = roiVars.staffReduction;
+        document.getElementById('margin-display').textContent = roiVars.profitMargin;
+        document.getElementById('inv-conversations').textContent = formatCurrency(calc.convCostYearly);
+        document.getElementById('inv-implementation').textContent = formatCurrency(FIXED_COSTS.implementationCost);
+        document.getElementById('inv-licenses').textContent = formatCurrency(FIXED_COSTS.licenseCost);
+
+        var breakevenSales = Math.ceil(calc.invY1 / calc.profitPerSale / 12);
+        document.getElementById('breakeven-sales').textContent = breakevenSales;
+        document.getElementById('conclusion-chat-rate').textContent = formatDecimal(roiVars.chatInitiationRate) + '%';
+        document.getElementById('conclusion-chats').textContent = formatNumber(calc.chatInitiations);
+        document.getElementById('conclusion-roi').textContent = formatPercent(calc.roiY1);
+      }
+
+      var editables = document.querySelectorAll('.roi-editable[contenteditable]');
+      editables.forEach(function(el) {
+        el.addEventListener('blur', function() {
+          var varName = el.getAttribute('data-var');
+          var value = parseNumber(el.textContent);
+          if (varName && !isNaN(value)) {
+            roiVars[varName] = value;
+            if (varName === 'chatInitiationRate' || varName === 'chatToLeadRate') {
+              el.textContent = formatDecimal(value);
+            } else {
+              el.textContent = formatNumber(value);
+            }
+            updateDisplay();
+          }
+        });
+
+        el.addEventListener('keydown', function(e) {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            el.blur();
+          }
+        });
+      });
+
+      updateDisplay();
     })();
     </script>
 
